@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Female Signature — CMS</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0A0A0A;
+  --white: #FFFFFF;
+  --off-white: #F9F8F5;
+  --gold: #C4A265;
+  --gold-light: #D4B97A;
+  --gold-dark: #A8874F;
+  --mid-gray: #7A7A7A;
+  --light-gray: #B8B8B8;
+  --border: #E8E5DE;
+  --green: #4CAF50;
+  --red: #E57373;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--off-white);
+  color: var(--black);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout */
+.cms-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background: var(--black);
+  color: var(--white);
+  padding: 32px 0;
+  position: fixed;
+  top: 0; left: 0;
+  width: 260px;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  padding: 0 24px 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 24px;
+}
+
+.sidebar-logo h1 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sidebar-logo span {
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 4px;
+}
+
+.sidebar-nav { list-style: none; }
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a.active {
+  color: var(--white);
+  background: rgba(255,255,255,0.04);
+  border-left-color: var(--gold);
+}
+
+.sidebar-nav li a svg {
+  width: 18px; height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  flex-shrink: 0;
+}
+
+.sidebar-actions {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-actions a {
+  font-size: 12px;
+  color: var(--gold);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.sidebar-actions a:hover { color: var(--gold-light); }
+
+.sidebar-actions a svg {
+  width: 16px; height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* Main */
+.cms-main {
+  margin-left: 260px;
+  padding: 40px;
+  min-height: 100vh;
+}
+
+.cms-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.cms-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.save-status {
+  font-size: 12px;
+  color: var(--mid-gray);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.save-status.saved { color: var(--green); }
+.save-status .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--light-gray);
+}
+.save-status.saved .dot { background: var(--green); }
+
+/* Section panels */
+.cms-panel {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.cms-panel.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.card-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Form elements */
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+  margin-bottom: 6px;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--black);
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--gold);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.6;
+}
+
+.field .hint {
+  font-size: 11px;
+  color: var(--light-gray);
+  margin-top: 4px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Repeater items */
+.repeater-item {
+  background: var(--off-white);
+  padding: 20px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.repeater-item .item-number {
+  position: absolute;
+  top: 12px; right: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-save {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-save:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.btn-export {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--border);
+}
+
+.btn-export:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+
+.btn-preview {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.btn-preview:hover {
+  background: var(--gold-light);
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: var(--black);
+  color: var(--white);
+  padding: 16px 28px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 9999;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast.success { border-left: 4px solid var(--green); }
+.toast.error { border-left: 4px solid var(--red); }
+
+/* Image preview */
+.img-preview {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cms-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .cms-main { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="cms-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h1>Female Signature</h1>
+      <span>Content Manager</span>
+    </div>
+    <ul class="sidebar-nav" id="sidebarNav">
+      <li><a href="#" data-panel="hero" class="active">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Hero / Header
+      </a></li>
+      <li><a href="#" data-panel="services">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Signature Services
+      </a></li>
+      <li><a href="#" data-panel="promise">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22 4 12 14.01 9 11.01" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Our Promise
+      </a></li>
+      <li><a href="#" data-panel="process">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        The Path
+      </a></li>
+      <li><a href="#" data-panel="about">
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        About Us
+      </a></li>
+      <li><a href="#" data-panel="quote">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        CEO Zitat
+      </a></li>
+      <li><a href="#" data-panel="contact">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Kontakt & Footer
+      </a></li>
+      <li><a href="#" data-panel="images">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="8.5" r="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="21 15 16 10 5 21" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Bilder
+      </a></li>
+    </ul>
+    <div class="sidebar-actions">
+      <a href="index.html" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Website ansehen
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="cms-main">
+    <div class="cms-header">
+      <h2 id="panelTitle">Hero / Header</h2>
+      <div class="save-status" id="saveStatus">
+        <span class="dot"></span> Nicht gespeichert
+      </div>
+    </div>
+
+    <!-- ═══ HERO ═══ -->
+    <div class="cms-panel active" id="panel-hero">
+      <div class="card">
+        <p class="card-title">Hero-Bereich</p>
+        <div class="field">
+          <label>Label (über der Headline)</label>
+          <input type="text" id="hero_label" value="Exklusiv für Female Businesses">
+        </div>
+        <div class="field">
+          <label>Headline Zeile 1</label>
+          <input type="text" id="hero_h1_1" value="Dein Erfolg trägt">
+        </div>
+        <div class="field">
+          <label>Headline Zeile 2 (Kalligrafie/Gold)</label>
+          <input type="text" id="hero_h1_2" value="deine Handschrift.">
+        </div>
+        <div class="field">
+          <label>Untertitel</label>
+          <textarea id="hero_sub">Branding, Affiliate & Performance Marketing für Frauen-geführte Unternehmen. Wachstum, Sichtbarkeit und echte Partnerschaft im DACH-Raum.</textarea>
+        </div>
+        <div class="field">
+          <label>CTA Button Text</label>
+          <input type="text" id="hero_cta" value="Kostenloses Strategiegespräch">
+        </div>
+      </div>
+      <div class="card">
+        <p class="card-title">Infographic-Card (Problem/Lösung)</p>
+        <div class="field-row">
+          <div class="field">
+            <label>Statistik Zahl</label>
+            <input type="text" id="info_num" value="1,5">
+          </div>
+          <div class="field">
+            <label>Statistik Einheit</label>
+            <input type="text" id="info_unit" value="Mio+">
+          </div>
+        </div>
+        <div class="field">
+          <label>Statistik Label</label>
+          <input type="text" id="info_label" value="Female-led Businesses in DACH">
+        </div>
+
+        <div class="repeater-item">
+          <span class="item-number">01</span>
+          <div class="field"><label>Problem</label><input type="text" id="problem_1" value="Nur 2% des Venture Capitals gehen an reine Frauen-Teams"></div>
+          <div class="field"><label>Lösung</label><input type="text" id="solution_1" value="Performance-Modelle & Shared Deals ohne klassisches VC"></div>
+        </div>
+        <div class="repeater-item">
+          <span class="item-number">02</span>
+          <div class="field"><label>Problem</label><input type="text" id="problem_2" value="73% können nötige Ressourcen für Wachstum nicht aufbringen"></div>
+          <div class="field"><label>Lösung</label><input type="text" id="solution_2" value="Skalierbare Partnerprogramme, die Umsatz generieren"></div>
+        </div>
+        <div class="repeater-item">
+          <span class="item-number">03</span>
+          <div class="field"><label>Problem</label><input type="text" id="problem_3" value="Fehlende Netzwerke & Digital-Marketing Know-how"></div>
+          <div class="field"><label>Lösung</label><input type="text" id="solution_3" value="Beratung, Workshops & Zugang zu Female Business Communities"></div>
+        </div>
+        <div class="repeater-item">
+          <span class="item-number">04</span>
+          <div class="field"><label>Problem</label><input type="text" id="problem_4" value="Technologie-Komplexität bremst Skalierung"></div>
+          <div class="field"><label>Lösung</label><input type="text" id="solution_4" value="Marktführende Plattform, von uns gemanagt – du behältst die Kontrolle"></div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="card-title">Marquee-Band</p>
+        <div class="field">
+          <label>Keywords (durch Komma getrennt)</label>
+          <input type="text" id="marquee_words" value="Branding, Affiliate Marketing, Performance Marketing, Partner Management, Female Empowerment, Skalierung, Sichtbarkeit, Community">
+          <p class="hint">Diese Wörter scrollen als animiertes Band unter dem Hero.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SERVICES ═══ -->
+    <div class="cms-panel" id="panel-services">
+      <div class="card">
+        <p class="card-title">Signature Services — Überschrift</p>
+        <div class="field"><label>Headline</label><input type="text" id="services_h2" value="Boutique-Strategie trifft messbare Performance."></div>
+        <div class="field"><label>Beschreibung</label><textarea id="services_desc">Modernste Technologie für Partner-Management & Skalierung. Drei Disziplinen, ein Ziel: dein nachhaltiges Wachstum.</textarea></div>
+      </div>
+      <div class="card">
+        <p class="card-title">Die drei Säulen</p>
+        <div class="repeater-item">
+          <span class="item-number">01</span>
+          <div class="field"><label>Titel</label><input type="text" id="pillar_1_title" value="Branding"></div>
+          <div class="field"><label>Text</label><textarea id="pillar_1_text">Wir entwickeln unverwechselbare Markenidentitäten, die Vertrauen schaffen und dich klar positionieren. Von der Strategie über visuelle Identität bis zur Markenstimme.</textarea></div>
+        </div>
+        <div class="repeater-item">
+          <span class="item-number">02</span>
+          <div class="field"><label>Titel</label><input type="text" id="pillar_2_title" value="Affiliate Marketing"></div>
+          <div class="field"><label>Text</label><textarea id="pillar_2_text">Wir bauen und managen skalierbare Partnerprogramme mit marktführender Technologie – für mehr Reichweite und Umsatz. Neue Zielgruppen, maximale Flexibilität.</textarea></div>
+        </div>
+        <div class="repeater-item">
+          <span class="item-number">03</span>
+          <div class="field"><label>Titel</label><input type="text" id="pillar_3_title" value="Performance Marketing"></div>
+          <div class="field"><label>Text</label><textarea id="pillar_3_text">Wir steuern datengetriebene Kampagnen, die Wachstum und messbare Ergebnisse liefern – von Awareness bis Conversion. Immer transparent, immer am Puls der Zeit.</textarea></div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="card-title">Services Split-Sektion</p>
+        <div class="field"><label>Headline</label><input type="text" id="split1_h3" value="Von der Strategie bis zur Skalierung."></div>
+        <div class="field"><label>Text</label><textarea id="split1_text">Wir begleiten dich als echte Partnerin – von der Markenentwicklung über dein Partnerprogramm bis zur Performance-Optimierung.</textarea></div>
+        <div class="field"><label>Features (eins pro Zeile)</label><textarea id="split1_features" style="min-height:120px;">Markenidentität & visuelle Positionierung
+Skalierbare Partnerprogramme mit Technologie-Setup
+Datengetriebene Kampagnen von Awareness bis Conversion
+Transparentes Reporting & laufende Optimierung
+Workshops, Beratung & Wissenstransfer</textarea></div>
+      </div>
+      <div class="card">
+        <p class="card-title">Technologie Split-Sektion</p>
+        <div class="field"><label>Headline</label><input type="text" id="split2_h3" value="Modernste Plattform. Volle Kontrolle."></div>
+        <div class="field"><label>Text</label><textarea id="split2_text">Wir nutzen marktführende Plattform-Lösungen für Partner-Management, Tracking und Automatisierung. Maximale Skalierbarkeit ohne Komplexität.</textarea></div>
+        <div class="field"><label>Features (eins pro Zeile)</label><textarea id="split2_features" style="min-height:100px;">Automatisiertes Partner-Management & Tracking
+Real-Time Performance Dashboards
+Skalierbare Infrastruktur für Wachstum
+Datenschutzkonform & DSGVO-sicher</textarea></div>
+      </div>
+    </div>
+
+    <!-- ═══ PROMISE ═══ -->
+    <div class="cms-panel" id="panel-promise">
+      <div class="card">
+        <p class="card-title">Our Promise — Überschrift</p>
+        <div class="field"><label>Headline</label><input type="text" id="promise_h2" value="Deine Herausforderungen. Unsere Lösungen."></div>
+        <div class="field"><label>Beschreibung</label><textarea id="promise_desc">Wir kennen die Pain Points von Female Businesses – und haben die Antworten.</textarea></div>
+      </div>
+      <div class="card">
+        <p class="card-title">Die sechs Punkte</p>
+        <div class="repeater-item"><span class="item-number">01</span>
+          <div class="field"><label>Titel</label><input type="text" id="why_1_title" value="Effizient wachsen"></div>
+          <div class="field"><label>Text</label><textarea id="why_1_text">Flexible Modelle, Shared Deals & Performance-Ansatz minimieren dein Risiko bei maximaler Wirkung.</textarea></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">02</span>
+          <div class="field"><label>Titel</label><input type="text" id="why_2_title" value="Wissenstransfer"></div>
+          <div class="field"><label>Text</label><textarea id="why_2_text">Wir schließen deine Know-how-Lücke – mit Beratung, Workshops & transparentem Reporting.</textarea></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">03</span>
+          <div class="field"><label>Titel</label><input type="text" id="why_3_title" value="Netzwerk-Zugang"></div>
+          <div class="field"><label>Text</label><textarea id="why_3_text">Zugang zu geprüften Partnern & Female Business Communities im gesamten DACH-Raum.</textarea></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">04</span>
+          <div class="field"><label>Titel</label><input type="text" id="why_4_title" value="Technologie"></div>
+          <div class="field"><label>Text</label><textarea id="why_4_text">Modernste Plattform-Lösungen für Partner-Management, Automatisierung & volle Kontrolle.</textarea></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">05</span>
+          <div class="field"><label>Titel</label><input type="text" id="why_5_title" value="Sichtbarkeit & Vertrauen"></div>
+          <div class="field"><label>Text</label><textarea id="why_5_text">Deine Story, deine Handschrift – wir machen dich sichtbar und bauen Vertrauen auf.</textarea></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">06</span>
+          <div class="field"><label>Titel</label><input type="text" id="why_6_title" value="Exklusiv für dich"></div>
+          <div class="field"><label>Text</label><textarea id="why_6_text">Als einzige Hybrid-Agentur im DACH-Raum verstehen wir die Bedürfnisse von Frauen-geführten Unternehmen.</textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROCESS ═══ -->
+    <div class="cms-panel" id="panel-process">
+      <div class="card">
+        <p class="card-title">The Path — Überschrift</p>
+        <div class="field"><label>Headline</label><input type="text" id="path_h2" value="In sechs Schritten zum Erfolg."></div>
+        <div class="field"><label>Beschreibung</label><textarea id="path_desc">Strukturiert, transparent und auf dein Business zugeschnitten.</textarea></div>
+      </div>
+      <div class="card">
+        <p class="card-title">Die sechs Schritte</p>
+        <div class="repeater-item"><span class="item-number">01</span>
+          <div class="field"><label>Titel</label><input type="text" id="step_1_title" value="Kickoff & Strategiegespräch"></div>
+          <div class="field"><label>Text</label><input type="text" id="step_1_text" value="Wir lernen dein Business kennen und definieren gemeinsam Ziele und Strategie."></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">02</span>
+          <div class="field"><label>Titel</label><input type="text" id="step_2_title" value="Branding & Positionierung"></div>
+          <div class="field"><label>Text</label><input type="text" id="step_2_text" value="Workshop-basierte Erarbeitung deiner Markenidentität und klaren Positionierung."></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">03</span>
+          <div class="field"><label>Titel</label><input type="text" id="step_3_title" value="Partnerprogramm-Setup"></div>
+          <div class="field"><label>Text</label><input type="text" id="step_3_text" value="Technisches Setup, Partnerauswahl und Programm-Konfiguration mit Technologie."></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">04</span>
+          <div class="field"><label>Titel</label><input type="text" id="step_4_title" value="Kampagnenstart & Optimierung"></div>
+          <div class="field"><label>Text</label><input type="text" id="step_4_text" value="Launch und laufende Optimierung deiner Kampagnen für maximale Performance."></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">05</span>
+          <div class="field"><label>Titel</label><input type="text" id="step_5_title" value="Transparente Reports"></div>
+          <div class="field"><label>Text</label><input type="text" id="step_5_text" value="Regelmäßige Performance-Reports und datengetriebene Strategie-Updates."></div>
+        </div>
+        <div class="repeater-item"><span class="item-number">06</span>
+          <div class="field"><label>Titel</label><input type="text" id="step_6_title" value="Skalierung & Ausbau"></div>
+          <div class="field"><label>Text</label><input type="text" id="step_6_text" value="Wachstum der Partnerschaft und Expansion in neue Kanäle und Märkte."></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ABOUT ═══ -->
+    <div class="cms-panel" id="panel-about">
+      <div class="card">
+        <p class="card-title">About Us</p>
+        <div class="field"><label>Headline</label><input type="text" id="about_h3" value="Wir glauben an die Kraft von Female Businesses."></div>
+        <div class="field"><label>Absatz 1</label><textarea id="about_p1">Female Signature steht für Wachstum, Sichtbarkeit und echte Partnerschaft – exklusiv für Female Businesses. Als Boutique-Agentur im DACH-Raum verbinden wir strategische Beratung mit operativer Exzellenz.</textarea></div>
+        <div class="field"><label>Absatz 2</label><textarea id="about_p2">Wir setzen alles daran, dein Business mit innovativem Branding, Affiliate- und Performance Marketing nachhaltig erfolgreich zu machen.</textarea></div>
+      </div>
+      <div class="card">
+        <p class="card-title">Werte</p>
+        <div class="field-row">
+          <div class="field"><label>Wert 1 — Titel</label><input type="text" id="val_1_title" value="Empowerment"></div>
+          <div class="field"><label>Text</label><input type="text" id="val_1_text" value="Wir stärken Female Founders – mit Know-how, Netzwerk und echter Partnerschaft."></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Wert 2 — Titel</label><input type="text" id="val_2_title" value="Transparenz"></div>
+          <div class="field"><label>Text</label><input type="text" id="val_2_text" value="Klare Kommunikation, ehrliche Beratung, messbare Ergebnisse."></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Wert 3 — Titel</label><input type="text" id="val_3_title" value="Community"></div>
+          <div class="field"><label>Text</label><input type="text" id="val_3_text" value="Gemeinsam wachsen, voneinander lernen, Erfolge feiern."></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Wert 4 — Titel</label><input type="text" id="val_4_title" value="Innovation"></div>
+          <div class="field"><label>Text</label><input type="text" id="val_4_text" value="Modernste Technologie, kontinuierliche Weiterbildung."></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ QUOTE ═══ -->
+    <div class="cms-panel" id="panel-quote">
+      <div class="card">
+        <p class="card-title">CEO Zitat</p>
+        <div class="field"><label>Zitat (Deutsch)</label><textarea id="quote_de" style="min-height:100px;">„Sichtbarkeit ohne Strategie ist Lärm. Strategie ohne Persönlichkeit ist Leere. Wer beides verbindet, hinterlässt eine Handschrift — keine Fußnote."</textarea></div>
+        <div class="field"><label>Rolle</label><input type="text" id="ceo_role" value="CEO & Founder"></div>
+        <div class="field"><label>Name</label><input type="text" id="ceo_name" value="Mediha Mujcin"></div>
+      </div>
+    </div>
+
+    <!-- ═══ CONTACT ═══ -->
+    <div class="cms-panel" id="panel-contact">
+      <div class="card">
+        <p class="card-title">Kontakt-Sektion</p>
+        <div class="field"><label>Headline</label><input type="text" id="cta_h2_1" value="Lass uns gemeinsam"></div>
+        <div class="field"><label>Headline Akzent (Gold/Kalligrafie)</label><input type="text" id="cta_h2_2" value="wachsen."></div>
+        <div class="field"><label>Text</label><textarea id="cta_text">Du möchtest mehr erfahren, ein kostenloses Strategiegespräch buchen oder direkt loslegen? Wir freuen uns auf deine Nachricht.</textarea></div>
+        <div class="field"><label>CTA Button Text</label><input type="text" id="cta_btn" value="Kostenloses Strategiegespräch sichern"></div>
+      </div>
+      <div class="card">
+        <p class="card-title">Kontaktdaten</p>
+        <div class="field"><label>E-Mail</label><input type="email" id="contact_email" value="contact@female-signature.com"></div>
+        <div class="field"><label>Telefon</label><input type="tel" id="contact_phone" value="+43 699 12091987"></div>
+        <div class="field"><label>Firma</label><input type="text" id="contact_company" value="Female Signature GmbH"></div>
+        <div class="field"><label>Adresse</label><input type="text" id="contact_address" value="Aste 10, 6071 Aldrans"></div>
+      </div>
+      <div class="card">
+        <p class="card-title">Footer</p>
+        <div class="field"><label>Footer-Text</label><textarea id="footer_text">Die #1 Hybrid Affiliate & Performance Marketing Agentur & Beratung für Female Businesses im DACH-Raum.</textarea></div>
+      </div>
+    </div>
+
+    <!-- ═══ IMAGES ═══ -->
+    <div class="cms-panel" id="panel-images">
+      <div class="card">
+        <p class="card-title">Bild-URLs</p>
+        <p class="hint" style="margin-bottom:20px;">Ändere die Bild-URLs hier. Für eigene Bilder: Lade sie in den images/ Ordner und gib den Pfad ein (z.B. images/mein-bild.jpg).</p>
+        <div class="field">
+          <label>Hero-Bild</label>
+          <input type="text" id="img_hero" value="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1200&q=80&fit=crop&crop=top">
+        </div>
+        <div class="field">
+          <label>Services-Bild (Split links)</label>
+          <input type="text" id="img_services" value="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80&fit=crop">
+        </div>
+        <div class="field">
+          <label>Technologie-Bild (Split rechts)</label>
+          <input type="text" id="img_tech" value="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&fit=crop">
+        </div>
+        <div class="field">
+          <label>About-Bild</label>
+          <input type="text" id="img_about" value="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80&fit=crop">
+        </div>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="btn-group">
+      <button class="btn btn-save" onclick="saveContent()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 21 17 13 7 13 7 21" stroke-linecap="round" stroke-linejoin="round"/><polyline points="7 3 7 8 15 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Speichern & Exportieren
+      </button>
+      <button class="btn btn-export" onclick="exportJSON()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        JSON herunterladen
+      </button>
+      <button class="btn btn-preview" onclick="generateSite()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        index.html generieren
+      </button>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Panel switching
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+const panels = document.querySelectorAll('.cms-panel');
+const panelTitle = document.getElementById('panelTitle');
+
+const titles = {
+  hero: 'Hero / Header',
+  services: 'Signature Services',
+  promise: 'Our Promise',
+  process: 'The Path',
+  about: 'About Us',
+  quote: 'CEO Zitat',
+  contact: 'Kontakt & Footer',
+  images: 'Bilder'
+};
+
+navLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const panel = link.dataset.panel;
+    navLinks.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+    panels.forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + panel).classList.add('active');
+    panelTitle.textContent = titles[panel] || panel;
+  });
+});
+
+// Track changes
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('input', () => {
+    document.getElementById('saveStatus').className = 'save-status';
+    document.getElementById('saveStatus').innerHTML = '<span class="dot"></span> Nicht gespeichert';
+  });
+});
+
+// Collect all content
+function collectContent() {
+  const data = {};
+  document.querySelectorAll('input, textarea').forEach(el => {
+    if (el.id) data[el.id] = el.value;
+  });
+  return data;
+}
+
+// Toast notification
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  setTimeout(() => t.className = 'toast', 3000);
+}
+
+// Save to localStorage
+function saveContent() {
+  const data = collectContent();
+  localStorage.setItem('fs_cms_content', JSON.stringify(data));
+  document.getElementById('saveStatus').className = 'save-status saved';
+  document.getElementById('saveStatus').innerHTML = '<span class="dot"></span> Gespeichert';
+  showToast('✓ Inhalte gespeichert');
+}
+
+// Load from localStorage
+function loadContent() {
+  const saved = localStorage.getItem('fs_cms_content');
+  if (saved) {
+    const data = JSON.parse(saved);
+    Object.entries(data).forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el) el.value = val;
+    });
+    document.getElementById('saveStatus').className = 'save-status saved';
+    document.getElementById('saveStatus').innerHTML = '<span class="dot"></span> Gespeichert';
+  }
+}
+
+// Export as JSON download
+function exportJSON() {
+  const data = collectContent();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'content.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('✓ content.json heruntergeladen');
+}
+
+// Generate the full index.html with current content
+function generateSite() {
+  saveContent();
+  const d = collectContent();
+
+  // Build features lists
+  const feat1 = d.split1_features.split('\n').filter(Boolean).map(f => 
+    `        <li>${f.trim()}</li>`).join('\n');
+  const feat2 = d.split2_features.split('\n').filter(Boolean).map(f => 
+    `        <li>${f.trim()}</li>`).join('\n');
+
+  // Build marquee
+  const mWords = d.marquee_words.split(',').map(w => `<span>${w.trim()}</span>`).join('');
+
+  // Fetch the template
+  fetch('index.html')
+    .then(r => r.text())
+    .then(html => {
+      // Build a mapping of content replacements
+      const replacements = [
+        // Hero
+        [/(<p class="hero-label">)(.*?)(<\/p>)/, `$1${d.hero_label}$3`],
+        [/(<h1>)([\s\S]*?)(<\/h1>)/, `$1${d.hero_h1_1}<br><span class="calligraphy">${d.hero_h1_2}</span>$3`],
+        [/(<p class="hero-sub">)([\s\S]*?)(<\/p>)/, `$1${d.hero_sub}$3`],
+        // Info card
+        [/(class="info-label">)(.*?)(<\/span>)/, `$1${d.info_label}$3`],
+        // Services
+        [/(id="signature-services"[\s\S]*?<h2>)(.*?)(<\/h2>)/, `$1${d.services_h2}$3`],
+        // About
+        [/(id="about-us"[\s\S]*?<h3>)(.*?)(<\/h3>)/, `$1${d.about_h3}$3`],
+        // Quote
+        [/(<blockquote>)([\s\S]*?)(<\/blockquote>)/, `$1\n        ${d.quote_de}\n      $3`],
+        [/(class="ceo-role">)(.*?)(<\/span>)/, `$1${d.ceo_role}$3`],
+        [/(class="ceo-name">)(.*?)(<\/span>)/, `$1${d.ceo_name}$3`],
+        // Contact
+        [/(id="kontakt"[\s\S]*?<h2>)([\s\S]*?)(<\/h2>)/, `$1${d.cta_h2_1} <span class="calligraphy">${d.cta_h2_2}</span>$3`],
+        // Images
+        [/(alt="Female Business Leader"[\s\S]*?src=")(.*?)(")/, `$1${d.img_hero}$3`],
+        [/(alt="Branding Workshop"[\s\S]*?src=")(.*?)(")/, `$1${d.img_services}$3`],
+        [/(alt="Team Collaboration"[\s\S]*?src=")(.*?)(")/, `$1${d.img_tech}$3`],
+        [/(alt="Female Business Meeting"[\s\S]*?src=")(.*?)(")/, `$1${d.img_about}$3`],
+      ];
+
+      // Note: For a full production CMS, use a templating engine.
+      // This simple version exports a content.json that you apply manually or via build script.
+
+      // For now, download the content.json
+      const blob = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'content.json';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      showToast('✓ content.json exportiert — ersetze die Werte in index.html oder sende mir die Datei');
+    })
+    .catch(() => {
+      // Fallback: just export JSON
+      exportJSON();
+    });
+}
+
+// Load saved content on start
+loadContent();
+</script>
+
+</body>
+</html>
