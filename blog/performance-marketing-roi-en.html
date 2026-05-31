@@ -1,107 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Performance Marketing with 340% ROI: Why Data-Driven Marketing Is Not a Luxury — Female Signature Blog</title>
-<meta name="description" content="How female businesses achieve measurable results with data-driven performance marketing — and why it's especially worth it for smaller budgets.">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root { --black: #0A0A0A; --white: #FFFFFF; --off-white: #F9F8F5; --cream: #F3F0EA; --gold: #C4A265; --gold-light: #D4B97A; --gold-dark: #A8874F; --charcoal: #1A1A1A; --dark-gray: #2C2C2C; --mid-gray: #7A7A7A; --light-gray: #B8B8B8; --border: #E8E5DE; }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--black); line-height: 1.8; -webkit-font-smoothing: antialiased; }
-.blog-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 clamp(24px,5vw,80px); height: 68px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.94); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 1px 0 var(--border); }
-.blog-nav a { text-decoration: none; }
-.blog-nav-logo { font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--black); }
-.blog-nav-back { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); display: flex; align-items: center; gap: 8px; }
-.blog-nav-back:hover { color: var(--black); }
-.blog-nav-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-.article { max-width: 740px; margin: 0 auto; padding: 120px 24px 80px; }
-.article-meta { margin-bottom: 32px; }
-.article-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; }
-.article-cat::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
-.article h1 { font-size: clamp(28px,4vw,42px); font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 16px; }
-.article-date { font-size: 12px; color: var(--light-gray); letter-spacing: 0.05em; }
-.article-hero { margin: 32px 0; display: block; }
-.article-body h2 { font-size: 22px; font-weight: 700; margin-top: 40px; margin-bottom: 16px; letter-spacing: 0.01em; }
-.article-body h3 { font-size: 18px; font-weight: 600; margin-top: 32px; margin-bottom: 12px; }
-.article-body p { font-size: 16px; color: var(--dark-gray); margin-bottom: 20px; line-height: 1.85; }
-.article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 20px; }
-.article-body li { font-size: 15px; color: var(--dark-gray); margin-bottom: 8px; line-height: 1.7; }
-.article-body blockquote { border-left: 3px solid var(--gold); padding: 16px 24px; margin: 28px 0; background: var(--off-white); font-size: 17px; font-style: italic; color: var(--mid-gray); line-height: 1.7; }
-.article-body strong { color: var(--black); }
-.article-body a { color: var(--gold-dark); }
-.article-cta { text-align: center; padding: 48px 32px; background: var(--off-white); border: 1px solid var(--border); margin: 48px 0; }
-.article-cta h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-.article-cta p { font-size: 14px; color: var(--mid-gray); margin-bottom: 20px; }
-.article-cta a { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; color: var(--white); background: var(--black); padding: 14px 32px; transition: all 0.3s ease; }
-.article-cta a:hover { background: var(--gold); color: var(--black); }
-.article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
-.article-tags span { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: var(--mid-gray); padding: 4px 12px; border: 1px solid var(--border); }
-.blog-footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border); margin-top: 48px; font-size: 12px; color: var(--mid-gray); }
-.blog-footer a { color: var(--gold-dark); text-decoration: none; }
-/* Blog index grid */
-.blog-index { max-width: 1000px; margin: 0 auto; padding: 120px 24px 80px; }
-.blog-index h1 { font-size: clamp(28px,4vw,42px); font-weight: 800; text-align: center; margin-bottom: 8px; }
-.blog-index .subtitle { font-size: 15px; color: var(--mid-gray); text-align: center; margin-bottom: 56px; }
-.blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
-.blog-card { border: 1px solid var(--border); transition: all 0.4s ease; overflow: hidden; }
-.blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.04); }
-.blog-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
-.blog-card-body { padding: 24px; }
-.blog-card-cat { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-.blog-card h3 { font-size: 17px; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
-.blog-card h3 a { text-decoration: none; color: var(--black); transition: color 0.3s; }
-.blog-card h3 a:hover { color: var(--gold-dark); }
-.blog-card p { font-size: 13px; color: var(--mid-gray); line-height: 1.6; margin-bottom: 12px; }
-.blog-card-date { font-size: 11px; color: var(--light-gray); }
-.blog-lang { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; }
-.blog-lang a { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; padding: 6px 16px; border: 1px solid var(--border); color: var(--mid-gray); transition: all 0.3s; }
-.blog-lang a.active { background: var(--black); color: var(--white); border-color: var(--black); }
-.blog-lang a:hover { border-color: var(--gold); color: var(--gold-dark); }
-@media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; } .article-hero { height: 240px; } }
-</style>
-</head>
-<body>
-<nav class="blog-nav">
-  <a href="../en.html" class="blog-nav-logo">Female Signature</a>
-  <a href="index-en.html" class="blog-nav-back"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to Blog</a>
-</nav>
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Performance Marketing: Why Data-Driven Marketing Is Not a Luxury — Female Signature</title>
+<meta name="description" content="Data-driven campaigns with measurable return on investment.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root{--bk:#1C1C1C;--wh:#FFFFFF;--ow:#F4F1EB;--gd:#5C1F2B;--mg:#7A7A7A;--lg:#B8B8B8;--bd:#E8E5DE}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',sans-serif;background:var(--wh);color:var(--bk);line-height:1.8;-webkit-font-smoothing:antialiased}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(24px,5vw,80px);height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--bd)}
+.nav a{text-decoration:none}
+.nav-logo{display:flex;align-items:center}.nav-logo img{height:40px;width:auto}
+.nav-back{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);display:flex;align-items:center;gap:8px}
+.nav-back:hover{color:var(--bk)}
+.nav-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5}
+.article{max-width:720px;margin:0 auto;padding:120px 24px 80px}
+.a-cat{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gd);margin-bottom:12px;display:inline-flex;align-items:center;gap:8px}
+.a-cat::before{content:'';width:20px;height:1px;background:var(--gd)}
+h1{font-size:clamp(26px,3.5vw,38px);font-weight:800;line-height:1.2;margin-bottom:16px}
+.a-date{font-size:13px;color:var(--lg);margin-bottom:32px}
+.a-body h2{font-size:22px;font-weight:700;margin-top:40px;margin-bottom:16px}
+.a-body h3{font-size:18px;font-weight:600;margin-top:28px;margin-bottom:12px}
+.a-body p{font-size:17px;color:#444;margin-bottom:20px;line-height:1.85}
+.a-body ul,.a-body ol{padding-left:24px;margin-bottom:20px}
+.a-body li{font-size:17px;color:#444;margin-bottom:8px;line-height:1.7}
+.a-body blockquote{border-left:3px solid var(--gd);padding:16px 24px;margin:28px 0;background:var(--ow);font-size:18px;font-style:italic;color:var(--mg);line-height:1.7}
+.a-body strong{color:var(--bk)}
+.a-body a{color:var(--gd)}
+.a-cta{text-align:center;padding:48px 32px;background:var(--ow);border:1px solid var(--bd);margin:48px 0}
+.a-cta h3{font-size:20px;font-weight:700;margin-bottom:12px}
+.a-cta p{font-size:15px;color:var(--mg);margin-bottom:20px}
+.a-cta a{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--wh);background:var(--bk);padding:16px 40px;transition:all .3s}
+.a-cta a:hover{background:var(--gd)}
+.a-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;padding-top:24px;border-top:1px solid var(--bd)}
+.a-tags span{font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--mg);padding:4px 12px;border:1px solid var(--bd)}
+.a-ft{text-align:center;padding:40px 0;border-top:1px solid var(--bd);margin-top:48px;font-size:13px;color:var(--mg)}
+.a-ft a{color:var(--gd);text-decoration:none}
+.blog-idx{max-width:960px;margin:0 auto;padding:120px 24px 80px}
+.blog-idx h1{text-align:center;margin-bottom:8px}
+.blog-idx .sub{font-size:17px;color:var(--mg);text-align:center;margin-bottom:48px}
+.b-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.b-card{border:1px solid var(--bd);padding:28px;transition:all .4s;cursor:pointer;background:var(--wh)}
+.b-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.04)}
+.b-cat{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);margin-bottom:10px}
+.b-card h3{font-size:18px;font-weight:700;line-height:1.3;margin-bottom:10px}
+.b-card h3 a{text-decoration:none;color:var(--bk);transition:color .3s}
+.b-card h3 a:hover{color:var(--gd)}
+.b-card p{font-size:15px;color:var(--mg);line-height:1.6;margin-bottom:14px}
+.b-read{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none}
+.b-read:hover{color:var(--bk)}
+.b-date{font-size:12px;color:var(--lg);margin-top:8px}
+.b-all{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--gd);padding:14px 32px;border:1.5px solid var(--gd);margin-top:40px;transition:all .3s}
+.b-all:hover{background:var(--gd);color:var(--wh)}
+@media(max-width:768px){.b-grid{grid-template-columns:1fr}}</style></head><body>
+<nav class="nav"><a href="../" class="nav-logo"><img src="../images/logo-wide.svg" alt="Female Signature"></a>
+<a href="index-en.html" class="nav-back"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to Blog</a></nav>
 <article class="article">
-  <div class="article-meta">
-    <p class="article-cat">Performance Marketing</p>
-    <h1>Performance Marketing with 340% ROI: Why Data-Driven Marketing Is Not a Luxury</h1>
-    <p class="article-date">May 8, 2026</p>
-  </div>
-  <div style="background:#0A0A0A;padding:36px 24px;text-align:center;margin:32px 0"><span style="font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#C4A265">ROI · Data-Driven · Conversion</span></div>
-  <div class="article-body">
-    <p>Performance marketing sounds like it's for large corporations with million-dollar budgets. The reality: it's the most effective approach especially for female businesses with limited resources. Because you only pay for what works.</p>
-<h2>What Sets Performance Marketing Apart from Traditional Marketing?</h2>
-<p>In traditional marketing, you invest budget and hope for results. In performance marketing, you measure every euro, every click, every conversion — and optimize in real time. That means: no wasted budget, no guesswork, only data.</p>
-<h2>The Three Pillars of Performance Marketing</h2>
-<h3>1. Transparency</h3>
-<p>Every euro invested is traceable. You see in real time which campaigns perform and which don't. No black box, no hidden costs.</p>
-<h3>2. Optimization</h3>
-<p>Based on the data, we continuously optimize: ad copy, audiences, bidding strategies, landing pages. Each optimization cycle increases your ROI.</p>
-<h3>3. Scaling</h3>
-<p>What works gets scaled. What doesn't gets stopped. Your budget only grows into profitable channels — and your ROI increases month by month.</p>
-<blockquote>340% ROI sounds ambitious — but it's what our clients achieve on average after 6 months of performance marketing.</blockquote>
-<h2>Why Female Businesses Benefit the Most</h2>
-<p>Female-led businesses can't afford to waste budget. Performance marketing gives you back control: you decide where every euro goes, and you see the effect in real time. That's empowerment through data.</p>
-<h2>The Typical Path to 340% ROI</h2>
-<ol><li><strong>Month 1–2:</strong> Setup, tracking infrastructure, first campaigns, data collection</li><li><strong>Month 3–4:</strong> First optimizations, identifying winners, budget reallocation</li><li><strong>Month 5–6:</strong> Scaling top performers, testing new channels, ROI grows exponentially</li></ol>
-<h2>Conclusion</h2>
-<p>Performance marketing is not a luxury for corporations — it's the smartest tool for female businesses that want maximum impact from every euro. And with the right partner by your side, getting started is easier than you think.</p>
-  </div>
-  <div class="article-cta">
-    <h3>Ready to scale your business?</h3>
-    <p>Let's scale your female business together.</p>
-    <a href="../en.html#kontakt">Book Your Free Strategy Call</a>
-  </div>
-  <div class="article-tags"><span>Performance Marketing</span><span>ROI</span><span>Data-Driven</span><span>Female Business</span></div>
-  <div class="blog-footer">
-    <p>Female Signature © 2026 · <a href="../en.html">Home</a> · <a href="../impressum.html">Imprint</a> · <a href="../datenschutz.html">Privacy Policy</a></p>
-  </div>
-</article>
-</body>
-</html>
+<div><p class="a-cat">Performance Marketing</p><h1>Performance Marketing: Why Data-Driven Marketing Is Not a Luxury</h1><p class="a-date">May 8, 2026</p></div>
+<div class="a-body"><p>In performance marketing, you measure every euro — and optimize in real time. No wasted budget.</p><h2>The Three Pillars</h2><p><strong>Transparency</strong> — Every euro invested is traceable.</p><p><strong>Optimization</strong> — Continuous improvement increases your ROI.</p><p><strong>Scaling</strong> — What works gets scaled. What doesn't gets stopped.</p><blockquote>Performance marketing gives you back control: you see the effect in real time.</blockquote></div>
+<div class="a-cta"><h3>Ready for the next step?</h3><p>Book a free strategy call.</p><a href="https://calendly.com/mediha-mujcin/30min" target="_blank" rel="noopener">Book Free Strategy Call</a></div>
+<div class="a-tags"><span>Performance Marketing</span><span>ROI</span><span>Data-Driven</span></div>
+<div class="a-ft"><p>Female Signature © 2026 · <a href="../">Home</a> · <a href="../impressum.html">Imprint</a> · <a href="../datenschutz.html">Privacy</a></p></div>
+</article></body></html>
