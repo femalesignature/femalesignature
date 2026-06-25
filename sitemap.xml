@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://female-signature.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+<url><loc>https://female-signature.com/en.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
 <url><loc>https://female-signature.com/impressum.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 <url><loc>https://female-signature.com/datenschutz.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 <url><loc>https://female-signature.com/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://female-signature.com/blog/index-en.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 <url><loc>https://female-signature.com/blog/affiliate-marketing-female-businesses.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 <url><loc>https://female-signature.com/blog/performance-marketing-roi.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 <url><loc>https://female-signature.com/blog/branding-female-founder.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
