@@ -1,0 +1,41 @@
+<svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" font-family="'Playfair Display', Georgia, serif">
+  <!-- Background -->
+  <rect width="960" height="340" fill="none"/>
+  
+  <!-- Foundation block (left, larger) -->
+  <rect x="40" y="60" width="420" height="220" fill="#F4F1EB" stroke="#E8E5DE" stroke-width="1"/>
+  <text x="250" y="105" text-anchor="middle" font-size="11" font-family="'Montserrat', sans-serif" font-weight="600" letter-spacing="3" fill="#7A7A7A">FUNDAMENT</text>
+  
+  <!-- Foundation items -->
+  <line x1="100" y1="140" x2="400" y2="140" stroke="#E8E5DE" stroke-width="1"/>
+  <text x="250" y="170" text-anchor="middle" font-size="20" font-weight="600" fill="#1C1C1C">Brand Experience</text>
+  <line x1="100" y1="190" x2="400" y2="190" stroke="#E8E5DE" stroke-width="1"/>
+  <text x="250" y="220" text-anchor="middle" font-size="20" font-weight="600" fill="#1C1C1C">Content & Sichtbarkeit</text>
+  <line x1="100" y1="240" x2="400" y2="240" stroke="#E8E5DE" stroke-width="1"/>
+  <text x="140" y="265" font-size="13" font-family="'Montserrat', sans-serif" fill="#7A7A7A">Positionierung · Identität · Reichweite</text>
+
+  <!-- Arrow -->
+  <line x1="485" y1="170" x2="530" y2="170" stroke="#5C1F2B" stroke-width="2"/>
+  <polygon points="530,164 542,170 530,176" fill="#5C1F2B"/>
+  
+  <!-- Scaling block (right) -->
+  <rect x="560" y="60" width="360" height="220" fill="none" stroke="#5C1F2B" stroke-width="1.5"/>
+  <text x="740" y="105" text-anchor="middle" font-size="11" font-family="'Montserrat', sans-serif" font-weight="600" letter-spacing="3" fill="#5C1F2B">SKALIERUNG</text>
+  
+  <!-- Scaling items -->
+  <line x1="610" y1="140" x2="870" y2="140" stroke="rgba(92,31,43,0.15)" stroke-width="1"/>
+  <text x="740" y="170" text-anchor="middle" font-size="20" font-weight="600" fill="#5C1F2B">Partnership Marketing</text>
+  <line x1="610" y1="190" x2="870" y2="190" stroke="rgba(92,31,43,0.15)" stroke-width="1"/>
+  <text x="740" y="220" text-anchor="middle" font-size="20" font-weight="600" fill="#5C1F2B">Performance Marketing</text>
+  <line x1="610" y1="240" x2="870" y2="240" stroke="rgba(92,31,43,0.15)" stroke-width="1"/>
+  <text x="640" y="265" font-size="13" font-family="'Montserrat', sans-serif" fill="#7A7A7A">Partnerschaften · Kampagnen · ROI</text>
+
+  <!-- Step numbers -->
+  <text x="75" y="170" font-size="14" font-family="'Montserrat', sans-serif" font-weight="700" fill="#1C1C1C">01</text>
+  <text x="75" y="220" font-size="14" font-family="'Montserrat', sans-serif" font-weight="700" fill="#1C1C1C">02</text>
+  <text x="580" y="170" font-size="14" font-family="'Montserrat', sans-serif" font-weight="700" fill="#5C1F2B">03</text>
+  <text x="580" y="220" font-size="14" font-family="'Montserrat', sans-serif" font-weight="700" fill="#5C1F2B">04</text>
+
+  <!-- Bottom merksatz -->
+  <text x="480" y="322" text-anchor="middle" font-size="14" font-style="italic" fill="#7A7A7A" font-family="'Playfair Display', Georgia, serif">Ads auf einem schwachen Fundament verbrennen Geld.</text>
+</svg>
