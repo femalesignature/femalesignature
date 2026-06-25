@@ -27,47 +27,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"></noscript>
 <style>
-:root{--bk:#1C1C1C;--wh:#FFFFFF;--ow:#F4F1EB;--gd:#5C1F2B;--gl:#5C1F2B;--gk:#5C1F2B;--ch:#1C1C1C;--mg:#7A7A7A;--lg:#B8B8B8;--bd:#E8E5DE;--fr:#5C1F2B;--fd:#4A1822;--eo:cubic-bezier(.16,1,.3,1)}
+:root{--bk:#1C1C1C;--wh:#FFFFFF;--ow:#F4F1EB;--gd:#5C1F2B;--gl:#5C1F2B;--gk:#5C1F2B;--ch:#1C1C1C;--mg:#7A7A7A;--lg:#B8B8B8;--bd:#E8E5DE;--fr:#5C1F2B;--fd:#4A1822;--eo:cubic-bezier(.16,1,.3,1);--text-xs:0.64rem;--text-sm:0.75rem;--text-base:1rem;--text-lg:1.25rem;--text-xl:1.563rem;--text-2xl:1.953rem;--text-3xl:2.441rem}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:'Montserrat',sans-serif;background:var(--wh);color:var(--bk);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 /* NAV */
 .nv{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 clamp(24px,5vw,80px);height:72px;display:flex;align-items:center;justify-content:space-between;transition:all .4s var(--eo)}
 .nv.sc{background:rgba(255,255,255,.96);backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--bd);height:64px}
-.nv.sc .nv-logo img{height:28px}
-.nv-logo{text-decoration:none;display:flex;align-items:center}.nv-logo img{height:34px;width:auto;transition:all .3s}
+.nv.sc .nv-logo img{height:20px}
+.nv-logo{text-decoration:none;display:flex;align-items:center}.nv-logo img{height:22px;width:auto;transition:all .3s}
 .nv-links{display:flex;align-items:center;gap:28px;list-style:none}
-.nv-links a{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--mg);transition:color .3s;position:relative}
+.nv-links a{font-size:var(--text-sm);font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--mg);transition:color .3s;position:relative}
 .nv-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gd);transition:width .4s var(--eo)}
 .nv-links a:hover{color:var(--bk)}.nv-links a:hover::after{width:100%}
-.nv-cta{font-size:12px!important;font-weight:600!important;letter-spacing:.10em!important;color:var(--wh)!important;background:var(--bk);padding:12px 28px;transition:all .4s var(--eo)}
+.nv-cta{font-size:var(--text-sm)!important;font-weight:600!important;letter-spacing:.10em!important;color:var(--wh)!important;background:var(--bk);padding:12px 28px;transition:all .4s var(--eo)}
 .nv-cta:hover{background:var(--gd);color:var(--wh)!important}.nv-cta::after{display:none!important}
-.nv-lang{font-size:12px!important;font-weight:600!important;color:var(--lg)!important;border:1px solid var(--bd);padding:5px 10px;letter-spacing:.1em!important;transition:all .3s}
+.nv-lang{font-size:var(--text-sm)!important;font-weight:600!important;color:var(--lg)!important;border:1px solid var(--bd);padding:5px 10px;letter-spacing:.1em!important;transition:all .3s}
 .nv-lang:hover{color:var(--gd)!important;border-color:var(--gd)}.nv-lang::after{display:none!important}
 .nv-tog{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;z-index:1001}
 .nv-tog span{display:block;width:100%;height:1.5px;background:var(--bk);position:absolute;left:0;transition:all .3s}
 .nv-tog span:nth-child(1){top:0}.nv-tog span:nth-child(2){top:9px}.nv-tog span:nth-child(3){top:18px}
 .mm{display:none;position:fixed;inset:0;background:var(--wh);z-index:999;padding:90px 32px 32px;flex-direction:column;gap:20px}
-.mm.act{display:flex}.mm a{font-size:16px;font-weight:600;letter-spacing:.06em;text-decoration:none;color:var(--bk);padding:12px 0;border-bottom:1px solid var(--bd)}
+.mm.act{display:flex}.mm a{font-size:var(--text-base);font-weight:600;letter-spacing:.06em;text-decoration:none;color:var(--bk);padding:12px 0;border-bottom:1px solid var(--bd)}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--wh);padding:100px clamp(24px,5vw,80px) 48px;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none;z-index:0}.hero-bg canvas{position:absolute;inset:0;width:100%;height:100%}
 .hero-content{max-width:820px;z-index:2;position:relative;display:flex;flex-direction:column;align-items:center}
-.hero-label{font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gd);margin-bottom:24px;display:inline-flex;align-items:center;gap:12px;opacity:0;animation:si .8s var(--eo) forwards .2s}
+.hero-label{font-size:var(--text-sm);font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gd);margin-bottom:24px;display:inline-flex;align-items:center;gap:12px;opacity:0;animation:si .8s var(--eo) forwards .2s}
 .hero-label::before,.hero-label::after{content:'';width:32px;height:1px;background:var(--gd)}
-.hero h1{font-weight:800;font-size:clamp(36px,4.5vw,58px);letter-spacing:-.01em;line-height:1.12;margin-bottom:20px;opacity:0;animation:si .8s var(--eo) forwards .3s}
+.hero h1{font-weight:800;font-size:clamp(var(--text-xl),3.5vw,var(--text-3xl));letter-spacing:-.01em;line-height:1.12;margin-bottom:20px;opacity:0;animation:si .8s var(--eo) forwards .3s}
 .hero h1 .ac{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:1.15em;color:var(--gd)}
-.hero-sub{font-size:clamp(16px,1.4vw,18px);font-weight:400;line-height:1.65;color:var(--mg);max-width:540px;margin-bottom:40px;opacity:0;animation:si .8s var(--eo) forwards .5s}
+.hero-sub{font-size:clamp(var(--text-base),1.2vw,var(--text-lg));font-weight:400;line-height:1.65;color:var(--mg);max-width:540px;margin-bottom:40px;opacity:0;animation:si .8s var(--eo) forwards .5s}
 .hero-act{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;opacity:0;animation:si .8s var(--eo) forwards .7s}
-.bp{display:inline-flex;align-items:center;padding:15px 36px;background:var(--bk);color:var(--wh);font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .4s var(--eo)}
+.bp{display:inline-flex;align-items:center;padding:15px 36px;background:var(--bk);color:var(--wh);font-family:'Montserrat',sans-serif;font-weight:600;font-size:var(--text-sm);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .4s var(--eo)}
 .bp:hover{background:var(--gd);color:var(--wh);transform:translateY(-2px)}
-.bo{display:inline-flex;align-items:center;padding:15px 36px;background:transparent;color:var(--bk);font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1px solid var(--bd);cursor:pointer;transition:all .4s var(--eo)}
+.bo{display:inline-flex;align-items:center;padding:15px 36px;background:transparent;color:var(--bk);font-family:'Montserrat',sans-serif;font-weight:600;font-size:var(--text-sm);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1px solid var(--bd);cursor:pointer;transition:all .4s var(--eo)}
 .bo:hover{border-color:var(--gd);color:var(--gd)}
 
 /* HERO MESSAGES — gold uppercase like label */
 .hero-msgs{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.hm{position:absolute;font-size:11px;font-weight:600;color:var(--gd);letter-spacing:.18em;text-transform:uppercase;max-width:260px;line-height:1.6;opacity:0}
+.hm{position:absolute;font-size:var(--text-sm);font-weight:600;color:var(--gd);letter-spacing:.18em;text-transform:uppercase;max-width:260px;line-height:1.6;opacity:0}
 .hm:nth-child(1){top:14%;left:4%;animation:ms 8s ease 0s infinite}
 .hm:nth-child(2){top:20%;right:4%;animation:ms 8s ease 2s infinite}
 .hm:nth-child(3){top:30%;left:3%;animation:ms 8s ease 4s infinite}
@@ -76,9 +76,13 @@ body{font-family:'Montserrat',sans-serif;background:var(--wh);color:var(--bk);li
 
 /* MARQUEE */
 .mq-wrap{overflow:hidden;padding:28px 0;background:var(--fr)}
+.mq-wrap2{overflow:hidden;padding:24px 0;background:var(--ow);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.mq2{display:flex;gap:56px;animation:mqa 30s linear infinite;width:max-content}
+.mq2 span{font-size:var(--text-sm);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gd);opacity:.65;white-space:nowrap;display:flex;align-items:center;gap:56px}
+.mq2 span::after{content:'✦';font-size:0.44rem;opacity:.5}
 .mq{display:flex;gap:48px;animation:mqa 35s linear infinite;width:max-content}
-.mq span{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);white-space:nowrap;display:flex;align-items:center;gap:48px}
-.mq span::after{content:'✦';color:var(--gd);font-size:7px}
+.mq span{font-size:var(--text-sm);font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);white-space:nowrap;display:flex;align-items:center;gap:48px}
+.mq span::after{content:'✦';color:var(--gd);font-size:var(--text-xs)}
 
 /* PAIN POINTS — horizontal carousel */
 .pain{padding:clamp(64px,8vw,100px) clamp(24px,5vw,80px);background:var(--ow)}
@@ -88,21 +92,21 @@ body{font-family:'Montserrat',sans-serif;background:var(--wh);color:var(--bk);li
 .pain-card{min-width:calc((100% - 40px) / 3);max-width:calc((100% - 40px) / 3);flex-shrink:0;background:var(--wh);border:1px solid var(--bd);padding:22px 20px;position:relative;transition:all .4s;scroll-snap-align:start}
 .pain-card::before{content:'';position:absolute;top:0;left:0;width:40px;height:3px;background:var(--gd)}
 .pain-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.05)}
-.pain-card h3{font-size:16px;font-weight:700;line-height:1.3;margin-bottom:8px}
-.pain-card p{font-size:14px;color:var(--mg);line-height:1.6}
+.pain-card h3{font-size:var(--text-base);font-weight:700;line-height:1.3;margin-bottom:8px}
+.pain-card p{font-size:0.875rem;color:var(--mg);line-height:1.6}
 .pain-card .pain-sol{margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)}
-.pain-sol-label{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gd);margin-bottom:3px;display:block}
-.pain-card .pain-sol p{font-size:13px;color:var(--mg);font-weight:400;line-height:1.5}
+.pain-sol-label{font-size:var(--text-sm);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gd);margin-bottom:3px;display:block}
+.pain-card .pain-sol p{font-size:0.8125rem;color:var(--mg);font-weight:400;line-height:1.5}
 .pain-arrows{display:flex;gap:10px;justify-content:center;margin-top:28px}
-.pain-arr{width:40px;height:40px;border:1px solid var(--bd);background:var(--wh);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:16px;color:var(--mg)}
+.pain-arr{width:40px;height:40px;border:1px solid var(--bd);background:var(--wh);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:var(--text-base);color:var(--mg)}
 .pain-arr:hover{border-color:var(--gd);color:var(--gd)}
 
 /* SECTIONS — harmonized sizes */
 .sec{padding:clamp(64px,8vw,100px) clamp(24px,5vw,80px)}
-.sl{font-size:12px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gd);margin-bottom:16px;display:inline-flex;align-items:center;gap:10px}
-.sh{font-weight:800;font-size:clamp(28px,3.2vw,44px);line-height:1.15;letter-spacing:-.01em;margin-bottom:16px}
+.sl{font-size:var(--text-sm);font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gd);margin-bottom:16px;display:inline-flex;align-items:center;gap:10px}
+.sh{font-weight:800;font-size:clamp(var(--text-xl),2.5vw,var(--text-2xl));line-height:1.15;letter-spacing:-.01em;margin-bottom:16px}
 .sh .ac{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:1.1em;color:var(--gd)}
-.sd{font-size:15px;color:var(--mg);line-height:1.6;margin-bottom:32px}
+.sd{font-size:0.9375rem;color:var(--mg);line-height:1.6;margin-bottom:32px}
 .mx{max-width:1200px;margin:0 auto}
 
 /* SERVICES */
@@ -110,15 +114,15 @@ body{font-family:'Montserrat',sans-serif;background:var(--wh);color:var(--bk);li
 .sc{background:var(--wh);padding:40px 28px;position:relative;transition:all .4s;overflow:hidden;display:flex;flex-direction:column}
 .sc::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--gd);transform:scaleX(0);transform-origin:left;transition:transform .4s}
 .sc:hover::before{transform:scaleX(1)}.sc:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.05)}
-.sn{font-size:11px;letter-spacing:.18em;color:var(--gd);font-weight:600;margin-bottom:16px;display:block}
-.sc h3{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;line-height:1.4}
-.sc p{font-size:14px;color:var(--mg);line-height:1.65;flex:1}
-.stag{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gd);font-weight:600;border-bottom:1px solid var(--gd);padding-bottom:2px}
+.sn{font-size:var(--text-sm);letter-spacing:.18em;color:var(--gd);font-weight:600;margin-bottom:16px;display:block}
+.sc h3{font-size:0.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;line-height:1.4}
+.sc p{font-size:0.875rem;color:var(--mg);line-height:1.65;flex:1}
+.stag{display:inline-block;margin-top:16px;font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase;color:var(--gd);font-weight:600;border-bottom:1px solid var(--gd);padding-bottom:2px}
 
 /* STATEMENT */
 .stmt{padding:clamp(80px,10vw,130px) clamp(24px,5vw,80px);text-align:center;background:var(--wh);position:relative;overflow:hidden}
 .stmt::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(92,31,43,.05) 0%,transparent 70%);pointer-events:none}
-.stmt p{font-weight:300;font-size:clamp(18px,2.2vw,26px);color:var(--mg);line-height:1.65;max-width:720px;margin:0 auto;position:relative;z-index:1;letter-spacing:.01em}
+.stmt p{font-weight:300;font-size:clamp(var(--text-base),1.8vw,var(--text-xl));color:var(--mg);line-height:1.65;max-width:720px;margin:0 auto;position:relative;z-index:1;letter-spacing:.01em}
 .stmt em{font-style:italic;font-family:'Playfair Display',serif;color:var(--gd);font-weight:400;font-size:1.1em;display:block;margin-top:16px;line-height:1.5}
 
 /* APPROACH */
@@ -126,17 +130,17 @@ body{font-family:'Montserrat',sans-serif;background:var(--wh);color:var(--bk);li
 .ap-left{position:sticky;top:100px}
 .ap-step{padding:28px 0;border-bottom:1px solid var(--bd);display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start}
 .ap-step:last-child{border-bottom:none}
-.snum{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--gd);font-size:13px;font-weight:600;color:var(--gd)}
-.ap-step h4{font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
-.ap-step p{font-size:15px;color:var(--mg);line-height:1.65}
+.snum{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--gd);font-size:0.8125rem;font-weight:600;color:var(--gd)}
+.ap-step h4{font-size:0.9375rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.ap-step p{font-size:0.9375rem;color:var(--mg);line-height:1.65}
 
 /* RESULTS */
 .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
 .rc{text-align:center;padding:36px 20px;border:1px solid rgba(92,31,43,.15);transition:all .4s}
 .rc:hover{border-color:var(--gd);transform:translateY(-3px)}
-.rn{font-size:clamp(44px,4.5vw,60px);font-weight:800;color:var(--gd);line-height:1;margin-bottom:6px}
-.ru{font-size:12px;font-weight:600;color:var(--gl);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:block}
-.rd{font-size:13px;color:var(--lg);line-height:1.6}
+.rn{font-size:clamp(var(--text-2xl),4vw,3.5rem);font-weight:800;color:var(--gd);line-height:1;margin-bottom:6px}
+.ru{font-size:var(--text-sm);font-weight:600;color:var(--gl);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:block}
+.rd{font-size:0.8125rem;color:var(--lg);line-height:1.6}
 
 /* TESTIMONIALS */
 .testi{padding:clamp(64px,8vw,100px) clamp(24px,5vw,80px);background:var(--ow)}
@@ -144,36 +148,36 @@ body{font-family:'Montserrat',sans-serif;background:var(--wh);color:var(--bk);li
 .tg{display:flex;gap:18px;overflow:hidden;scroll-behavior:smooth;scroll-snap-type:x mandatory}
 .tc{min-width:calc((100% - 36px) / 3);max-width:calc((100% - 36px) / 3);flex-shrink:0;background:var(--wh);padding:24px 22px;border:1px solid var(--bd);position:relative;display:flex;flex-direction:column;scroll-snap-align:start}
 .tc::before{content:'';position:absolute;top:0;left:0;width:40px;height:3px;background:var(--gd)}
-.tq{font-size:15px;color:var(--mg);line-height:1.6;margin-bottom:18px;font-style:italic;flex:1}
+.tq{font-size:var(--text-base);color:var(--mg);line-height:1.6;margin-bottom:18px;font-style:italic;flex:1}
 .ta{display:flex;align-items:center;gap:14px}
 .tp{width:52px;height:52px;border-radius:50%;object-fit:cover;filter:grayscale(100%);border:1.5px solid var(--bd);flex-shrink:0}
-.tn{font-size:15px;font-weight:700;letter-spacing:.03em}
-.tr{font-size:12px;color:var(--mg);margin-top:2px}
-.tx{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gk);margin-top:10px}
+.tn{font-size:var(--text-base);font-weight:700;letter-spacing:.03em}
+.tr{font-size:var(--text-sm);color:var(--mg);margin-top:2px}
+.tx{font-size:var(--text-sm);font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gk);margin-top:10px}
 .t-arrows{display:flex;gap:10px;justify-content:center;margin-top:24px}
-.t-arr{width:40px;height:40px;border:1px solid var(--bd);background:var(--wh);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:16px;color:var(--mg)}
+.t-arr{width:40px;height:40px;border:1px solid var(--bd);background:var(--wh);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:var(--text-base);color:var(--mg)}
 .t-arr:hover{border-color:var(--gd);color:var(--gd)}
 
 /* CEO */
 .ceo{padding:clamp(64px,8vw,100px) clamp(24px,5vw,80px);background:var(--wh)}
 .ceo-in{max-width:960px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:center}
 .ceo-photo img{width:100%;height:auto;display:block}
-.ceo-text blockquote{font-size:clamp(17px,1.6vw,21px);font-weight:300;line-height:1.75;color:var(--bk);margin-bottom:24px;font-style:italic;font-family:'Playfair Display',serif}
-.ceo-text blockquote::before{content:'„';font-size:52px;color:var(--gd);opacity:.3;display:block;line-height:.5;margin-bottom:14px}
-.ceo-role{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gd);font-weight:600;margin-bottom:3px}
-.ceo-name{font-size:17px;font-weight:600;color:var(--bk);letter-spacing:.04em;display:block;margin-bottom:12px}
-.ceo-bio{font-size:15px;color:var(--mg);text-align:left;line-height:1.7}
+.ceo-text blockquote{font-size:clamp(var(--text-base),1.4vw,var(--text-lg));font-weight:300;line-height:1.75;color:var(--bk);margin-bottom:24px;font-style:italic;font-family:'Playfair Display',serif}
+.ceo-text blockquote::before{content:'„';font-size:3rem;color:var(--gd);opacity:.3;display:block;line-height:.5;margin-bottom:14px}
+.ceo-role{display:block;font-size:var(--text-sm);letter-spacing:.16em;text-transform:uppercase;color:var(--gd);font-weight:600;margin-bottom:3px}
+.ceo-name{font-size:var(--text-base);font-weight:600;color:var(--bk);letter-spacing:.04em;display:block;margin-bottom:12px}
+.ceo-bio{font-size:var(--text-base);color:var(--mg);text-align:left;line-height:1.7}
 
 /* BLOG */
 .blog-sec{padding:clamp(64px,8vw,100px) clamp(24px,5vw,80px);background:var(--ow)}
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto}
 .bc{background:var(--wh);border:1px solid var(--bd);transition:all .4s;overflow:hidden;padding:28px;cursor:pointer}
 .bc:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.04)}
-.bc-cat{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gd);margin-bottom:8px}
-.bc h3{font-size:15px;font-weight:700;line-height:1.35;margin-bottom:8px}
+.bc-cat{font-size:var(--text-sm);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gd);margin-bottom:8px}
+.bc h3{font-size:var(--text-base);font-weight:700;line-height:1.35;margin-bottom:8px}
 .bc h3 a{text-decoration:none;color:var(--bk);transition:color .3s}.bc h3 a:hover{color:var(--gk)}
-.bc p{font-size:14px;color:var(--mg);line-height:1.6}
-.blog-all{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--gd);padding:14px 32px;border:1.5px solid var(--gd);margin-top:32px;transition:all .3s}.blog-all:hover{color:var(--wh);background:var(--gd)}
+.bc p{font-size:0.875rem;color:var(--mg);line-height:1.6}
+.bc-read{display:inline-block;margin-top:14px;font-size:var(--text-sm);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:underline;text-underline-offset:3px;transition:opacity .3s}.bc-read:hover{opacity:.7}.blog-all{display:inline-flex;align-items:center;gap:8px;font-size:0.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--gd);padding:14px 32px;border:1.5px solid var(--gd);margin-top:32px;transition:all .3s}.blog-all:hover{color:var(--wh);background:var(--gd)}
 
 /* CTA */
 .cta{padding:clamp(64px,8vw,100px) clamp(24px,5vw,80px);background:var(--wh);text-align:center;border-top:1px solid var(--bd)}
@@ -184,36 +188,36 @@ body{font-family:'Montserrat',sans-serif;background:var(--wh);color:var(--bk);li
 .ft{background:var(--bk);padding:56px clamp(24px,5vw,80px) 36px;color:rgba(255,255,255,.7)}
 .ft-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
 .ft-logo{height:44px;width:auto;display:block;margin-bottom:14px;opacity:.9}
-.ft-brand p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.8;margin-top:10px;max-width:260px}
+.ft-brand p{font-size:0.8125rem;color:rgba(255,255,255,.6);line-height:1.8;margin-top:10px;max-width:260px}
 .ft-soc{display:flex;gap:14px;margin-top:10px}
 .ft-soc a{width:34px;height:34px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:all .3s}.ft-soc a:hover{border-color:rgba(255,255,255,.5)}
 .ft-soc a svg{width:15px;height:15px;fill:rgba(255,255,255,.7)}.ft-soc a:hover svg{fill:var(--wh)}
-.ft-col h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin-bottom:14px}
-.ft-col a{display:block;font-size:13px;color:rgba(255,255,255,.7);text-decoration:none;padding:4px 0;transition:color .3s}.ft-col a:hover{color:var(--wh)}
+.ft-col h4{font-size:var(--text-sm);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin-bottom:14px}
+.ft-col a{display:block;font-size:0.8125rem;color:rgba(255,255,255,.7);text-decoration:none;padding:4px 0;transition:color .3s}.ft-col a:hover{color:var(--wh)}
 .ft-bot{max-width:1200px;margin:0 auto;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.ft-bot p{font-size:11px;color:rgba(255,255,255,.5)}.ft-bot .gold{color:rgba(255,255,255,.7)}
-.ft-legal{display:flex;gap:20px}.ft-legal a{font-size:11px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s}.ft-legal a:hover{color:var(--wh)}
+.ft-bot p{font-size:var(--text-sm);color:rgba(255,255,255,.5)}.ft-bot .gold{color:rgba(255,255,255,.7)}
+.ft-legal{display:flex;gap:20px}.ft-legal a{font-size:var(--text-sm);color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s}.ft-legal a:hover{color:var(--wh)}
 
 /* CHAT & WA */
 .chat-trig{position:fixed;bottom:96px;right:24px;width:52px;height:52px;background:var(--bk);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:all .3s}
 .chat-trig:hover{transform:scale(1.08);background:var(--gd)}.chat-trig svg{width:22px;height:22px;fill:var(--wh)}.chat-trig:hover svg{fill:var(--bk)}
 .chat-panel{position:fixed;bottom:160px;right:24px;width:340px;max-height:480px;background:var(--wh);border:1px solid var(--bd);box-shadow:0 16px 56px rgba(0,0,0,.12);z-index:901;display:none;flex-direction:column;overflow:hidden}.chat-panel.act{display:flex}
-.chat-hd{padding:16px 20px;background:var(--bk);color:var(--wh);display:flex;justify-content:space-between;align-items:center}.chat-hd h4{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}.chat-cls{background:none;border:none;color:var(--lg);cursor:pointer;font-size:16px;padding:4px}
+.chat-hd{padding:16px 20px;background:var(--bk);color:var(--wh);display:flex;justify-content:space-between;align-items:center}.chat-hd h4{font-size:var(--text-sm);font-weight:600;letter-spacing:.08em;text-transform:uppercase}.chat-cls{background:none;border:none;color:var(--lg);cursor:pointer;font-size:var(--text-base);padding:4px}
 .chat-body{padding:16px 20px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
-.chat-msg{padding:10px 14px;font-size:12px;line-height:1.6;max-width:85%}.chat-msg.bot{background:var(--ow);border:1px solid var(--bd);align-self:flex-start}.chat-msg.user{background:var(--bk);color:var(--wh);align-self:flex-end}
+.chat-msg{padding:10px 14px;font-size:var(--text-sm);line-height:1.6;max-width:85%}.chat-msg.bot{background:var(--ow);border:1px solid var(--bd);align-self:flex-start}.chat-msg.user{background:var(--bk);color:var(--wh);align-self:flex-end}
 .chat-opts{display:flex;flex-direction:column;gap:6px;padding:0 20px 14px}
-.chat-opt{padding:9px 14px;border:1px solid var(--bd);background:var(--wh);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:500;cursor:pointer;text-align:left;transition:all .2s}.chat-opt:hover{border-color:var(--gd);color:var(--gk)}
+.chat-opt{padding:9px 14px;border:1px solid var(--bd);background:var(--wh);font-family:'Montserrat',sans-serif;font-size:var(--text-sm);font-weight:500;cursor:pointer;text-align:left;transition:all .2s}.chat-opt:hover{border-color:var(--gd);color:var(--gk)}
 .chat-iw{padding:10px 20px 14px;border-top:1px solid var(--bd);display:none;gap:8px}.chat-iw.act{display:flex}
-.chat-inp{flex:1;padding:9px 12px;border:1px solid var(--bd);font-family:'Montserrat',sans-serif;font-size:12px;outline:none}.chat-inp:focus{border-color:var(--gd)}
-.chat-snd{padding:9px 16px;background:var(--bk);color:var(--wh);border:none;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.chat-snd:hover{background:var(--gd);color:var(--wh)}
+.chat-inp{flex:1;padding:9px 12px;border:1px solid var(--bd);font-family:'Montserrat',sans-serif;font-size:var(--text-sm);outline:none}.chat-inp:focus{border-color:var(--gd)}
+.chat-snd{padding:9px 16px;background:var(--bk);color:var(--wh);border:none;font-family:'Montserrat',sans-serif;font-size:var(--text-xs);font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.chat-snd:hover{background:var(--gd);color:var(--wh)}
 .wa{position:fixed;bottom:24px;right:24px;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(37,211,102,.3);z-index:900;text-decoration:none;transition:all .3s}.wa:hover{transform:scale(1.1)}.wa svg{width:26px;height:26px;fill:white}
 
 @keyframes si{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes mqa{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .8s var(--eo),transform .8s var(--eo)}.rv.vis{opacity:1;transform:translateY(0)}
 
-@media(max-width:1024px){.srv-grid{grid-template-columns:repeat(2,1fr)}.ap-grid{grid-template-columns:1fr;gap:40px}.ap-left{position:static}.ft-grid{grid-template-columns:1fr 1fr}.ceo-in{grid-template-columns:1fr;text-align:center}.ceo-photo{max-width:260px;margin:0 auto}.blog-grid{grid-template-columns:repeat(2,1fr)}.pain-card{min-width:calc((100% - 20px) / 2);max-width:calc((100% - 20px) / 2)}.tc{min-width:calc((100% - 18px) / 2);max-width:calc((100% - 18px) / 2)}.sh{font-size:clamp(26px,3.5vw,38px)}.sd{font-size:14px}.rn{font-size:clamp(40px,5vw,52px)}}
-@media(max-width:1024px){.sec [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}@media(max-width:768px){form [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}.nv{height:64px;padding:0 20px}.nv-logo img{height:26px}.nv-links{display:none}.nv-tog{display:block}.hero{padding:90px 20px 40px;min-height:100svh}.hero h1{font-size:clamp(30px,7vw,38px)}.hero-sub{font-size:16px;margin-bottom:28px}.hero-act{flex-direction:column;width:100%;max-width:300px}.bp,.bo{width:100%;justify-content:center;padding:14px 20px}.hero-msgs{display:none}.srv-grid{grid-template-columns:1fr}.res-grid{grid-template-columns:1fr}.ft-grid{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;text-align:center}.tc{min-width:100%;max-width:100%}.pain-card{min-width:100%;max-width:100%}.ceo-in{grid-template-columns:1fr}.ceo-photo{max-width:200px}.chat-panel{width:calc(100vw - 40px);right:20px;bottom:130px;max-height:65vh}.blog-grid{grid-template-columns:1fr}.sec{padding:50px 20px}.stmt p{font-size:clamp(16px,4vw,22px)}.rn{font-size:32px}.cta .sd{max-width:90%}}
+@media(max-width:1024px){.srv-grid{grid-template-columns:repeat(2,1fr)}.ap-grid{grid-template-columns:1fr;gap:40px}.ap-left{position:static}.ft-grid{grid-template-columns:1fr 1fr}.ceo-in{grid-template-columns:1fr;text-align:center}.ceo-photo{max-width:260px;margin:0 auto}.blog-grid{grid-template-columns:repeat(2,1fr)}.pain-card{min-width:calc((100% - 20px) / 2);max-width:calc((100% - 20px) / 2)}.tc{min-width:calc((100% - 18px) / 2);max-width:calc((100% - 18px) / 2)}.sh{font-size:clamp(var(--text-lg),3vw,var(--text-xl))}.sd{font-size:0.875rem}.rn{font-size:clamp(var(--text-xl),4vw,var(--text-2xl))}}
+@media(max-width:1024px){.sec [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}@media(max-width:768px){form [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}.nv{height:64px;padding:0 20px}.nv-logo img{height:18px}.nv-links{display:none}.nv-tog{display:block}.hero{padding:90px 20px 40px;min-height:100svh}.hero h1{font-size:clamp(var(--text-lg),6vw,var(--text-2xl))}.hero-sub{font-size:var(--text-base);margin-bottom:28px}.hero-act{flex-direction:column;width:100%;max-width:300px}.bp,.bo{width:100%;justify-content:center;padding:14px 20px}.hero-msgs{display:none}.srv-grid{grid-template-columns:1fr}.res-grid{grid-template-columns:1fr}.ft-grid{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;text-align:center}.tc{min-width:100%;max-width:100%}.pain-card{min-width:100%;max-width:100%}.ceo-in{grid-template-columns:1fr}.ceo-photo{max-width:200px}.chat-panel{width:calc(100vw - 40px);right:20px;bottom:130px;max-height:65vh}.blog-grid{grid-template-columns:1fr}.sec{padding:50px 20px}.stmt p{font-size:clamp(var(--text-base),3.5vw,var(--text-lg))}.rn{font-size:var(--text-2xl)}.cta .sd{max-width:90%}}
 
 .ap-step{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
 .ap-step.vis{opacity:1;transform:translateY(0)}
@@ -225,10 +229,10 @@ body{font-family:'Montserrat',sans-serif;background:var(--wh);color:var(--bk);li
 .sys-tab:hover{background:var(--ow)!important}
 .sys-panel{animation:fadePanel .4s ease}
 @keyframes fadePanel{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){form [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}.sys-tab span:last-child{font-size:12px!important}.sys-panels>div{grid-template-columns:1fr!important}}
+@media(max-width:768px){form [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}.sys-tab span:last-child{font-size:var(--text-sm)!important}.sys-panels>div{grid-template-columns:1fr!important}}
 @media(max-width:600px){[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr)!important}.sys-panel[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}
 input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
-.b-new{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:#5C1F2B;padding:3px 8px;margin-bottom:8px}
+.b-new{display:inline-block;font-size:var(--text-xs);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:#5C1F2B;padding:3px 8px;margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -241,13 +245,13 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
     <li><a href="#systems" data-de="Systeme" data-en="Systems">Systeme</a></li>
     <li><a href="#approach" data-de="Ansatz" data-en="Approach">Ansatz</a></li>
     <li><a href="#results" data-de="Ergebnisse" data-en="Results">Ergebnisse</a></li>
-    <li><a href="blog/index.html">Blog</a></li>
+    <li><a href="blog/index.html" data-href-de="blog/index.html" data-href-en="blog/index-en.html">Blog</a></li>
     <li><a href="https://calendly.com/mediha-mujcin/30min" target="_blank" rel="noopener" class="nv-cta" data-de="Kostenfreier Strategie-Call" data-en="Free Strategy Call">Kostenfreier Strategie-Call</a></li>
     <li><a href="#" class="nv-lang" id="langBtn" onclick="toggleLang();return false">EN</a></li>
   </ul>
   <button class="nv-tog" id="navTog" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="mm" id="mm"><a href="#systems" data-de="Systeme" data-en="Systems">Systeme</a><a href="#approach" data-de="Ansatz" data-en="Approach">Ansatz</a><a href="#results" data-de="Ergebnisse" data-en="Results">Ergebnisse</a><a href="blog/index.html">Blog</a><a href="https://calendly.com/mediha-mujcin/30min" target="_blank" rel="noopener" data-de="Kostenfreier Strategie-Call" data-en="Free Strategy Call">Kostenfreier Strategie-Call</a><a href="#" onclick="toggleLang();return false" id="langBtnM" style="color:var(--gd)">EN</a></div>
+<div class="mm" id="mm"><a href="#systems" data-de="Systeme" data-en="Systems">Systeme</a><a href="#approach" data-de="Ansatz" data-en="Approach">Ansatz</a><a href="#results" data-de="Ergebnisse" data-en="Results">Ergebnisse</a><a href="blog/index.html" data-href-de="blog/index.html" data-href-en="blog/index-en.html">Blog</a><a href="https://calendly.com/mediha-mujcin/30min" target="_blank" rel="noopener" data-de="Kostenfreier Strategie-Call" data-en="Free Strategy Call">Kostenfreier Strategie-Call</a><a href="#" onclick="toggleLang();return false" id="langBtnM" style="color:var(--gd)">EN</a></div>
 
 <section class="hero">
   <div class="hero-bg"><canvas id="heroCanvas"></canvas></div>
@@ -280,12 +284,12 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
     <h2 class="sh" data-de="Die Realität vieler <span class='ac'>Female Businesses.</span>" data-en="The reality of many <span class='ac'>female businesses.</span>">Die Realität vieler <span class="ac">Female Businesses.</span></h2>
   </div>
   <div class="pain-scroll" id="painScroll">
-    <div class="pain-card"><h3 data-de="Unsichtbar trotz tollem Angebot" data-en="Invisible despite a great offer">Unsichtbar trotz tollem Angebot</h3><p data-de="Ihr Angebot ist erstklassig. Aber zwischen Angebot und Marktwahrnehmung liegt eine Lücke, die das beste Produkt nicht von allein schließt." data-en="Your offer is first-class. But between your product and market perception lies a gap that even the best product cannot close on its own.">Ihr Angebot ist erstklassig. Aber zwischen Angebot und Marktwahrnehmung liegt eine Lücke, die das beste Produkt nicht von allein schließt.</p><div class="pain-sol"><span class="pain-sol-label">Unsere Lösung</span><p data-de="Magnetic Visibility System — Sichtbarkeit, die konvertiert." data-en="Magnetic Visibility System — visibility that converts.">Magnetic Visibility System — Sichtbarkeit, die konvertiert.</p></div></div>
-    <div class="pain-card"><h3 data-de="Keine klare Premium-Positionierung" data-en="No clear premium positioning">Keine klare Premium-Positionierung</h3><p data-de="Ohne klare Positionierung wird der Preis zum einzigen Vergleichskriterium. Das ist der teuerste Fehler, den ein gutes Unternehmen machen kann." data-en="Without clear positioning, price becomes the only comparison. That is the most expensive mistake a good business can make.">Ohne klare Positionierung wird der Preis zum einzigen Vergleichskriterium. Das ist der teuerste Fehler, den ein gutes Unternehmen machen kann.</p><div class="pain-sol"><span class="pain-sol-label">Unsere Lösung</span><p data-de="Signature Brand Experience — Positionierung, die Premium-Kunden anzieht." data-en="Signature Brand Experience — positioning that attracts premium clients.">Signature Brand Experience — Positionierung, die Premium-Kunden anzieht.</p></div></div>
-    <div class="pain-card"><h3 data-de="Umsatz stagniert trotz harter Arbeit" data-en="Revenue stagnates despite hard work">Umsatz stagniert trotz harter Arbeit</h3><p data-de="Mehr Stunden bringen irgendwann keinen zusätzlichen Umsatz. Ab dann braucht Wachstum ein System, das unabhängig von Ihrer Zeit funktioniert." data-en="More hours eventually stop generating more revenue. Beyond that point, growth needs a system that works independently of your time.">Mehr Stunden bringen irgendwann keinen zusätzlichen Umsatz. Ab dann braucht Wachstum ein System, das unabhängig von Ihrer Zeit funktioniert.</p><div class="pain-sol"><span class="pain-sol-label">Unsere Lösung</span><p data-de="Revenue Performance System — datengetriebenes Wachstum mit klarem ROI." data-en="Revenue Performance System — data-driven growth with clear ROI.">Revenue Performance System — datengetriebenes Wachstum mit klarem ROI.</p></div></div>
-    <div class="pain-card"><h3 data-de="Dein Kerngeschäft leidet unter Marketing-Chaos" data-en="Your core business suffers from marketing chaos">Dein Kerngeschäft leidet unter Marketing-Chaos</h3><p data-de="Sie sind Expertin in dem, was Sie tun. Marketing ist nicht Ihr Handwerk – und sollte es auch nicht werden müssen." data-en="You are the expert at what you do. Marketing is not your craft — and it shouldn't have to be.">Sie sind Expertin in dem, was Sie tun. Marketing ist nicht Ihr Handwerk – und sollte es auch nicht werden müssen.</p><div class="pain-sol"><span class="pain-sol-label">Unsere Lösung</span><p data-de="Wir übernehmen das Marketing — Sie konzentrieren sich auf das, was Sie am besten können." data-en="We handle the marketing — you focus on what you do best.">Wir übernehmen das Marketing — Sie konzentrieren sich auf das, was Sie am besten können.</p></div></div>
-    <div class="pain-card"><h3 data-de="Wachstum scheitert am fehlenden Plan" data-en="Growth fails without a plan">Wachstum scheitert am fehlenden Plan</h3><p data-de="Investitionsbudget ist nur so gut wie der Plan dahinter. Ohne klare Architektur fließen Mittel in Aktivität statt in Ergebnis." data-en="Investment budget is only as good as the plan behind it. Without clear architecture, resources flow into activity instead of results.">Investitionsbudget ist nur so gut wie der Plan dahinter. Ohne klare Architektur fließen Mittel in Aktivität statt in Ergebnis.</p><div class="pain-sol"><span class="pain-sol-label">Unsere Lösung</span><p data-de="Flexible Modelle, die mit Ihrem Business mitwachsen — mit klarem ROI ab Tag eins." data-en="Flexible models that scale with your business — with clear ROI from day one.">Flexible Modelle, die mit Ihrem Business mitwachsen — mit klarem ROI ab Tag eins.</p></div></div>
-    <div class="pain-card"><h3 data-de="Fehlende Strategie & Automatisierung" data-en="Lack of strategy & automation">Fehlende Strategie & Automatisierung</h3><p data-de="Aktivität ist nicht Strategie. Posts, Anzeigen und Kampagnen ohne System produzieren Lärm – keinen Return." data-en="Activity is not strategy. Posts, ads, and campaigns without a system produce noise — not return.">Aktivität ist nicht Strategie. Posts, Anzeigen und Kampagnen ohne System produzieren Lärm – keinen Return.</p><div class="pain-sol"><span class="pain-sol-label">Unsere Lösung</span><p data-de="Growth Architecture — ein System, das für Sie arbeitet, auch wenn Sie es nicht tun." data-en="Growth Architecture — a system that works for you, even when you don't.">Growth Architecture — ein System, das für Sie arbeitet, auch wenn Sie es nicht tun.</p></div></div>
+    <div class="pain-card"><h3 data-de="Unsichtbar trotz tollem Angebot" data-en="Invisible despite a great offer">Unsichtbar trotz tollem Angebot</h3><p data-de="Ihr Angebot ist erstklassig. Aber zwischen Angebot und Marktwahrnehmung liegt eine Lücke, die das beste Produkt nicht von allein schließt." data-en="Your offer is first-class. But between your product and market perception lies a gap that even the best product cannot close on its own.">Ihr Angebot ist erstklassig. Aber zwischen Angebot und Marktwahrnehmung liegt eine Lücke, die das beste Produkt nicht von allein schließt.</p><div class="pain-sol"><span class="pain-sol-label" data-de="Unsere Lösung" data-en="Our Solution">Unsere Lösung</span><p data-de="Magnetic Visibility System — Sichtbarkeit, die konvertiert." data-en="Magnetic Visibility System — visibility that converts.">Magnetic Visibility System — Sichtbarkeit, die konvertiert.</p></div></div>
+    <div class="pain-card"><h3 data-de="Keine klare Premium-Positionierung" data-en="No clear premium positioning">Keine klare Premium-Positionierung</h3><p data-de="Ohne klare Positionierung wird der Preis zum einzigen Vergleichskriterium. Das ist der teuerste Fehler, den ein gutes Unternehmen machen kann." data-en="Without clear positioning, price becomes the only comparison. That is the most expensive mistake a good business can make.">Ohne klare Positionierung wird der Preis zum einzigen Vergleichskriterium. Das ist der teuerste Fehler, den ein gutes Unternehmen machen kann.</p><div class="pain-sol"><span class="pain-sol-label" data-de="Unsere Lösung" data-en="Our Solution">Unsere Lösung</span><p data-de="Signature Brand Experience — Positionierung, die Premium-Kunden anzieht." data-en="Signature Brand Experience — positioning that attracts premium clients.">Signature Brand Experience — Positionierung, die Premium-Kunden anzieht.</p></div></div>
+    <div class="pain-card"><h3 data-de="Umsatz stagniert trotz harter Arbeit" data-en="Revenue stagnates despite hard work">Umsatz stagniert trotz harter Arbeit</h3><p data-de="Mehr Stunden bringen irgendwann keinen zusätzlichen Umsatz. Ab dann braucht Wachstum ein System, das unabhängig von Ihrer Zeit funktioniert." data-en="More hours eventually stop generating more revenue. Beyond that point, growth needs a system that works independently of your time.">Mehr Stunden bringen irgendwann keinen zusätzlichen Umsatz. Ab dann braucht Wachstum ein System, das unabhängig von Ihrer Zeit funktioniert.</p><div class="pain-sol"><span class="pain-sol-label" data-de="Unsere Lösung" data-en="Our Solution">Unsere Lösung</span><p data-de="Revenue Performance System — datengetriebenes Wachstum mit klarem ROI." data-en="Revenue Performance System — data-driven growth with clear ROI.">Revenue Performance System — datengetriebenes Wachstum mit klarem ROI.</p></div></div>
+    <div class="pain-card"><h3 data-de="Dein Kerngeschäft leidet unter Marketing-Chaos" data-en="Your core business suffers from marketing chaos">Dein Kerngeschäft leidet unter Marketing-Chaos</h3><p data-de="Sie sind Expertin in dem, was Sie tun. Marketing ist nicht Ihr Handwerk – und sollte es auch nicht werden müssen." data-en="You are the expert at what you do. Marketing is not your craft — and it shouldn't have to be.">Sie sind Expertin in dem, was Sie tun. Marketing ist nicht Ihr Handwerk – und sollte es auch nicht werden müssen.</p><div class="pain-sol"><span class="pain-sol-label" data-de="Unsere Lösung" data-en="Our Solution">Unsere Lösung</span><p data-de="Wir übernehmen das Marketing — Sie konzentrieren sich auf das, was Sie am besten können." data-en="We handle the marketing — you focus on what you do best.">Wir übernehmen das Marketing — Sie konzentrieren sich auf das, was Sie am besten können.</p></div></div>
+    <div class="pain-card"><h3 data-de="Wachstum scheitert am fehlenden Plan" data-en="Growth fails without a plan">Wachstum scheitert am fehlenden Plan</h3><p data-de="Investitionsbudget ist nur so gut wie der Plan dahinter. Ohne klare Architektur fließen Mittel in Aktivität statt in Ergebnis." data-en="Investment budget is only as good as the plan behind it. Without clear architecture, resources flow into activity instead of results.">Investitionsbudget ist nur so gut wie der Plan dahinter. Ohne klare Architektur fließen Mittel in Aktivität statt in Ergebnis.</p><div class="pain-sol"><span class="pain-sol-label" data-de="Unsere Lösung" data-en="Our Solution">Unsere Lösung</span><p data-de="Flexible Modelle, die mit Ihrem Business mitwachsen — mit klarem ROI ab Tag eins." data-en="Flexible models that scale with your business — with clear ROI from day one.">Flexible Modelle, die mit Ihrem Business mitwachsen — mit klarem ROI ab Tag eins.</p></div></div>
+    <div class="pain-card"><h3 data-de="Fehlende Strategie & Automatisierung" data-en="Lack of strategy & automation">Fehlende Strategie & Automatisierung</h3><p data-de="Aktivität ist nicht Strategie. Posts, Anzeigen und Kampagnen ohne System produzieren Lärm – keinen Return." data-en="Activity is not strategy. Posts, ads, and campaigns without a system produce noise — not return.">Aktivität ist nicht Strategie. Posts, Anzeigen und Kampagnen ohne System produzieren Lärm – keinen Return.</p><div class="pain-sol"><span class="pain-sol-label" data-de="Unsere Lösung" data-en="Our Solution">Unsere Lösung</span><p data-de="Growth Architecture — ein System, das für Sie arbeitet, auch wenn Sie es nicht tun." data-en="Growth Architecture — a system that works for you, even when you don't.">Growth Architecture — ein System, das für Sie arbeitet, auch wenn Sie es nicht tun.</p></div></div>
   </div>
   <div class="pain-arrows"><button class="pain-arr" onclick="scrollPain(-1)">←</button><button class="pain-arr" onclick="scrollPain(1)">→</button></div>
 </div></section>
@@ -303,20 +307,20 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
 <!-- System Tabs -->
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--bd);margin-bottom:0">
 <button class="sys-tab active" data-idx="0" onclick="showSys(0)" style="padding:24px 20px;background:var(--ow);border:none;border-right:1px solid var(--bd);cursor:pointer;text-align:left;font-family:Montserrat,sans-serif;transition:all .3s">
-<span style="font-size:12px;color:var(--mg);font-weight:500;display:block;margin-bottom:8px">01</span>
-<span style="font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--bk);display:block;line-height:1.3" data-de="Brand Experience" data-en="Brand Experience">Brand Experience</span>
+<span style="font-size:var(--text-sm);color:var(--mg);font-weight:500;display:block;margin-bottom:8px">01</span>
+<span style="font-size:var(--text-base);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--bk);display:block;line-height:1.3" data-de="Brand Experience" data-en="Brand Experience">Brand Experience</span>
 </button>
 <button class="sys-tab" data-idx="1" onclick="showSys(1)" style="padding:24px 20px;background:var(--wh);border:none;border-right:1px solid var(--bd);cursor:pointer;text-align:left;font-family:Montserrat,sans-serif;transition:all .3s">
-<span style="font-size:12px;color:var(--mg);font-weight:500;display:block;margin-bottom:8px">02</span>
-<span style="font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--bk);display:block;line-height:1.3" data-de="Content & Sichtbarkeit" data-en="Content & Visibility">Content & Sichtbarkeit</span>
+<span style="font-size:var(--text-sm);color:var(--mg);font-weight:500;display:block;margin-bottom:8px">02</span>
+<span style="font-size:var(--text-base);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--bk);display:block;line-height:1.3" data-de="Content & Sichtbarkeit" data-en="Content & Visibility">Content & Sichtbarkeit</span>
 </button>
 <button class="sys-tab" data-idx="2" onclick="showSys(2)" style="padding:24px 20px;background:var(--wh);border:none;border-right:1px solid var(--bd);cursor:pointer;text-align:left;font-family:Montserrat,sans-serif;transition:all .3s">
-<span style="font-size:12px;color:var(--mg);font-weight:500;display:block;margin-bottom:8px">03</span>
-<span style="font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gd);display:block;line-height:1.3" data-de="Partnership Marketing" data-en="Partnership Marketing">Partnership Marketing</span>
+<span style="font-size:var(--text-sm);color:var(--mg);font-weight:500;display:block;margin-bottom:8px">03</span>
+<span style="font-size:var(--text-base);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gd);display:block;line-height:1.3" data-de="Partnership Marketing" data-en="Partnership Marketing">Partnership Marketing</span>
 </button>
 <button class="sys-tab" data-idx="3" onclick="showSys(3)" style="padding:24px 20px;background:var(--wh);border:none;cursor:pointer;text-align:left;font-family:Montserrat,sans-serif;transition:all .3s">
-<span style="font-size:12px;color:var(--mg);font-weight:500;display:block;margin-bottom:8px">04</span>
-<span style="font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--bk);display:block;line-height:1.3" data-de="Performance Marketing" data-en="Performance Marketing">Performance Marketing</span>
+<span style="font-size:var(--text-sm);color:var(--mg);font-weight:500;display:block;margin-bottom:8px">04</span>
+<span style="font-size:var(--text-base);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--bk);display:block;line-height:1.3" data-de="Performance Marketing" data-en="Performance Marketing">Performance Marketing</span>
 </button>
 </div>
 
@@ -324,60 +328,60 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
 <div class="sys-panels" style="border:1px solid var(--bd);border-top:none;min-height:280px">
 <div class="sys-panel active" data-idx="0" style="padding:clamp(32px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,56px);align-items:center">
 <div>
-<h3 style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,30px);font-weight:600;font-style:italic;line-height:1.35;margin-bottom:16px;color:var(--gd)" data-de="Ihr Produkt oder Service ist erstklassig. Ihre Marke erzählt es nur noch nicht." data-en="Your product or service is world-class. Your brand just doesn't tell that story yet.">Ihr Produkt oder Service ist erstklassig. Ihre Marke erzählt es nur noch nicht.</h3>
+<h3 style="font-family:'Playfair Display',serif;font-size:clamp(var(--text-xl),2.2vw,var(--text-2xl));font-weight:600;font-style:italic;line-height:1.35;margin-bottom:16px;color:var(--gd)" data-de="Ihr Produkt oder Service ist erstklassig. Ihre Marke erzählt es nur noch nicht." data-en="Your product or service is world-class. Your brand just doesn't tell that story yet.">Ihr Produkt oder Service ist erstklassig. Ihre Marke erzählt es nur noch nicht.</h3>
 <p  data-de="Wir entwickeln Markenidentitäten, die den wahren Wert Ihres Angebots sichtbar machen — Positionierung, visuelles System, Markenstimme und eine Erfahrung, die Premium-Kundinnen anzieht und Preisgespräche überflüssig macht." data-en="We develop brand identities that make the true value of your offer visible — positioning, visual system, brand voice, and an experience that attracts premium clients and makes price discussions obsolete.">Wir entwickeln Markenidentitäten, die den wahren Wert Ihres Angebots sichtbar machen — Positionierung, visuelles System, Markenstimme und eine Erfahrung, die Premium-Kundinnen anzieht und Preisgespräche überflüssig macht.</p>
 </div>
 <div style="padding-left:clamp(16px,3vw,40px);border-left:1px solid var(--bd)">
 <ul style="list-style:none;padding:0;margin:0">
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Strategische Positionierung & Differenzierung" data-en="Strategic positioning & differentiation">Strategische Positionierung & Differenzierung</li>
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Brand Identity & Design" data-en="Brand Identity & Design">Brand Identity & Design</li>
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Texte & Tonalität, die Ihre Kundinnen ansprechen" data-en="Copy & tone of voice that resonates with your clients">Texte & Tonalität, die Ihre Kundinnen ansprechen</li>
-<li style="font-size:14px;color:var(--bk);padding:12px 0;font-weight:400" data-de="Website & Kundenerlebnis, das Besucher zu Kunden macht" data-en="Website & customer experience that turns visitors into clients">Website & Kundenerlebnis, das Besucher zu Kunden macht</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Strategische Positionierung & Differenzierung" data-en="Strategic Positioning & Differentiation" data-en="Strategic positioning & differentiation">Strategische Positionierung & Differenzierung</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Brand Identity & Design" data-en="Brand Identity & Design">Brand Identity & Design</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Texte & Tonalität, die Ihre Kundinnen ansprechen" data-en="Copy & tone of voice that resonates with your clients">Texte & Tonalität, die Ihre Kundinnen ansprechen</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0" data-de="Website & Kundenerlebnis, das Besucher zu Kunden macht" data-en="Website & customer experience that turns visitors into clients">Website & Kundenerlebnis, das Besucher zu Kunden macht</li>
 </ul>
 </div>
 </div>
 
 <div class="sys-panel" data-idx="1" style="padding:clamp(32px,4vw,48px);display:none;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,56px);align-items:center">
 <div>
-<h3 style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,30px);font-weight:600;font-style:italic;line-height:1.35;margin-bottom:16px;color:var(--gd)" data-de="Sie sind die Expertin. Aber niemand weiß es — weil Ihr Content nicht für Sie arbeitet." data-en="You're the expert. But nobody knows it — because your content isn't working for you.">Sie sind die Expertin. Aber niemand weiß es — weil Ihr Content nicht für Sie arbeitet.</h3>
+<h3 style="font-family:'Playfair Display',serif;font-size:clamp(var(--text-xl),2.2vw,var(--text-2xl));font-weight:600;font-style:italic;line-height:1.35;margin-bottom:16px;color:var(--gd)" data-de="Sie sind die Expertin. Aber niemand weiß es — weil Ihr Content nicht für Sie arbeitet." data-en="You're the expert. But nobody knows it — because your content isn't working for you.">Sie sind die Expertin. Aber niemand weiß es — weil Ihr Content nicht für Sie arbeitet.</h3>
 <p  data-de="Wir bauen Content-Systeme, die organisch Reichweite schaffen und Ihre Expertise sichtbar machen — ohne dass Sie jeden Tag posten müssen. Eine Sichtbarkeitsstrategie, die nachhaltig wirkt und Kundinnen anzieht." data-en="We build content systems that organically create reach and make your expertise visible — without you having to post every day. A visibility strategy with lasting impact that attracts clients.">Wir bauen Content-Systeme, die organisch Reichweite schaffen und Ihre Expertise sichtbar machen — ohne dass Sie jeden Tag posten müssen. Eine Sichtbarkeitsstrategie, die nachhaltig wirkt und Kundinnen anzieht.</p>
 </div>
 <div style="padding-left:clamp(16px,3vw,40px);border-left:1px solid var(--bd)">
 <ul style="list-style:none;padding:0;margin:0">
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Social Media & Community-Aufbau" data-en="Social media & community building">Social Media & Community-Aufbau</li>
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Content-Strategie & Redaktionsplanung" data-en="Content strategy & editorial planning">Content-Strategie & Redaktionsplanung</li>
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="E-Mail-Marketing & CRM-Systeme" data-en="Email marketing & CRM systems">E-Mail-Marketing & CRM-Systeme</li>
-<li style="font-size:14px;color:var(--bk);padding:12px 0;font-weight:400" data-de="Organische Reichweite & Markenbekanntheit" data-en="Organic reach & brand awareness">Organische Reichweite & Markenbekanntheit</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Social Media & Community-Aufbau" data-en="Social Media & Community Building" data-en="Social media & community building">Social Media & Community-Aufbau</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Content-Strategie & Redaktionsplanung" data-en="Content Strategy & Editorial Planning" data-en="Content strategy & editorial planning">Content-Strategie & Redaktionsplanung</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="E-Mail-Marketing & CRM-Systeme" data-en="Email Marketing & CRM Systems" data-en="Email marketing & CRM systems">E-Mail-Marketing & CRM-Systeme</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0" data-de="Organische Reichweite & Markenbekanntheit" data-en="Organic Reach & Brand Awareness" data-en="Organic reach & brand awareness">Organische Reichweite & Markenbekanntheit</li>
 </ul>
 </div>
 </div>
 
 <div class="sys-panel" data-idx="2" style="padding:clamp(32px,4vw,48px);display:none;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,56px);align-items:center;background:var(--ow)">
 <div>
-<h3 style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,30px);font-weight:600;font-style:italic;line-height:1.35;margin-bottom:16px;color:var(--gd)" data-de="Ihr Wachstum hängt an Ihrer Zeit. Das muss aufhören." data-en="Your growth depends on your time. That needs to stop.">Ihr Wachstum hängt an Ihrer Zeit. Das muss aufhören.</h3>
+<h3 style="font-family:'Playfair Display',serif;font-size:clamp(var(--text-xl),2.2vw,var(--text-2xl));font-weight:600;font-style:italic;line-height:1.35;margin-bottom:16px;color:var(--gd)" data-de="Ihr Wachstum hängt an Ihrer Zeit. Das muss aufhören." data-en="Your growth depends on your time. That needs to stop.">Ihr Wachstum hängt an Ihrer Zeit. Das muss aufhören.</h3>
 <p  data-de="Andere empfehlen Sie weiter — und Sie verdienen daran. Wir bauen Partnernetzwerke aus Creators, Affiliates und zufriedenen Kundinnen, die Ihr Angebot empfehlen." data-en="Others recommend you — and you earn from it. We build partner networks of creators, affiliates, and happy customers who refer your offer.">Andere empfehlen Sie weiter — und Sie verdienen daran. Wir bauen Partnernetzwerke aus Creators, Affiliates und zufriedenen Kundinnen, die Ihr Angebot empfehlen.</p>
 </div>
 <div style="padding-left:clamp(16px,3vw,40px);border-left:1px solid var(--gd)">
 <ul style="list-style:none;padding:0;margin:0">
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Weiterempfehlungs- & Affiliate-Programme" data-en="Referral & affiliate programs">Weiterempfehlungs- & Affiliate-Programme</li>
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Creator- & Influencer-Kooperationen" data-en="Creator & influencer collaborations">Creator- & Influencer-Kooperationen</li>
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Automatisiertes Partner-Management" data-en="Automated partner management">Automatisiertes Partner-Management</li>
-<li style="font-size:14px;color:var(--bk);padding:12px 0;font-weight:400" data-de="Provisionsmodelle & Erfolgsbeteiligung" data-en="Commission models & revenue sharing">Provisionsmodelle & Erfolgsbeteiligung</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Weiterempfehlungs- & Affiliate-Programme" data-en="Referral & Affiliate Programs" data-en="Referral & affiliate programs">Weiterempfehlungs- & Affiliate-Programme</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Creator- & Influencer-Kooperationen" data-en="Creator & Influencer Partnerships" data-en="Creator & influencer collaborations">Creator- & Influencer-Kooperationen</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Automatisiertes Partner-Management" data-en="Automated Partner Management" data-en="Automated partner management">Automatisiertes Partner-Management</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0" data-de="Provisionsmodelle & Erfolgsbeteiligung" data-en="Commission Models & Performance-Based Pay" data-en="Commission models & revenue sharing">Provisionsmodelle & Erfolgsbeteiligung</li>
 </ul>
 </div>
 </div>
 
 <div class="sys-panel" data-idx="3" style="padding:clamp(32px,4vw,48px);display:none;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,56px);align-items:center">
 <div>
-<h3 style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,30px);font-weight:600;font-style:italic;line-height:1.35;margin-bottom:16px;color:var(--gd)" data-de="Sie investieren in Marketing. Aber wissen Sie, was wirklich funktioniert?" data-en="You invest in marketing. But do you know what's actually working?">Sie investieren in Marketing. Aber wissen Sie, was wirklich funktioniert?</h3>
+<h3 style="font-family:'Playfair Display',serif;font-size:clamp(var(--text-xl),2.2vw,var(--text-2xl));font-weight:600;font-style:italic;line-height:1.35;margin-bottom:16px;color:var(--gd)" data-de="Sie investieren in Marketing. Aber wissen Sie, was wirklich funktioniert?" data-en="You invest in marketing. But do you know what's actually working?">Sie investieren in Marketing. Aber wissen Sie, was wirklich funktioniert?</h3>
 <p  data-de="Wir steuern datengetriebene Kampagnen, bei denen jeder investierte Euro nachvollziehbar ist. Von Awareness bis Conversion — immer transparent, immer optimiert, immer mit klarem ROI." data-en="We run data-driven campaigns where every euro invested is traceable. From awareness to conversion — always transparent, always optimized, always with clear ROI.">Wir steuern datengetriebene Kampagnen, bei denen jeder investierte Euro nachvollziehbar ist. Von Awareness bis Conversion — immer transparent, immer optimiert, immer mit klarem ROI.</p>
 </div>
 <div style="padding-left:clamp(16px,3vw,40px);border-left:1px solid var(--bd)">
 <ul style="list-style:none;padding:0;margin:0">
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Paid Social & Search Kampagnen" data-en="Paid social & search campaigns">Paid Social & Search Kampagnen</li>
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Conversion-Optimierung & A/B Testing" data-en="Conversion optimization & A/B testing">Conversion-Optimierung & A/B Testing</li>
-<li style="font-size:14px;color:var(--bk);font-weight:400;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:500" data-de="Real-Time Reporting & Dashboards" data-en="Real-time reporting & dashboards">Real-Time Reporting & Dashboards</li>
-<li style="font-size:14px;color:var(--bk);padding:12px 0;font-weight:400" data-de="ROI-Tracking & Budget-Optimierung" data-en="ROI tracking & budget optimization">ROI-Tracking & Budget-Optimierung</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Paid Social & Search Kampagnen" data-en="Paid Social & Search Campaigns" data-en="Paid social & search campaigns">Paid Social & Search Kampagnen</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Conversion-Optimierung & A/B Testing" data-en="Conversion Optimization & A/B Testing" data-en="Conversion optimization & A/B testing">Conversion-Optimierung & A/B Testing</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0;border-bottom:1px solid var(--bd)" data-de="Real-Time Reporting & Dashboards" data-en="Real-Time Reporting & Dashboards" data-en="Real-time reporting & dashboards">Real-Time Reporting & Dashboards</li>
+<li style="font-size:0.875rem;color:var(--bk);font-weight:500;padding:12px 0" data-de="ROI-Tracking & Budget-Optimierung" data-en="ROI Tracking & Budget Optimization" data-en="ROI tracking & budget optimization">ROI-Tracking & Budget-Optimierung</li>
 </ul>
 </div>
 </div>
@@ -395,11 +399,11 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
 <h2 class="sh" data-de="Eine Plattform. Alle <span class='ac'>Partnerschaften.</span>" data-en="One platform. All <span class='ac'>partnerships.</span>">Eine Plattform. Alle <span class="ac">Partnerschaften.</span></h2>
 <p class="sd" style="margin-bottom:28px" data-de="Influencer, Creator, Affiliates, Loyalty — in den meisten Unternehmen laufen diese Kanäle getrennt. Wir bündeln sie auf einer einzigen Plattform. Jeder Partner, jeder Klick, jede Conversion — messbar, automatisiert, in Ihrer Kontrolle." data-en="Influencers, creators, affiliates, loyalty — in most companies, these channels run separately. We unify them on a single platform. Every partner, every click, every conversion — measurable, automated, under your control.">Influencer, Creator, Affiliates, Loyalty — in den meisten Unternehmen laufen diese Kanäle getrennt. Wir bündeln sie auf einer einzigen Plattform. Jeder Partner, jeder Klick, jede Conversion — messbar, automatisiert, in Ihrer Kontrolle.</p>
 <ul style="list-style:none;margin:0;padding:0">
-<li style="font-size:14px;color:var(--bk);padding:14px 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="Alle Partnertypen in einem System — keine Insellösungen mehr" data-en="All partner types in one system — no more silos">Alle Partnertypen in einem System — keine Insellösungen mehr</span></li>
-<li style="font-size:14px;color:var(--bk);padding:14px 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="Full-Funnel Tracking von Awareness bis Advocacy" data-en="Full-funnel tracking from awareness to advocacy">Full-Funnel Tracking von Awareness bis Advocacy</span></li>
-<li style="font-size:14px;color:var(--bk);padding:14px 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="Zugang zu einem globalen Netzwerk aus Partnern, Influencern und Creators" data-en="Access to a global network of partners, influencers, and creators">Zugang zu einem globalen Netzwerk aus Partnern, Influencern und Creators</span></li>
-<li style="font-size:14px;color:var(--bk);padding:14px 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="Automatisierte Workflows — 10–40 Stunden Zeitersparnis pro Monat" data-en="Automated workflows — 10–40 hours saved per month">Automatisierte Workflows — 10–40 Stunden Zeitersparnis pro Monat</span></li>
-<li style="font-size:14px;color:var(--bk);padding:14px 0;display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="DSGVO-konform, fraud-geschützt, global skalierbar" data-en="GDPR-compliant, fraud-protected, globally scalable">DSGVO-konform, fraud-geschützt, global skalierbar</span></li>
+<li style="font-size:0.875rem;color:var(--bk);padding:14px 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="Alle Partnertypen in einem System — keine Insellösungen mehr" data-en="All partner types in one system — no more silos">Alle Partnertypen in einem System — keine Insellösungen mehr</span></li>
+<li style="font-size:0.875rem;color:var(--bk);padding:14px 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="Full-Funnel Tracking von Awareness bis Advocacy" data-en="Full-funnel tracking from awareness to advocacy">Full-Funnel Tracking von Awareness bis Advocacy</span></li>
+<li style="font-size:0.875rem;color:var(--bk);padding:14px 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="Zugang zu einem globalen Netzwerk aus Partnern, Influencern und Creators" data-en="Access to a global network of partners, influencers, and creators">Zugang zu einem globalen Netzwerk aus Partnern, Influencern und Creators</span></li>
+<li style="font-size:0.875rem;color:var(--bk);padding:14px 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="Automatisierte Workflows — 10–40 Stunden Zeitersparnis pro Monat" data-en="Automated workflows — 10–40 hours saved per month">Automatisierte Workflows — 10–40 Stunden Zeitersparnis pro Monat</span></li>
+<li style="font-size:0.875rem;color:var(--bk);padding:14px 0;display:flex;align-items:center;gap:12px"><span style="width:6px;height:6px;background:var(--gd);border-radius:50%;flex-shrink:0"></span><span data-de="DSGVO-konform, fraud-geschützt, global skalierbar" data-en="GDPR-compliant, fraud-protected, globally scalable">DSGVO-konform, fraud-geschützt, global skalierbar</span></li>
 </ul>
 </div>
 <div>
@@ -408,8 +412,8 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
 
 <!-- Header -->
 <div style="text-align:center;margin-bottom:28px">
-<div style="font-size:16px;font-weight:800;color:var(--bk);letter-spacing:.03em">Partnership Automation Platform</div>
-<div style="font-size:11px;color:var(--mg);margin-top:6px;letter-spacing:.04em">powered by <strong style="color:var(--bk)">impact.com</strong></div>
+<div style="font-size:var(--text-base);font-weight:800;color:var(--bk);letter-spacing:.03em" data-de="Partnership Automation Platform" data-en="Partnership Automation Platform">Partnership Automation Platform</div>
+<div style="font-size:var(--text-sm);color:var(--mg);margin-top:6px;letter-spacing:.04em">powered by <strong style="color:var(--bk)">impact.com</strong></div>
 </div>
 
 <div style="width:100%;height:1px;background:var(--bd);margin-bottom:24px"></div>
@@ -420,12 +424,12 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
 
 <!-- Funnel steps - aligned to impact.com's 5-stage partnership lifecycle -->
 <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
-<div style="background:var(--gd);padding:14px 32px;font-size:12px;font-weight:700;color:var(--wh);letter-spacing:.08em;text-transform:uppercase;width:100%;text-align:center" data-de="Der gesamte Partnership-Lifecycle" data-en="The Complete Partnership Lifecycle">Der gesamte Partnership-Lifecycle</div>
-<div style="background:var(--ow);padding:14px 24px;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:94%;text-align:center;border-left:3px solid var(--gd)" data-de="Awareness · Influencer & Creator" data-en="Awareness · Influencer & Creator">Awareness · Influencer & Creator</div>
-<div style="background:var(--ow);padding:14px 24px;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:84%;text-align:center;border-left:3px solid var(--gd)" data-de="Consideration · Content & Blogger" data-en="Consideration · Content & Blogger">Consideration · Content & Blogger</div>
-<div style="background:var(--ow);padding:14px 24px;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:74%;text-align:center;border-left:3px solid var(--gd)" data-de="Purchase · Affiliates" data-en="Purchase · Affiliates">Purchase · Affiliates</div>
-<div style="background:var(--ow);padding:14px 24px;font-size:11px;font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:64%;text-align:center;border-left:3px solid var(--gd)" data-de="Retention · Loyalty & CLO" data-en="Retention · Loyalty & CLO">Retention · Loyalty & CLO</div>
-<div style="background:var(--ow);padding:14px 24px;font-size:11px;font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:54%;text-align:center;border-left:3px solid var(--gd)" data-de="Advocacy · Customer Referrals" data-en="Advocacy · Customer Referrals">Advocacy · Customer Referrals</div>
+<div style="background:var(--gd);padding:14px 32px;font-size:var(--text-sm);font-weight:700;color:var(--wh);letter-spacing:.08em;text-transform:uppercase;width:100%;text-align:center" data-de="Der gesamte Partnership-Lifecycle" data-en="The Complete Partnership Lifecycle">Der gesamte Partnership-Lifecycle</div>
+<div style="background:var(--ow);padding:14px 24px;font-size:var(--text-sm);font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:94%;text-align:center;border-left:3px solid var(--gd)" data-de="Awareness · Influencer & Creator" data-en="Awareness · Influencer & Creator">Awareness · Influencer & Creator</div>
+<div style="background:var(--ow);padding:14px 24px;font-size:var(--text-sm);font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:84%;text-align:center;border-left:3px solid var(--gd)" data-de="Consideration · Content & Blogger" data-en="Consideration · Content & Blogger">Consideration · Content & Blogger</div>
+<div style="background:var(--ow);padding:14px 24px;font-size:var(--text-sm);font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:74%;text-align:center;border-left:3px solid var(--gd)" data-de="Purchase · Affiliates" data-en="Purchase · Affiliates">Purchase · Affiliates</div>
+<div style="background:var(--ow);padding:14px 24px;font-size:var(--text-sm);font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:64%;text-align:center;border-left:3px solid var(--gd)" data-de="Retention · Loyalty & CLO" data-en="Retention · Loyalty & CLO">Retention · Loyalty & CLO</div>
+<div style="background:var(--ow);padding:14px 24px;font-size:var(--text-sm);font-weight:600;color:var(--bk);letter-spacing:.04em;text-transform:uppercase;width:54%;text-align:center;border-left:3px solid var(--gd)" data-de="Advocacy · Customer Referrals" data-en="Advocacy · Customer Referrals">Advocacy · Customer Referrals</div>
 </div>
 </div>
 
@@ -434,46 +438,34 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
 <!-- Stats row -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center;margin-bottom:24px">
 <div>
-<div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:var(--bk)">+91%</div>
-<div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mg);font-weight:500;margin-top:2px" data-de="Mehr Conversions" data-en="More Conversions">Mehr Conversions</div>
+<div style="font-family:'Playfair Display',serif;font-size:var(--text-2xl);font-weight:600;color:var(--bk)">+91%</div>
+<div style="font-size:var(--text-sm);letter-spacing:.1em;text-transform:uppercase;color:var(--mg);font-weight:500;margin-top:2px" data-de="Mehr Conversions" data-en="More Conversions">Mehr Conversions</div>
 </div>
 <div>
-<div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:var(--bk)">40h</div>
-<div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mg);font-weight:500;margin-top:2px" data-de="Zeitersparnis / Monat" data-en="Time Saved / Month">Zeitersparnis / Monat</div>
+<div style="font-family:'Playfair Display',serif;font-size:var(--text-2xl);font-weight:600;color:var(--bk)">40h</div>
+<div style="font-size:var(--text-sm);letter-spacing:.1em;text-transform:uppercase;color:var(--mg);font-weight:500;margin-top:2px" data-de="Zeitersparnis / Monat" data-en="Time Saved / Month">Zeitersparnis / Monat</div>
 </div>
 <div>
-<div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:var(--bk)">3.5×</div>
-<div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mg);font-weight:500;margin-top:2px" data-de="Partner-Wachstum" data-en="Partnership Growth">Partner-Wachstum</div>
-</div>
-</div>
-
-<div style="width:100%;height:1px;background:var(--bd);margin-bottom:20px"></div>
-
-<!-- Trusted brands as burgundy logos -->
-<div style="text-align:center">
-<div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--lg);font-weight:500;margin-bottom:14px" data-de="Vertraut von führenden Marken" data-en="Trusted by leading brands">Vertraut von führenden Marken</div>
-<div style="display:flex;justify-content:center;gap:28px;flex-wrap:wrap;align-items:center">
-<span style="font-size:15px;font-weight:800;color:var(--gd);letter-spacing:.03em;opacity:.7">Glossier</span>
-<span style="font-size:15px;font-weight:800;color:var(--gd);letter-spacing:.03em;opacity:.7">Sephora</span>
-<span style="font-size:15px;font-weight:800;color:var(--gd);letter-spacing:.03em;opacity:.7">Rituals</span>
-<span style="font-size:15px;font-weight:800;color:var(--gd);letter-spacing:.03em;opacity:.7">Flaconi</span>
-<span style="font-size:15px;font-weight:800;color:var(--gd);letter-spacing:.03em;opacity:.7">Charlotte Tilbury</span>
+<div style="font-family:'Playfair Display',serif;font-size:var(--text-2xl);font-weight:600;color:var(--bk)">3.5×</div>
+<div style="font-size:var(--text-sm);letter-spacing:.1em;text-transform:uppercase;color:var(--mg);font-weight:500;margin-top:2px" data-de="Partner-Wachstum" data-en="Partnership Growth">Partner-Wachstum</div>
 </div>
 </div>
 
 </div>
 </div>
 </div>
-</div></section>
+</div>
+<div class="mq-wrap2" style="margin-top:48px"><div class="mq2"><span>Glossier</span><span>Sephora</span><span>Rituals</span><span>Flaconi</span><span>Charlotte Tilbury</span><span>Glossier</span><span>Sephora</span><span>Rituals</span><span>Flaconi</span><span>Charlotte Tilbury</span></div></div>
+</section>
 
 <section class="stmt"><div class="rv"><p data-de="Sie haben bereits etwas Großes geschaffen – Ihre Vision, Ihr Angebot, Ihr Unternehmen. Doch wahre Größe entsteht nicht allein. Eine Ansprechpartnerin auf höchstem Niveau — ein ganzes System dahinter.<br><em>Genau hier kommen wir ins Spiel:<br>Ihr Partner für den nächsten Schritt.</em>" data-en="You've already built something great – your vision, your offer, your company. But true greatness doesn't happen alone. One point of contact at the highest level — an entire system behind it.<br><em>That's where we come in:<br>your partner for the next step.</em>">Sie haben bereits etwas Großes geschaffen – Ihre Vision, Ihr Angebot, Ihr Unternehmen. Doch wahre Größe entsteht nicht allein. Eine Ansprechpartnerin auf höchstem Niveau — ein ganzes System dahinter.<br><em>Genau hier kommen wir ins Spiel:<br>Ihr Partner für den nächsten Schritt.</em></p></div></section>
 
 <!-- APPROACH -->
 <section class="sec" id="approach" style="background:var(--ow)"><div class="mx rv"><div class="ap-grid"><div class="ap-left"><p class="sl" data-de="Unser Ansatz" data-en="Our Approach">Unser Ansatz</p><h2 class="sh" data-de="Von der Analyse zur gemeinsamen <span class='ac'>Umsetzung.</span>" data-en="From analysis to shared <span class='ac'>execution.</span>">Von der Analyse zur gemeinsamen <span class="ac">Umsetzung.</span></h2><p class="sd" style="margin-bottom:28px" data-de="Kein Template. Kein Standardpaket. Wir arbeiten mit einer begrenzten Zahl von Unternehmerinnen pro Jahr – damit jede Architektur trägt." data-en="No templates. No standard packages. We work with a limited number of entrepreneurs per year — so every architecture holds.">Kein Template. Kein Standardpaket. Wir arbeiten mit einer begrenzten Zahl von Unternehmerinnen pro Jahr – damit jede Architektur trägt.</p><a href="https://calendly.com/mediha-mujcin/30min" target="_blank" rel="noopener" class="bp" data-de="Kostenfreien Strategie-Call buchen" data-en="Book Free Strategy Call">Kostenfreien Strategie-Call buchen</a></div><div>
-<div class="ap-step"><div class="snum">01</div><div><h4>Signature Audit</h4><p data-de="Wir analysieren Ihre Marke, Zielgruppe und Wettbewerber im Detail — und identifizieren die größten Wachstumshebel für Ihr Business." data-en="We analyze your brand, audience, and competitors in detail — identifying the biggest growth levers for your business.">Wir analysieren Ihre Marke, Zielgruppe und Wettbewerber im Detail — und identifizieren die größten Wachstumshebel für Ihr Business.</p></div></div>
-<div class="ap-step"><div class="snum">02</div><div><h4>Growth Architecture</h4><p data-de="Auf Basis des Audits entwickeln wir einen individuellen Systemplan mit klaren Meilensteinen und messbaren Zielen für Ihr Wachstum." data-en="Based on the audit, we develop a custom system plan with clear milestones and measurable goals for your growth.">Auf Basis des Audits entwickeln wir einen individuellen Systemplan mit klaren Meilensteinen und messbaren Zielen für Ihr Wachstum.</p></div></div>
-<div class="ap-step"><div class="snum">03</div><div><h4>System Activation</h4><p data-de="Wir setzen Branding, Content, Partner-Netzwerke und Kampagnen operativ um — nicht nur planen, sondern machen." data-en="We implement branding, content, partner networks, and campaigns operationally — not just planning, but doing.">Wir setzen Branding, Content, Partner-Netzwerke und Kampagnen operativ um — nicht nur planen, sondern machen.</p></div></div>
-<div class="ap-step"><div class="snum">04</div><div><h4>Scale & Optimize</h4><p data-de="Wir skalieren, was funktioniert, und eliminieren, was nicht performt. Monatliches Reporting, laufende Optimierung, messbare Ergebnisse." data-en="We scale what works and eliminate what doesn't. Monthly reporting, ongoing optimization, measurable results.">Wir skalieren, was funktioniert, und eliminieren, was nicht performt. Monatliches Reporting, laufende Optimierung, messbare Ergebnisse.</p></div></div>
+<div class="ap-step"><div class="snum">01</div><div><h4 data-de="Signature Audit" data-en="Signature Audit">Signature Audit</h4><p data-de="Wir analysieren Ihre Marke, Zielgruppe und Wettbewerber im Detail — und identifizieren die größten Wachstumshebel für Ihr Business." data-en="We analyze your brand, audience, and competitors in detail — identifying the biggest growth levers for your business.">Wir analysieren Ihre Marke, Zielgruppe und Wettbewerber im Detail — und identifizieren die größten Wachstumshebel für Ihr Business.</p></div></div>
+<div class="ap-step"><div class="snum">02</div><div><h4 data-de="Growth Architecture" data-en="Growth Architecture">Growth Architecture</h4><p data-de="Auf Basis des Audits entwickeln wir einen individuellen Systemplan mit klaren Meilensteinen und messbaren Zielen für Ihr Wachstum." data-en="Based on the audit, we develop a custom system plan with clear milestones and measurable goals for your growth.">Auf Basis des Audits entwickeln wir einen individuellen Systemplan mit klaren Meilensteinen und messbaren Zielen für Ihr Wachstum.</p></div></div>
+<div class="ap-step"><div class="snum">03</div><div><h4 data-de="System Activation" data-en="System Activation">System Activation</h4><p data-de="Wir setzen Branding, Content, Partner-Netzwerke und Kampagnen operativ um — nicht nur planen, sondern machen." data-en="We implement branding, content, partner networks, and campaigns operationally — not just planning, but doing.">Wir setzen Branding, Content, Partner-Netzwerke und Kampagnen operativ um — nicht nur planen, sondern machen.</p></div></div>
+<div class="ap-step"><div class="snum">04</div><div><h4 data-de="Scale & Optimize" data-en="Scale & Optimize">Scale & Optimize</h4><p data-de="Wir skalieren, was funktioniert, und eliminieren, was nicht performt. Monatliches Reporting, laufende Optimierung, messbare Ergebnisse." data-en="We scale what works and eliminate what doesn't. Monthly reporting, ongoing optimization, measurable results.">Wir skalieren, was funktioniert, und eliminieren, was nicht performt. Monatliches Reporting, laufende Optimierung, messbare Ergebnisse.</p></div></div>
 </div></div></div></section>
 
 <!-- RESULTS -->
@@ -505,26 +497,26 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
 
 <div class="bc" style="border-left:3px solid var(--gd)">
   <p class="bc-cat"><span class="b-new" data-de="NEU" data-en="NEW">NEU</span> <span data-de="Growth Strategy" data-en="Growth Strategy">Growth Strategy</span></p>
-  <h3><a href="blog/partnerprogramme-wachstum.html" data-de="Warum Partnerprogramme der wichtigste Wachstumshebel für Female Businesses sind" data-en="Why Partner Programs Are the Most Important Growth Lever for Female Businesses">Warum Partnerprogramme der wichtigste Wachstumshebel sind</a></h3>
+  <h3><a href="blog/partnerprogramme-wachstum.html" data-href-de="blog/partnerprogramme-wachstum.html" data-href-en="blog/partnerprogramme-wachstum-en.html" data-de="Warum Partnerprogramme der wichtigste Wachstumshebel für Female Businesses sind" data-en="Why Partner Programs Are the Most Important Growth Lever for Female Businesses">Warum Partnerprogramme der wichtigste Wachstumshebel sind</a></h3>
   <p data-de="Ein System, das für dich arbeitet — auch wenn du es nicht tust." data-en="A system that works for you — even when you're not.">Ein System, das für dich arbeitet — auch wenn du es nicht tust.</p>
-  <a href="blog/partnerprogramme-wachstum.html" class="bc-read" data-de="Weiterlesen →" data-en="Read more →">Weiterlesen →</a>
+  <a href="blog/partnerprogramme-wachstum.html" data-href-de="blog/partnerprogramme-wachstum.html" data-href-en="blog/partnerprogramme-wachstum-en.html" class="bc-read" data-de="Weiterlesen →" data-en="Read more →">Weiterlesen →</a>
 </div>
 
 <div class="bc" style="border-left:3px solid var(--gd)">
   <p class="bc-cat"><span class="b-new" data-de="NEU" data-en="NEW">NEU</span> <span data-de="Content & Sichtbarkeit" data-en="Content & Visibility">Content & Sichtbarkeit</span></p>
-  <h3><a href="blog/social-media-female-businesses.html" data-de="Social Media für Female Businesses: Warum Reichweite allein nicht reicht" data-en="Social Media for Female Businesses: Why Reach Alone Is Not Enough">Social Media für Female Businesses: Warum Reichweite allein nicht reicht</a></h3>
+  <h3><a href="blog/social-media-female-businesses.html" data-href-de="blog/social-media-female-businesses.html" data-href-en="blog/social-media-female-businesses-en.html" data-de="Social Media für Female Businesses: Warum Reichweite allein nicht reicht" data-en="Social Media for Female Businesses: Why Reach Alone Is Not Enough">Social Media für Female Businesses: Warum Reichweite allein nicht reicht</a></h3>
   <p data-de="Reichweite ohne Strategie ist Lärm. Wie du Social Media als Wachstumssystem aufbaust." data-en="Reach without strategy is noise. How to build social media as a growth system.">Reichweite ohne Strategie ist Lärm. Wie du Social Media als Wachstumssystem aufbaust.</p>
-  <a href="blog/social-media-female-businesses.html" class="bc-read" data-de="Weiterlesen →" data-en="Read more →">Weiterlesen →</a>
+  <a href="blog/social-media-female-businesses.html" data-href-de="blog/social-media-female-businesses.html" data-href-en="blog/social-media-female-businesses-en.html" class="bc-read" data-de="Weiterlesen →" data-en="Read more →">Weiterlesen →</a>
 </div>
 
 <div class="bc" style="border-left:3px solid var(--gd)">
   <p class="bc-cat"><span class="b-new" data-de="NEU" data-en="NEW">NEU</span> <span data-de="Female Empowerment" data-en="Female Empowerment">Female Empowerment</span></p>
-  <h3><a href="blog/female-empowerment-business.html" data-de="Female Empowerment ist kein Trend — es ist ein Markt" data-en="Female Empowerment Is Not a Trend — It's a Market">Female Empowerment ist kein Trend — es ist ein Markt</a></h3>
+  <h3><a href="blog/female-empowerment-business.html" data-href-de="blog/female-empowerment-business.html" data-href-en="blog/female-empowerment-business-en.html" data-de="Female Empowerment ist kein Trend — es ist ein Markt" data-en="Female Empowerment Is Not a Trend — It's a Market">Female Empowerment ist kein Trend — es ist ein Markt</a></h3>
   <p data-de="Warum Unternehmerinnen mit diesem Wert einen strategischen Wettbewerbsvorteil haben." data-en="Why entrepreneurs who live this value have a strategic competitive advantage.">Warum Unternehmerinnen mit diesem Wert einen strategischen Wettbewerbsvorteil haben.</p>
-  <a href="blog/female-empowerment-business.html" class="bc-read" data-de="Weiterlesen →" data-en="Read more →">Weiterlesen →</a>
+  <a href="blog/female-empowerment-business.html" data-href-de="blog/female-empowerment-business.html" data-href-en="blog/female-empowerment-business-en.html" class="bc-read" data-de="Weiterlesen →" data-en="Read more →">Weiterlesen →</a>
 </div>
 
-</div></div><div style="text-align:center;margin-top:36px"><a href="blog/index.html" class="blog-all" data-de="Alle Artikel lesen →" data-en="Read all articles →">Alle Artikel lesen →</a></div></div></section>
+</div></div><div style="text-align:center;margin-top:36px"><a href="blog/index.html" class="blog-all" data-de="Alle Artikel lesen →" data-en="Read all articles →" data-href-de="blog/index.html" data-href-en="blog/index-en.html">Alle Artikel lesen →</a></div></div></section>
 
 </main>
 
@@ -542,23 +534,23 @@ input:focus,textarea:focus{border-color:var(--gd)!important;outline:none}
 <p class="sd" style="margin-bottom:36px;text-align:center;margin-left:auto;margin-right:auto" data-de="Sie möchten lieber schreiben? Wir melden uns innerhalb von 24 Stunden." data-en="Prefer to write? We'll get back to you within 24 hours.">Sie möchten lieber schreiben? Wir melden uns innerhalb von 24 Stunden.</p>
 
 <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success" style="text-align:left;max-width:480px;margin:0 auto"><input type="hidden" name="form-name" value="contact"><p style="display:none"><label>Don't fill: <input name="bot-field"></label></p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px"><div><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mg);margin-bottom:6px" data-de="Name" data-en="Name">Name</label><input type="text" name="name" placeholder="Ihr Name" required style="width:100%;padding:14px 16px;font-family:Montserrat,sans-serif;font-size:15px;border:1px solid var(--bd);background:var(--wh);color:var(--bk);outline:none"></div><div><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mg);margin-bottom:6px">E-Mail</label><input type="email" name="email" placeholder="ihre@email.com" required style="width:100%;padding:14px 16px;font-family:Montserrat,sans-serif;font-size:15px;border:1px solid var(--bd);background:var(--wh);color:var(--bk);outline:none"></div></div>
-<div style="margin-bottom:16px"><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mg);margin-bottom:6px" data-de="Unternehmen (optional)" data-en="Company (optional)">Unternehmen (optional)</label><input type="text" name="company" placeholder="Ihr Unternehmen" style="width:100%;padding:14px 16px;font-family:Montserrat,sans-serif;font-size:15px;border:1px solid var(--bd);background:var(--wh);color:var(--bk);outline:none"></div>
-<div style="margin-bottom:20px"><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mg);margin-bottom:6px" data-de="Nachricht" data-en="Message">Nachricht</label><textarea name="message" placeholder="Erzählen Sie uns von Ihrem Projekt..." required style="width:100%;padding:14px 16px;font-family:Montserrat,sans-serif;font-size:15px;border:1px solid var(--bd);background:var(--wh);color:var(--bk);outline:none;resize:vertical;min-height:120px;line-height:1.6"></textarea></div>
-<div style="text-align:center"><button type="submit" class="bp" style="font-size:13px;padding:16px 40px;cursor:pointer;background:var(--bk);color:var(--wh);border:none" data-de="Nachricht senden" data-en="Send Message">Nachricht senden</button></div></form>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px"><div><label style="display:block;font-size:var(--text-sm);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mg);margin-bottom:6px" data-de="Name" data-en="Name">Name</label><input type="text" name="name" placeholder="Ihr Name" required style="width:100%;padding:14px 16px;font-family:Montserrat,sans-serif;font-size:var(--text-base);border:1px solid var(--bd);background:var(--wh);color:var(--bk);outline:none"></div><div><label style="display:block;font-size:var(--text-sm);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mg);margin-bottom:6px">E-Mail</label><input type="email" name="email" placeholder="ihre@email.com" required style="width:100%;padding:14px 16px;font-family:Montserrat,sans-serif;font-size:var(--text-base);border:1px solid var(--bd);background:var(--wh);color:var(--bk);outline:none"></div></div>
+<div style="margin-bottom:16px"><label style="display:block;font-size:var(--text-sm);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mg);margin-bottom:6px" data-de="Unternehmen (optional)" data-en="Company (optional)">Unternehmen (optional)</label><input type="text" name="company" placeholder="Ihr Unternehmen" style="width:100%;padding:14px 16px;font-family:Montserrat,sans-serif;font-size:var(--text-base);border:1px solid var(--bd);background:var(--wh);color:var(--bk);outline:none"></div>
+<div style="margin-bottom:20px"><label style="display:block;font-size:var(--text-sm);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mg);margin-bottom:6px" data-de="Nachricht" data-en="Message">Nachricht</label><textarea name="message" placeholder="Erzählen Sie uns von Ihrem Projekt..." required style="width:100%;padding:14px 16px;font-family:Montserrat,sans-serif;font-size:var(--text-base);border:1px solid var(--bd);background:var(--wh);color:var(--bk);outline:none;resize:vertical;min-height:120px;line-height:1.6"></textarea></div>
+<div style="text-align:center"><button type="submit" class="bp" style="font-size:0.8125rem;padding:16px 40px;cursor:pointer;background:var(--bk);color:var(--wh);border:none" data-de="Nachricht senden" data-en="Send Message">Nachricht senden</button></div></form>
 </div>
 </section>
 
 <footer class="ft"><div class="ft-grid"><div class="ft-brand"><img src="images/wordmark-stacked-bone.svg" alt="Female Signature" class="ft-logo"><p data-de="Growth Partnership für Unternehmerinnen mit Substanz. Strategische Markenarbeit, Performance-Systeme und Partnerstrukturen." data-en="Growth partnership for founders with substance. Strategic brand work, performance systems, and partner structures.">Growth Partnership für Unternehmerinnen mit Substanz. Strategische Markenarbeit, Performance-Systeme und Partnerstrukturen.</p><div class="ft-soc"><a href="https://www.instagram.com/femalesignature/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://www.linkedin.com/in/medihamujcin/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div></div>
 <div class="ft-col"><h4 data-de="Systeme" data-en="Systems">Systeme</h4><a href="#systems">Brand Experience</a><a href="#systems" data-de="Content & Sichtbarkeit" data-en="Content & Visibility">Content & Sichtbarkeit</a><a href="#systems">Partnership Marketing</a><a href="#systems">Performance Marketing</a></div>
-<div class="ft-col"><h4>Company</h4><a href="#approach" data-de="Über uns" data-en="About">Über uns</a><a href="#results" data-de="Ergebnisse" data-en="Results">Ergebnisse</a><a href="blog/index.html">Blog</a></div>
+<div class="ft-col"><h4 data-de="Company" data-en="Company">Company</h4><a href="#approach" data-de="Über uns" data-en="About">Über uns</a><a href="#results" data-de="Ergebnisse" data-en="Results">Ergebnisse</a><a href="blog/index.html" data-href-de="blog/index.html" data-href-en="blog/index-en.html">Blog</a></div>
 <div class="ft-col"><h4 data-de="Kontakt" data-en="Contact">Kontakt</h4><a href="mailto:contact@female-signature.com" style="white-space:nowrap">contact@female-signature.com</a><a href="tel:+4369912091987">+43 699 12091987</a></div>
 </div><div class="ft-bot"><p><span class="gold">Female Signature</span> · Aste 10, 6071 Aldrans</p><div class="ft-legal"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div><p>© 2026 Female Signature</p></div></footer>
 
 <a href="https://wa.me/4369912091987?text=Hallo%20Female%20Signature%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20Strategiegespr%C3%A4ch." target="_blank" rel="noopener" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 
 <div class="chat-trig" onclick="toggleChat()"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></div>
-<div class="chat-panel" id="chatPanel"><div class="chat-hd"><h4>Signature Quiz</h4><button class="chat-cls" onclick="toggleChat()">✕</button></div><div class="chat-body" id="chatBody"></div><div class="chat-opts" id="chatOpts"></div><div class="chat-iw" id="chatIW"><input class="chat-inp" id="chatInp" placeholder="Deine Antwort..." onkeydown="if(event.key==='Enter')sendInp()"><button class="chat-snd" onclick="sendInp()">Send</button></div></div>
+<div class="chat-panel" id="chatPanel"><div class="chat-hd"><h4 data-de="Signature Quiz" data-en="Signature Quiz">Signature Quiz</h4><button class="chat-cls" onclick="toggleChat()">✕</button></div><div class="chat-body" id="chatBody"></div><div class="chat-opts" id="chatOpts"></div><div class="chat-iw" id="chatIW"><input class="chat-inp" id="chatInp" placeholder="Deine Antwort..." onkeydown="if(event.key==='Enter')sendInp()"><button class="chat-snd" onclick="sendInp()">Send</button></div></div>
 
 <script>
 (function(){const c=document.getElementById('heroCanvas');if(!c)return;const ctx=c.getContext('2d');let w,h,nodes=[],mouse={x:-999,y:-999};function resize(){const r=c.parentElement.getBoundingClientRect(),d=window.devicePixelRatio||1;w=c.width=r.width*d;h=c.height=r.height*d;c.style.width=r.width+'px';c.style.height=r.height+'px';ctx.scale(d,d);const t=Math.min(Math.floor((r.width*r.height)/28000),70);while(nodes.length<t)nodes.push({x:Math.random()*r.width,y:Math.random()*r.height,vx:(Math.random()-.5)*.25,vy:-Math.random()*.3-.08,r:Math.random()*2+1.2,o:Math.random()*.4+.15,p:Math.random()*Math.PI*2});while(nodes.length>t)nodes.pop()}function draw(){const d=window.devicePixelRatio||1,bw=w/d,bh=h/d;ctx.clearRect(0,0,bw,bh);for(const n of nodes){n.x+=n.vx;n.y+=n.vy;n.p+=.012;if(n.y<-20){n.y=bh+20;n.x=Math.random()*bw}if(n.x<-20)n.x=bw+20;if(n.x>bw+20)n.x=-20;const dx=n.x-mouse.x,dy=n.y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){const f=(120-dist)/120*.4;n.x+=(dx/dist)*f;n.y+=(dy/dist)*f}}for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<160){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle='rgba(92,31,43,'+(1-dist/160)*.12+')';ctx.lineWidth=.6;ctx.stroke()}}for(const n of nodes){ctx.beginPath();ctx.arc(n.x,n.y,n.r+Math.sin(n.p)*.5,0,Math.PI*2);ctx.fillStyle='rgba(92,31,43,'+(n.o+Math.sin(n.p)*.08)+')';ctx.fill()}requestAnimationFrame(draw)}window.addEventListener('resize',resize);c.closest('.hero').addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});c.closest('.hero').addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999});resize();draw()})();
@@ -566,7 +558,7 @@ window.addEventListener('scroll',()=>document.getElementById('nav').classList.to
 document.getElementById('navTog').addEventListener('click',()=>document.getElementById('mm').classList.toggle('act'));
 document.querySelectorAll('#mm a[href^="#"]').forEach(a=>a.addEventListener('click',()=>document.getElementById('mm').classList.remove('act')));
 document.querySelectorAll('.rv').forEach(el=>{new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1}).observe(el)});
-let lang='de';function toggleLang(){lang=lang==='de'?'en':'de';document.getElementById('langBtn').textContent=lang==='de'?'EN':'DE';const m=document.getElementById('langBtnM');if(m)m.textContent=lang==='de'?'EN':'DE';document.querySelectorAll('[data-de][data-en]').forEach(el=>{const v=el.getAttribute('data-'+lang);if(el.tagName==='INPUT')el.placeholder=v;else el.innerHTML=v})}
+let lang='de';function toggleLang(){lang=lang==='de'?'en':'de';document.getElementById('langBtn').textContent=lang==='de'?'EN':'DE';const m=document.getElementById('langBtnM');if(m)m.textContent=lang==='de'?'EN':'DE';document.documentElement.lang=lang;document.querySelectorAll('[data-de][data-en]').forEach(el=>{const v=el.getAttribute('data-'+lang);if(el.tagName==='INPUT')el.placeholder=v;else el.innerHTML=v});document.querySelectorAll('[data-href-de][data-href-en]').forEach(el=>{el.href=el.getAttribute('data-href-'+lang)})}
 // Pain scroll
 function scrollPain(d){const g=document.getElementById('painScroll');if(!g)return;const card=g.querySelector('.pain-card');if(!card)return;const w=card.offsetWidth+20;g.scrollBy({left:d*w,behavior:'smooth'})}
 (function(){const g=document.getElementById('painScroll');if(!g)return;g.scrollLeft=0;let pi=setInterval(()=>{const max=g.scrollWidth-g.clientWidth;if(g.scrollLeft>=max-10)g.scrollTo({left:0,behavior:'smooth'});else{const card=g.querySelector('.pain-card');if(card)g.scrollBy({left:card.offsetWidth+20,behavior:'smooth'})}},5000);g.addEventListener('mouseenter',()=>clearInterval(pi))})();
