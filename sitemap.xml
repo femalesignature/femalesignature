@@ -1,31 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://female-signature.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-<url><loc>https://female-signature.com/en.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-<url><loc>https://female-signature.com/impressum.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-<url><loc>https://female-signature.com/datenschutz.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-<url><loc>https://female-signature.com/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-<url><loc>https://female-signature.com/blog/index-en.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/affiliate-marketing-female-businesses.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/performance-marketing-roi.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/branding-female-founder.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/partnership-marketing-2025.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/sichtbarkeit-weibliche-unternehmen.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/conversion-optimierung.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/dach-markt-female-businesses.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/female-business-netzwerke.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/mut-zur-sichtbarkeit.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/shared-deal-modelle.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/technologie-partner-management.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://female-signature.com/blog/affiliate-marketing-female-businesses-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/performance-marketing-roi-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/branding-female-founder-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/partnership-marketing-2025-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/sichtbarkeit-weibliche-unternehmen-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/conversion-optimierung-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/dach-markt-female-businesses-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/female-business-netzwerke-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/mut-zur-sichtbarkeit-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/shared-deal-modelle-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-<url><loc>https://female-signature.com/blog/technologie-partner-management-en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://female-signature.com/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://female-signature.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://female-signature.com/"/>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/blog/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/blog/partnerprogramme-wachstum</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/blog/social-media-female-businesses</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/blog/female-empowerment-business</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/blog/partnership-marketing-2025</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/blog/affiliate-marketing-female-businesses</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/blog/branding-female-founder</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/blog/performance-marketing-roi</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/impressum</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://female-signature.com/datenschutz</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
 </urlset>
