@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeautyLounge Jenbach – Microneedling + Microdermabrasion | Herbstaktion Oktober</title>
+<meta name="description" content="2 Behandlungen. 1 Preis. Microneedling + gratis Microdermabrasion in Jenbach – nur im Oktober für 139 € statt 258 €.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=610944638536915&ev=PageView&noscript=1"/></noscript>
+<style>
+:root{
+  --w:#fffeff;--blk:#1a1a1a;--txt:#2d2d2d;--txt2:#555;--txt3:#888;
+  --gold:#cda349;--gold-l:#d9b96a;
+  --mag:#ab3d93;--mag-l:#c85eb0;--mag-d:#8a2e76;--mag-bg:rgba(171,61,147,.04);
+  --brd:#eee;--brd2:#e0e0e0;--bg-soft:#f9f8f7;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Montserrat',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--w);color:var(--txt);font-family:var(--fb);font-size:15px;line-height:1.75;overflow-x:hidden}
+
+/* HERO BONUS STÖRER */
+.hero-stoerer{position:absolute;top:130px;right:60px;z-index:4;width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,var(--mag) 0%,var(--mag-d) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 8px 32px rgba(171,61,147,.35);animation:stoerer-pulse 2.5s ease-in-out infinite;cursor:pointer;text-decoration:none}
+.hero-stoerer:hover{transform:scale(1.06)}
+.hero-stoerer .hs-top{font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.hero-stoerer .hs-mid{font-family:var(--fh);font-size:16px;font-weight:400;color:#fff;line-height:1.2;margin-bottom:4px}
+.hero-stoerer .hs-mid em{font-style:italic;color:var(--gold)}
+.hero-stoerer .hs-val{font-family:var(--fh);font-size:24px;font-weight:500;color:var(--gold)}
+.hero-stoerer .hs-bot{font-size:8px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:4px}
+@keyframes stoerer-pulse{0%,100%{box-shadow:0 8px 32px rgba(171,61,147,.35)}50%{box-shadow:0 8px 40px rgba(171,61,147,.55)}}
+
+/* URGENCY */
+.ub{background:linear-gradient(135deg,var(--mag) 0%,var(--gold) 100%);color:#fff;text-align:center;padding:11px 20px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;position:sticky;top:0;z-index:200}
+.ub .cd{background:rgba(255,255,255,.2);padding:2px 10px;border-radius:2px;margin:0 6px;font-weight:700}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('images/bg.jpg') center top/cover}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(255,254,255,.95) 0%,rgba(255,254,255,.82) 45%,rgba(255,254,255,.45) 100%)}
+.hero-c{position:relative;z-index:2;padding:120px 80px 100px;max-width:680px}
+.hero-logo{display:block;width:200px;margin-bottom:40px}
+.htag{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--mag);margin-bottom:20px}
+.htag::before,.htag::after{content:'';width:28px;height:1px;background:var(--mag);opacity:.5}
+.hero h1{font-family:var(--fh);font-size:clamp(38px,5.5vw,68px);font-weight:400;line-height:1.12;color:var(--blk);margin-bottom:10px}
+.hero h1 em{font-style:italic;color:var(--mag)}
+.hero-sub{font-size:16px;font-weight:300;color:var(--txt2);max-width:520px;margin-bottom:44px;line-height:1.8}
+.hero-sub strong{color:var(--blk);font-weight:500}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+.btn-mag{display:inline-flex;align-items:center;gap:8px;background:var(--mag);color:#fff;font-family:var(--fb);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:16px 36px;border:2px solid var(--mag);transition:all .25s}
+.btn-mag:hover{background:var(--mag-l);border-color:var(--mag-l);transform:translateY(-2px);box-shadow:0 10px 30px rgba(171,61,147,.25)}
+button.btn-mag{cursor:pointer;border-radius:0}
+.btn-o{display:inline-flex;align-items:center;gap:8px;background:0;color:var(--blk);font-family:var(--fb);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:16px 34px;border:1px solid var(--brd2);transition:all .25s}
+.btn-o:hover{border-color:var(--mag);color:var(--mag)}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;font-family:var(--fb);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:16px 36px;border:2px solid var(--gold);transition:all .25s}
+.btn-gold:hover{background:var(--gold-l);border-color:var(--gold-l);transform:translateY(-2px);box-shadow:0 10px 30px rgba(205,163,73,.25)}
+
+.hero-trust{display:flex;gap:32px;flex-wrap:wrap}
+.tp{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--txt3)}
+.td{width:5px;height:5px;border-radius:50%;background:var(--mag);opacity:.6}
+.hero-badge{position:absolute;bottom:60px;right:60px;z-index:3;text-align:center;background:var(--w);border:1px solid var(--brd);box-shadow:0 12px 40px rgba(0,0,0,.08);padding:24px 30px;min-width:170px}
+.hb-f{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--txt3);margin-bottom:6px}
+.hb-p{font-family:var(--fh);font-size:58px;font-weight:400;line-height:1;color:var(--mag)}
+.hb-u{font-size:11px;color:var(--txt3);margin-top:5px}
+.hb-o{font-size:11px;color:var(--txt3);text-decoration:line-through;margin-top:2px}
+
+/* PROOF */
+.ps{background:var(--bg-soft);border-top:1px solid var(--brd);border-bottom:1px solid var(--brd);display:flex;justify-content:center;flex-wrap:wrap}
+.pi{padding:28px 48px;text-align:center;border-right:1px solid var(--brd);flex:1;min-width:140px}
+.pi:last-child{border-right:none}
+.pn{font-family:var(--fh);font-size:38px;font-weight:400;color:var(--mag);line-height:1;margin-bottom:4px}
+.pl{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3)}
+
+/* SECTION */
+section{padding:100px 80px}
+.st{display:inline-flex;align-items:center;gap:12px;font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--mag);margin-bottom:18px}
+.st::before{content:'';width:28px;height:1px;background:var(--mag)}
+h2{font-family:var(--fh);font-size:clamp(30px,4vw,50px);font-weight:400;line-height:1.18;color:var(--blk);margin-bottom:18px}
+h2 em{font-style:italic;color:var(--mag)}
+.si{font-size:15px;font-weight:300;color:var(--txt2);max-width:540px;line-height:1.85}
+
+/* PAIN/DREAM */
+.pd{background:var(--bg-soft);display:grid;grid-template-columns:1fr 1fr;padding:0}
+.cp,.cd2{padding:80px 60px}
+.cp{border-right:1px solid var(--brd)}
+.cd2{background:var(--mag-bg)}
+.cp h3,.cd2 h3{font-family:var(--fh);font-size:28px;font-weight:400;font-style:italic;margin-bottom:30px;line-height:1.25}
+.cp h3{color:var(--txt3)}
+.cd2 h3{color:var(--mag)}
+.pli,.dli{list-style:none;display:flex;flex-direction:column;gap:13px}
+.pli li{font-size:14px;font-weight:300;color:var(--txt3);text-decoration:line-through;text-decoration-color:rgba(0,0,0,.12);padding-left:22px;position:relative}
+.pli li::before{content:'×';position:absolute;left:0;color:var(--txt3)}
+.dli li{font-size:14px;font-weight:300;color:var(--txt);padding-left:22px;position:relative}
+.dli li::before{content:'✓';position:absolute;left:0;color:var(--mag);font-weight:600}
+
+/* COMPARISON */
+.cmp-s{background:var(--w);overflow:hidden}
+.cmp-h{text-align:center;margin-bottom:64px}
+.cmp-h p{color:var(--txt2);font-size:15px;max-width:560px;margin:0 auto;font-weight:300}
+.cmp-g{display:grid;grid-template-columns:1fr auto 1fr;gap:0;max-width:960px;margin:0 auto}
+.cmp-col{padding:40px}
+.cmp-vs{display:flex;align-items:center;justify-content:center;padding:0 8px}
+.cmp-vc{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--mag) 0%,var(--gold) 100%);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;letter-spacing:.08em;flex-shrink:0}
+.cmp-old{border:1px solid var(--brd);border-radius:4px;background:var(--bg-soft)}
+.cmp-new{border:2px solid var(--mag);border-radius:4px;background:var(--mag-bg);position:relative}
+.cmp-new::before{content:'EMPFOHLEN';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--mag);color:#fff;font-size:8px;font-weight:700;letter-spacing:.18em;padding:3px 14px;white-space:nowrap}
+.cmp-t{font-family:var(--fh);font-size:24px;font-weight:400;margin-bottom:6px;padding-bottom:20px;border-bottom:1px solid var(--brd);text-align:center}
+.cmp-old .cmp-t{color:var(--txt3)}
+.cmp-new .cmp-t{color:var(--mag)}
+.cmp-rows{display:flex;flex-direction:column}
+.cmp-row{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.06);align-items:start}
+.cmp-row:last-child{border-bottom:none}
+.cmp-ic{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:1px}
+.cmp-old .cmp-ic{color:#d44}
+.cmp-new .cmp-ic{color:var(--mag)}
+.cmp-lb{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.cmp-old .cmp-lb{color:var(--txt3)}
+.cmp-new .cmp-lb{color:var(--blk)}
+.cmp-v{font-size:13px;font-weight:300;line-height:1.6}
+.cmp-old .cmp-v{color:var(--txt3)}
+.cmp-new .cmp-v{color:var(--txt)}
+.cmp-ft{text-align:center;margin-top:48px}
+.cmp-ft p{font-family:var(--fh);font-size:22px;font-weight:400;font-style:italic;color:var(--txt);margin-bottom:28px}
+.cmp-ft p em{color:var(--mag)}
+
+/* HOW */
+.how-s{background:var(--bg-soft)}
+.how-h{margin-bottom:64px}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--brd)}
+.stp{background:var(--bg-soft);padding:48px 40px;position:relative;transition:background .25s}
+.stp:hover{background:var(--w)}
+.sn{font-family:var(--fh);font-size:80px;font-weight:400;font-style:italic;color:rgba(171,61,147,.08);line-height:1;position:absolute;top:20px;right:28px}
+.sic{width:50px;height:50px;border:1px solid rgba(171,61,147,.2);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:22px;color:var(--mag)}
+.stp h4{font-family:var(--fh);font-size:20px;font-weight:400;color:var(--blk);margin-bottom:10px}
+.stp p{font-size:13px;font-weight:300;color:var(--txt2);line-height:1.75}
+
+/* BENEFITS */
+.ben-s{background:var(--w);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ben-img{position:relative;overflow:hidden;aspect-ratio:4/5;border-radius:4px}
+.ben-img img{width:100%;height:100%;object-fit:cover}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:40px 32px;margin-top:16px}
+.ii img{width:48px;height:48px;margin-bottom:14px;opacity:.75}
+.ii h4{font-family:var(--fh);font-size:17px;font-weight:400;color:var(--blk);margin-bottom:8px}
+.ii p{font-size:13px;font-weight:300;color:var(--txt2);line-height:1.7}
+
+/* TECH */
+.tech-s{display:grid;grid-template-columns:1fr 1fr;min-height:520px;padding:0}
+.tech-img{position:relative;overflow:hidden}
+.tech-img img{width:100%;height:100%;object-fit:cover}
+.tech-c{background:var(--bg-soft);padding:80px 64px;display:flex;flex-direction:column;justify-content:center}
+.tech-c p{font-size:14px;font-weight:300;color:var(--txt2);line-height:1.9;margin-bottom:16px}
+
+/* BEFORE/AFTER SLIDER */
+.ba-s{background:var(--w);text-align:center}
+.ba-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px;margin-bottom:48px}
+.ba-wrap{position:relative;overflow:hidden;aspect-ratio:3/4;border-radius:4px;cursor:ew-resize;user-select:none;-webkit-user-select:none}
+.ba-wrap img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-after{z-index:1}
+.ba-before{z-index:2;clip-path:inset(0 50% 0 0)}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;z-index:3;width:3px;background:var(--mag);transform:translateX(-50%);pointer-events:none}
+.ba-handle::after{content:'⟷';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:var(--mag);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 12px rgba(0,0,0,.2);pointer-events:none}
+.ba-label{position:absolute;bottom:12px;z-index:4;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:2px;pointer-events:none}
+.ba-label-before{left:10px;background:rgba(0,0,0,.5);color:#fff}
+.ba-label-after{right:10px;background:var(--mag);color:#fff}
+
+/* BONUS OFFER */
+.bonus-s{background:linear-gradient(135deg,rgba(171,61,147,.06) 0%,rgba(205,163,73,.04) 100%);border-top:2px solid var(--mag);border-bottom:2px solid var(--mag)}
+.bonus-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;max-width:1000px;margin:0 auto}
+.bonus-imgs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bonus-imgs img{width:100%;border-radius:4px;aspect-ratio:1;object-fit:cover}
+.bonus-badge{display:inline-block;background:var(--mag);color:#fff;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:5px 16px;margin-bottom:20px}
+.bonus-val{font-family:var(--fh);font-size:18px;font-weight:400;color:var(--txt2);margin-bottom:6px}
+.bonus-val s{color:var(--txt3);text-decoration:line-through}
+.bonus-val em{color:var(--mag);font-style:italic;font-size:22px;font-weight:500}
+.bonus-fine{font-size:12px;color:var(--txt3);font-weight:300;margin-top:16px;font-style:italic}
+
+/* PACKAGES */
+.pkg-s{background:var(--bg-soft)}
+.pkg-h{text-align:center;margin-bottom:64px}
+.pkg-grid{display:grid;grid-template-columns:minmax(0,440px);justify-content:center;gap:1px;background:var(--brd);max-width:980px;margin:0 auto}
+.pk{background:var(--w);padding:44px 38px;display:flex;flex-direction:column;position:relative;transition:box-shadow .25s}
+.pk:hover{box-shadow:0 12px 40px rgba(0,0,0,.06)}
+.pk.ft{background:var(--mag-bg);border:2px solid var(--mag);margin:-1px;z-index:1}
+.pk-b{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--mag) 0%,var(--gold) 100%);color:#fff;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 16px;white-space:nowrap}
+.pk-n{font-family:var(--fh);font-size:22px;font-weight:400;color:var(--blk);margin-bottom:4px}
+.pk-z{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:28px}
+.pk-ol{font-size:12px;color:var(--txt3);text-decoration:line-through;margin-bottom:4px}
+.pk-pr{font-family:var(--fh);font-size:56px;font-weight:400;line-height:1;color:var(--mag);margin-bottom:4px}
+.pk-pr sup{font-size:22px;vertical-align:top;margin-top:10px;display:inline-block}
+.pk-nt{font-size:11px;color:var(--txt3);margin-bottom:28px}
+.pk-fl{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:28px;flex:1}
+.pk-fl li{font-size:13px;font-weight:300;color:var(--txt2);padding-left:18px;position:relative}
+.pk-fl li::before{content:'—';position:absolute;left:0;color:var(--mag);font-size:11px}
+.pk-sv{font-size:11px;font-weight:600;color:var(--mag);letter-spacing:.06em;text-align:center;margin-bottom:18px;text-transform:uppercase}
+.btn-pk{display:block;text-align:center;padding:13px;font-family:var(--fb);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid var(--mag);color:var(--mag);transition:all .22s}
+.btn-pk:hover,.pk.ft .btn-pk{background:var(--mag);color:#fff}
+.pkg-nb{text-align:center;margin-top:36px;font-size:12px;font-weight:300;color:var(--txt3);font-style:italic}
+
+/* TESTIMONIALS */
+.te-s{background:var(--w)}
+.te-h{margin-bottom:56px}
+.te-g{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:900px}
+.tc{background:var(--bg-soft);border:1px solid var(--brd);padding:40px 36px;position:relative;border-radius:4px}
+.tq{font-family:var(--fh);font-size:64px;font-style:italic;line-height:1;color:var(--mag);opacity:.2;position:absolute;top:18px;left:28px}
+.tst{color:var(--gold);font-size:12px;letter-spacing:3px;margin-bottom:18px;margin-top:32px}
+.tt{font-size:14px;font-weight:300;font-style:italic;color:var(--txt);line-height:1.8;margin-bottom:24px}
+.ta{display:flex;align-items:center;gap:12px;border-top:1px solid var(--brd);padding-top:20px}
+.tav{width:38px;height:38px;border:1px solid rgba(171,61,147,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:16px;font-style:italic;color:var(--mag)}
+.tai strong{display:block;font-size:12px;font-weight:600;color:var(--blk)}
+.tai span{font-size:11px;color:var(--txt3)}
+
+/* ABOUT */
+.ab-s{background:var(--bg-soft);display:grid;grid-template-columns:1fr 1fr;padding:0}
+.ab-img{position:relative;overflow:hidden;min-height:580px}
+.ab-img img{width:100%;height:100%;object-fit:cover}
+.ab-c{padding:80px 72px;display:flex;flex-direction:column;justify-content:center}
+.ab-c p{font-size:14px;font-weight:300;color:var(--txt2);line-height:1.9;margin-bottom:18px}
+.ab-c p strong{color:var(--blk);font-weight:500}
+.ab-cr{margin-top:28px;display:flex;flex-direction:column;gap:10px}
+.cr{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:500;color:var(--txt2)}
+.cr::before{content:'';width:4px;height:4px;background:var(--mag);border-radius:50%;opacity:.7}
+
+/* FAQ */
+.fq-s{background:var(--w)}
+.fq-h{text-align:center;margin-bottom:56px}
+.fq-g{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--brd);max-width:900px;margin:0 auto}
+.fqi{background:var(--w);padding:30px 36px;transition:background .22s}
+.fqi:hover{background:var(--bg-soft)}
+.fqq{font-family:var(--fh);font-size:17px;font-weight:400;color:var(--blk);margin-bottom:10px;line-height:1.3}
+.fqa{font-size:13px;font-weight:300;color:var(--txt2);line-height:1.8}
+
+/* CONTACT */
+.ct-s{display:grid;grid-template-columns:1fr 1fr;padding:0;min-height:640px}
+.ct-l{background:var(--mag);padding:80px;display:flex;flex-direction:column;justify-content:center}
+.ct-l h2{color:#fff;font-size:clamp(26px,3.5vw,44px)}
+.ct-l h2 em{color:var(--gold)}
+.ct-l .st{color:var(--gold)}
+.ct-l .st::before{background:var(--gold)}
+.ct-l .si{color:rgba(255,255,255,.7);margin-bottom:40px}
+.ci{display:flex;flex-direction:column;gap:22px;margin-top:36px}
+.cr2{display:flex;align-items:flex-start;gap:14px}
+.cic{width:36px;height:36px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--gold)}
+.cit strong{display:block;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.cit span,.cit a{font-size:13px;font-weight:300;color:rgba(255,255,255,.7);text-decoration:none}
+.ct-r{background:var(--bg-soft);padding:80px;display:flex;flex-direction:column;justify-content:center}
+.ct-r h3{font-family:var(--fh);font-size:26px;font-weight:400;color:var(--blk);margin-bottom:30px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
+.fg input,.fg select,.fg textarea{width:100%;padding:13px 16px;background:var(--w);border:1px solid var(--brd2);color:var(--blk);font-family:var(--fb);font-size:13px;font-weight:300;outline:none;transition:border-color .2s;appearance:none;border-radius:0}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--mag)}
+.fg textarea{min-height:90px;resize:vertical}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wab{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-family:var(--fb);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:14px 24px;text-decoration:none;margin-top:12px;transition:background .2s}
+.wab:hover{background:#1da851}
+.orl{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin:14px 0}
+.orl::before,.orl::after{content:'';flex:1;height:1px;background:var(--brd)}
+
+/* IMPRESSUM */
+.imp-s{background:var(--bg-soft);padding:80px;text-align:center}
+.imp-s h2{font-size:clamp(24px,3vw,36px);margin-bottom:12px}
+.imp-info{font-size:14px;font-weight:300;color:var(--txt2);line-height:1.8;max-width:600px;margin:0 auto}
+.imp-info strong{color:var(--blk);font-weight:500}
+.imp-link{margin-top:24px}
+.imp-link a{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mag);text-decoration:none;border-bottom:1px solid rgba(171,61,147,.3);padding-bottom:2px;transition:border-color .2s}
+.imp-link a:hover{border-color:var(--mag)}
+
+/* GALLERY */
+.gal-s{background:var(--w);padding:80px}
+.gal-h{margin-bottom:32px}
+.gal-g{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.gal-g a{display:block;overflow:hidden;aspect-ratio:1;border-radius:4px}
+.gal-g a img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gal-g a:hover img{transform:scale(1.06)}
+
+/* FOOTER */
+footer{background:var(--blk);padding:36px 80px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.fl{width:160px;opacity:.8}
+.fn{display:flex;gap:24px;flex-wrap:wrap}
+.fn a{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.fn a:hover{color:var(--gold)}
+.fc{font-size:11px;color:rgba(255,255,255,.3);font-weight:300}
+
+/* STICKY */
+.sticky{position:fixed;bottom:24px;right:24px;z-index:100;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.sticky a{display:flex;align-items:center;gap:9px;padding:13px 20px;font-family:var(--fb);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.15);transition:transform .2s,box-shadow .2s;border-radius:40px}
+.sticky a:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.sw{background:#25D366;color:#fff}
+.sb{background:var(--mag);color:#fff}
+
+/* ANIM */
+@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-c>*{animation:fu .7s ease forwards;opacity:0}
+.hero-c>*:nth-child(1){animation-delay:.05s}.hero-c>*:nth-child(2){animation-delay:.2s}.hero-c>*:nth-child(3){animation-delay:.35s}.hero-c>*:nth-child(4){animation-delay:.5s}.hero-c>*:nth-child(5){animation-delay:.65s}.hero-c>*:nth-child(6){animation-delay:.8s}
+
+@media(max-width:900px){
+  .hero-c{padding:80px 24px 60px}.hero-badge{display:none}
+  .hero-stoerer{position:relative;top:auto;right:auto;width:160px;height:160px;margin:0 auto 24px}section{padding:60px 24px}
+  .pd,.cmp-g{grid-template-columns:1fr}.cmp-vs{padding:16px 0}
+  .cp{border-right:none;border-bottom:1px solid var(--brd)}.cp,.cd2{padding:48px 28px}
+  .sg,.te-g{grid-template-columns:1fr}.tech-s{grid-template-columns:1fr}.tech-img{height:300px}.tech-c{padding:52px 28px}
+  .ben-s{grid-template-columns:1fr;gap:40px;padding:60px 24px}.ben-img{aspect-ratio:3/2}.ig{grid-template-columns:1fr}
+  .rg{grid-template-columns:1fr 1fr}.pkg-grid{grid-template-columns:1fr}.pk.ft{margin:0}
+  .ba-grid{grid-template-columns:1fr 1fr}
+  .bonus-inner{grid-template-columns:1fr;gap:32px}
+  .ab-s{grid-template-columns:1fr}.ab-img{min-height:300px}.ab-c{padding:52px 28px}
+  .ct-s{grid-template-columns:1fr}.ct-l,.ct-r{padding:52px 28px}
+  .fq-g{grid-template-columns:1fr}
+  .gal-s{padding:52px 24px}.gal-g{grid-template-columns:repeat(3,1fr)}
+  footer{flex-direction:column;text-align:center;padding:28px 24px}
+  .sticky{bottom:16px;right:16px}.fgr{grid-template-columns:1fr}
+  .pi{border-right:none;border-bottom:1px solid var(--brd);flex-basis:50%}
+  .imp-s{padding:52px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="ub">⏳ Herbstaktion nur im Oktober — noch <span class="cd" id="ctd">…</span> — Limitierte Termine!</div>
+
+<section class="hero" id="top">
+  <div class="hero-bg" style="background-image:url('images/microneedling/hero.jpg')"></div><div class="hero-ov"></div>
+  <div class="hero-c">
+    <img src="images/logo.svg" alt="BeautyLounge" class="hero-logo">
+    <div class="htag">Herbstaktion Oktober · Jenbach</div>
+    <h1>2 Behandlungen.<br><em>1 Preis.</em></h1>
+    <p class="hero-sub"><strong>Microneedling + Microdermabrasion</strong> in einem Termin — Fältchen &amp; Narben reduzieren, ebenmäßige und strahlende Haut. Die Microdermabrasion bekommst du im Oktober <strong>gratis dazu.</strong> Nur noch wenige Termine verfügbar.</p>
+    <div class="hero-btns"><a href="#termin" class="btn-mag">Jetzt Termin sichern</a><a href="#packages" class="btn-o">Angebot ansehen →</a></div>
+    <div class="hero-trust"><div class="tp"><div class="td"></div>Doppelte Wirkung</div><div class="tp"><div class="td"></div>Ein Termin</div><div class="tp"><div class="td"></div>Kollagen-Boost</div><div class="tp"><div class="td"></div>Nur im Oktober</div></div>
+  </div>
+  <div class="hero-badge"><div class="hb-f">Du zahlst nur</div><div class="hb-p">139€</div><div class="hb-u">pro Behandlung</div><div class="hb-o">statt 258€</div></div>
+  <a href="#bonus" class="hero-stoerer">
+    <div class="hs-top">Nur im Oktober</div>
+    <div class="hs-mid">Microdermabrasion<br><em>geschenkt</em></div>
+    <div class="hs-val">Du sparst 119 €</div>
+    <div class="hs-bot">Mehr erfahren ↓</div>
+  </a>
+</section>
+
+<div class="ps">
+  <div class="pi"><div class="pn">100+</div><div class="pl">Zufriedene Kundinnen</div></div>
+  <div class="pi"><div class="pn">98%</div><div class="pl">Empfehlungsrate</div></div>
+  <div class="pi"><div class="pn">2 in 1</div><div class="pl">Behandlungen pro Termin</div></div>
+  <div class="pi"><div class="pn">★ 5.0</div><div class="pl">Google Bewertung</div></div>
+</div>
+
+<div class="pd">
+  <div class="cp"><h3>Kennst du dieses Gefühl?</h3><ul class="pli"><li>Erste Fältchen, die jeden Monat sichtbarer werden</li><li>Aknenarben &amp; vergrößerte Poren, die kein Make-up verdeckt</li><li>Fahler, müder Teint nach dem Sommer</li><li>Teure Cremes &amp; Seren — ohne sichtbaren Effekt</li><li>Pigmentflecken &amp; ein unruhiges Hautbild</li><li>Das Gefühl, morgens mehr abdecken zu müssen</li></ul></div>
+  <div class="cd2"><h3>Stell dir vor …</h3><ul class="dli"><li>Deine Haut wirkt straffer, frischer und erholt</li><li>Fältchen &amp; Narben werden sichtbar gemildert</li><li>Ein ebenmäßiger Teint — auch ohne Foundation</li><li>Deine Pflegeprodukte wirken endlich richtig</li><li>Komplimente für dein Strahlen — ohne zu verraten, warum</li><li>Zwei Behandlungen zum Preis von einer</li></ul></div>
+</div>
+
+<section class="cmp-s" id="vergleich">
+  <div class="cmp-h"><div class="st" style="justify-content:center">Der Vergleich</div><h2>Cremes &amp; Seren vs. <em>Microneedling</em></h2><p>Pflegeprodukte wirken an der Oberfläche. Microneedling mit Microdermabrasion setzt dort an, wo schöne Haut entsteht — in der Tiefe.</p></div>
+  <div class="cmp-g">
+    <div class="cmp-col cmp-old"><div class="cmp-t">Cremes &amp; Seren allein</div><div class="cmp-rows">
+      <div class="cmp-row"><div class="cmp-ic">✗</div><div><div class="cmp-lb">Wirkung</div><div class="cmp-v">Nur oberflächlich — Wirkstoffe dringen kaum ein</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✗</div><div><div class="cmp-lb">Kollagen</div><div class="cmp-v">Keine Anregung der hauteigenen Kollagenbildung</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✗</div><div><div class="cmp-lb">Narben &amp; Poren</div><div class="cmp-v">Kaum sichtbare Verbesserung</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✗</div><div><div class="cmp-lb">Hautoberfläche</div><div class="cmp-v">Abgestorbene Hautzellen bleiben liegen — Teint wirkt fahl</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✗</div><div><div class="cmp-lb">Kosten</div><div class="cmp-v">Laufend neue Produkte — ohne spürbares Ergebnis</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✗</div><div><div class="cmp-lb">Beratung</div><div class="cmp-v">Keine individuelle Analyse deiner Haut</div></div></div>
+    </div></div>
+    <div class="cmp-vs"><div class="cmp-vc">VS</div></div>
+    <div class="cmp-col cmp-new"><div class="cmp-t">Microneedling + Microdermabrasion</div><div class="cmp-rows">
+      <div class="cmp-row"><div class="cmp-ic">✓</div><div><div class="cmp-lb">Wirkung</div><div class="cmp-v">In der Tiefe — Wirkstoffe werden deutlich besser aufgenommen</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✓</div><div><div class="cmp-lb">Kollagen</div><div class="cmp-v">Gezielte Anregung der Kollagen- &amp; Elastinproduktion</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✓</div><div><div class="cmp-lb">Narben &amp; Poren</div><div class="cmp-v">Fältchen, Aknenarben &amp; Poren werden sichtbar gemildert</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✓</div><div><div class="cmp-lb">Hautoberfläche</div><div class="cmp-v">Microdermabrasion entfernt sanft abgestorbene Hautzellen</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✓</div><div><div class="cmp-lb">Preis</div><div class="cmp-v">Im Oktober beide Behandlungen für nur 139 € statt 258 €</div></div></div>
+      <div class="cmp-row"><div class="cmp-ic">✓</div><div><div class="cmp-lb">Beratung</div><div class="cmp-v">Persönliche Hautanalyse &amp; Pflegeempfehlung inklusive</div></div></div>
+    </div></div>
+  </div>
+  <div class="cmp-ft"><p>Doppelte Wirkung. <em>Ein Termin.</em></p><a href="#packages" class="btn-mag">Zum Herbstangebot →</a></div>
+</section>
+
+<section class="how-s" id="how">
+  <div class="how-h"><div class="st">So funktioniert's</div><h2>Dein Weg zu <em>strahlender</em> Haut</h2></div>
+  <div class="sg">
+    <div class="stp"><div class="sn">01</div><div class="sic">✦</div><h4>Microdermabrasion</h4><p>Sanftes Abtragen abgestorbener Hautzellen. Deine Haut wird optimal auf das Microneedling vorbereitet — und nimmt Wirkstoffe besser auf.</p></div>
+    <div class="stp"><div class="sn">02</div><div class="sic">◎</div><h4>Microneedling</h4><p>Feinste Nadeln setzen Mikroimpulse in der Haut. Das regt gezielt die Kollagen- und Elastinproduktion an — für straffere, glattere Haut.</p></div>
+    <div class="stp"><div class="sn">03</div><div class="sic">❋</div><h4>Strahlendes Ergebnis</h4><p>Ebenmäßiger Teint, gemilderte Fältchen &amp; Narben. Die Haut erneuert sich in den Wochen nach der Behandlung weiter von innen.</p></div>
+  </div>
+</section>
+
+<section class="ben-s" id="vorteile">
+  <div class="ben-img"><img src="images/microneedling/microdermabrasion.jpg" alt="Microdermabrasion BeautyLounge Jenbach"></div>
+  <div><div class="st">Warum die Kombi bei Jasmina</div><h2>Nicht irgendeine Gesichtsbehandlung. <em>Die richtige.</em></h2>
+    <div class="ig">
+      <div class="ii"><img src="images/icon1.svg" alt=""><h4>Doppelte Wirkung</h4><p>Microdermabrasion bereitet vor, Microneedling wirkt in der Tiefe — beides in einem Termin.</p></div>
+      <div class="ii"><img src="images/icon2.svg" alt=""><h4>Fältchen &amp; Narben</h4><p>Die angeregte Kollagenbildung mildert Fältchen, Aknenarben und vergrößerte Poren.</p></div>
+      <div class="ii"><img src="images/icon3.svg" alt=""><h4>Ebenmäßig &amp; strahlend</h4><p>Ein frischer, gleichmäßiger Teint — ideal nach dem Sommer.</p></div>
+      <div class="ii"><img src="images/icon1.svg" alt="" style="filter:hue-rotate(20deg)"><h4>119 € gespart</h4><p>Gesamtwert 258 € — im Oktober zahlst du nur 139 € pro Behandlung.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="tech-s" id="technologie">
+  <div class="tech-img"><img src="images/microneedling/microneedling.jpg" alt="Microneedling Behandlung"></div>
+  <div class="tech-c"><div class="st">Die Behandlung</div><h2>Doppelt vorbereitet. <em>Doppelt wirksam.</em></h2>
+    <p><strong style="color:var(--blk);font-weight:500">Microdermabrasion</strong> entfernt sanft abgestorbene Hautzellen und bereitet die Haut optimal auf das Microneedling vor. Dadurch werden die Wirkstoffe deutlich besser aufgenommen.</p>
+    <p>Das <strong style="color:var(--blk);font-weight:500">Microneedling</strong> regt anschließend gezielt die Kollagen- und Elastinproduktion an — die Haut wird straffer, Fältchen und Narben werden reduziert. Doppelte Wirkung in einem Termin zum Angebotspreis.</p>
+    <a href="#packages" class="btn-mag" style="margin-top:32px;display:inline-flex">Zum Aktionsangebot →</a>
+  </div>
+</div>
+
+<section class="ba-s" id="ergebnisse">
+  <div class="st" style="justify-content:center">Ergebnisse</div><h2>Echte Frauen. Echte <em>Ergebnisse.</em></h2>
+  <p class="si" style="margin:0 auto 8px;text-align:center">Ziehe den Regler nach links und rechts um die Vorher-Nachher-Ergebnisse zu sehen.</p>
+  <div class="ba-grid">
+    <div class="ba-wrap" data-ba>
+      <img class="ba-after" src="images/microneedling/after1.jpg" alt="Nachher">
+      <img class="ba-before" src="images/microneedling/before1.jpg" alt="Vorher">
+      <div class="ba-handle"></div>
+      <div class="ba-label ba-label-before">Vorher</div>
+      <div class="ba-label ba-label-after">Nachher</div>
+    </div>
+    <div class="ba-wrap" data-ba>
+      <img class="ba-after" src="images/microneedling/after2.jpg" alt="Nachher">
+      <img class="ba-before" src="images/microneedling/before2.jpg" alt="Vorher">
+      <div class="ba-handle"></div>
+      <div class="ba-label ba-label-before">Vorher</div>
+      <div class="ba-label ba-label-after">Nachher</div>
+    </div>
+    <div class="ba-wrap" data-ba>
+      <img class="ba-after" src="images/microneedling/after3.jpg" alt="Nachher">
+      <img class="ba-before" src="images/microneedling/before3.jpg" alt="Vorher">
+      <div class="ba-handle"></div>
+      <div class="ba-label ba-label-before">Vorher</div>
+      <div class="ba-label ba-label-after">Nachher</div>
+    </div>
+    <div class="ba-wrap" data-ba>
+      <img class="ba-after" src="images/microneedling/after4.jpg" alt="Nachher">
+      <img class="ba-before" src="images/microneedling/before4.jpg" alt="Vorher">
+      <div class="ba-handle"></div>
+      <div class="ba-label ba-label-before">Vorher</div>
+      <div class="ba-label ba-label-after">Nachher</div>
+    </div>
+  </div>
+  <a href="#termin" class="btn-mag" style="display:inline-flex">Ich will auch so strahlen →</a>
+</section>
+
+<!-- BONUS ANGEBOT -->
+<section class="bonus-s" id="bonus">
+  <div class="bonus-inner">
+    <div class="bonus-imgs">
+      <img src="images/microneedling/microneedling.jpg" alt="Microneedling — Fältchen &amp; Narben reduzieren">
+      <img src="images/microneedling/microdermabrasion.jpg" alt="Microdermabrasion — ebenmäßig &amp; strahlend">
+    </div>
+    <div>
+      <div class="bonus-badge">Herbstaktion — nur im Oktober</div>
+      <h2>Dein Geschenk: Die <em>Microdermabrasion</em> gratis dazu.</h2>
+      <p style="font-size:15px;font-weight:300;color:var(--txt2);line-height:1.85;margin-bottom:16px">Bei jeder <strong style="color:var(--blk);font-weight:500">Microneedling-Behandlung</strong> im Oktober bekommst du die Microdermabrasion geschenkt. Sie entfernt sanft abgestorbene Hautzellen und bereitet deine Haut optimal vor — so werden die Wirkstoffe besser aufgenommen und das Microneedling wirkt noch intensiver.</p>
+      <p style="font-size:15px;font-weight:300;color:var(--txt2);line-height:1.85;margin-bottom:20px">Das Ergebnis: <strong style="color:var(--blk);font-weight:500">doppelte Wirkung in einem Termin</strong> — Fältchen &amp; Narben reduzieren, ebenmäßige und strahlende Haut.</p>
+      <div class="bonus-val"><s>Gesamtwert: 258 €</s>&nbsp; → &nbsp;<em>nur 139 €</em></div>
+      <a href="#termin" class="btn-mag" style="margin-top:24px;display:inline-flex">Jetzt buchen &amp; 119 € sparen →</a>
+      <div class="bonus-fine">* Gilt für Buchungen im Oktober, solange Termine verfügbar sind. Preis pro Behandlung.</div>
+    </div>
+  </div>
+</section>
+
+<section class="pkg-s" id="packages">
+  <div class="pkg-h"><div class="st" style="justify-content:center">Herbstaktion Oktober</div><h2>2 Behandlungen. <em>1 Preis.</em></h2><p class="si" style="text-align:center;margin:0 auto">Inkl. persönlicher Hautberatung · Keine versteckten Kosten · Preis pro Behandlung</p></div>
+  <div class="pkg-grid">
+    <div class="pk ft"><div class="pk-b">⭐ Nur im Oktober</div><div class="pk-n">Microneedling + Microdermabrasion</div><div class="pk-z">2 Behandlungen in einem Termin</div><div class="pk-ol">Gesamtwert 258 €</div><div class="pk-pr"><sup>€</sup>139</div><div class="pk-nt">pro Behandlung</div><ul class="pk-fl"><li>Microneedling — Fältchen &amp; Narben reduzieren</li><li>Microdermabrasion gratis — ebenmäßig &amp; strahlend</li><li>Kollagen- &amp; Elastin-Boost</li><li>Persönliche Hautberatung</li></ul><div class="pk-sv">✦ Du sparst 119 €</div><a href="#termin" class="btn-pk">Jetzt sichern</a></div>
+  </div>
+  <p class="pkg-nb">💳 Alle Preise inkl. MwSt. · Nur im Oktober · Limitierte Termine</p>
+</section>
+
+<section class="te-s" id="bewertungen">
+  <div class="te-h"><div class="st">Was Kundinnen sagen</div><h2>Echte Stimmen. <em>Echte Begeisterung.</em></h2></div>
+  <div class="te-g">
+    <div class="tc"><div class="tq">"</div><div class="tst">★★★★★</div><div class="tt">Jasmina ist ein absoluter Profi! Sie berät genau und führt jeden Arbeitsschritt mit größter Sorgfalt durch. Das Wohlbefinden ihrer Kunden ist Priorität Nr. 1. Jeder Termin ist wie ein Mini-Urlaub.</div><div class="ta"><div class="tav">A</div><div class="tai"><strong>Azra H.</strong><span>Google Bewertung</span></div></div></div>
+    <div class="tc"><div class="tq">"</div><div class="tst">★★★★★</div><div class="tt">Jasmina ist eine sehr verständnisvolle und angenehme Person. Sie nimmt ihre Arbeit sehr ernst und versucht 100% zu helfen. Super Hygiene und tolle Arbeit — aufjedenfall empfehlenswert!</div><div class="ta"><div class="tav">A</div><div class="tai"><strong>Ajdina S.</strong><span>Google Bewertung</span></div></div></div>
+  </div>
+</section>
+
+<section class="ab-s" id="about">
+  <div class="ab-img"><img src="images/jasmina.jpg" alt="Jasmina Medjic — BeautyLounge Jenbach"></div>
+  <div class="ab-c"><div class="st">Über mich</div><h2>Hinter BeautyLounge steht <em>Leidenschaft.</em></h2>
+    <p>Ich bin <strong>Jasmina Medjic</strong> — Kosmetikerin, Nageldesignerin und Fußpflegerin aus Jenbach. Seit Jahren begleite ich Frauen auf ihrem Weg zu mehr Wohlbefinden.</p>
+    <p>Mein Antrieb: Jede Frau verdient es, sich in ihrer Haut wohlzufühlen — mit einem Hautbild, das strahlt, ohne Kompromisse.</p>
+    <div class="ab-cr"><div class="cr">Zertifizierte Kosmetikerin</div><div class="cr">Microneedling &amp; Microdermabrasion</div><div class="cr">Persönliche Behandlung — kein anonymes Studio</div></div>
+  </div>
+</section>
+
+<section class="fq-s" id="faq">
+  <div class="fq-h"><div class="st" style="justify-content:center">FAQ</div><h2>Deine Fragen. <em>Meine Antworten.</em></h2></div>
+  <div class="fq-g">
+    <div class="fqi"><div class="fqq">Tut Microneedling weh?</div><div class="fqa">Die meisten Kundinnen spüren nur ein leichtes Kribbeln. Die Nadeltiefe wird individuell auf deine Haut abgestimmt.</div></div>
+    <div class="fqi"><div class="fqq">Wie viele Behandlungen brauche ich?</div><div class="fqa">Schon nach der ersten Behandlung wirkt die Haut frischer. Für ein optimales Ergebnis empfehlen sich mehrere Behandlungen im Abstand von einigen Wochen — das besprechen wir individuell.</div></div>
+    <div class="fqi"><div class="fqq">Was ist im Aktionspreis enthalten?</div><div class="fqa">Microneedling + Microdermabrasion in einem Termin für 139 € pro Behandlung (Gesamtwert 258 €). Die Microdermabrasion ist im Oktober gratis.</div></div>
+    <div class="fqi"><div class="fqq">Warum gerade im Herbst?</div><div class="fqa">Die Sonne ist schwächer — ideal, damit sich die Haut nach der Behandlung in Ruhe regenerieren kann. Perfekt, um die Spuren des Sommers zu mildern.</div></div>
+    <div class="fqi"><div class="fqq">Was muss ich vorher beachten?</div><div class="fqa">Einige Tage vorher kein Selbstbräuner, kein Peeling und keine intensive Sonne. Alles Weitere besprechen wir beim Termin.</div></div>
+    <div class="fqi"><div class="fqq">Wie sieht meine Haut danach aus?</div><div class="fqa">Eine leichte Rötung ist normal und klingt meist innerhalb von 1–2 Tagen ab. Danach zeigt sich ein frischer, ebenmäßiger Teint.</div></div>
+  </div>
+</section>
+
+<section class="ct-s" id="termin">
+  <div class="ct-l">
+    <div class="st">Termin sichern</div><h2>Starte heute in deinen <em>Hautherbst.</em></h2>
+    <p class="si">Fülle das Formular aus oder schreib mir direkt auf WhatsApp. Ich melde mich persönlich innerhalb weniger Stunden.</p>
+    <div class="ci">
+      <div class="cr2"><div class="cic">📍</div><div class="cit"><strong>Standort</strong><span>Kienbergstraße 17, 6200 Jenbach</span></div></div>
+      <div class="cr2"><div class="cic">📞</div><div class="cit"><strong>Telefon &amp; WhatsApp</strong><a href="tel:+436764107211">+43 676 410 72 11</a></div></div>
+      <div class="cr2"><div class="cic">🕐</div><div class="cit"><strong>Öffnungszeiten</strong><span>Mo–Do 10–18 Uhr · Fr 9–12 Uhr</span></div></div>
+    </div>
+  </div>
+  <div class="ct-r">
+    <h3>Termin anfragen</h3>
+    <form action="https://formsubmit.co/jasmina.beautylounge@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Neue Terminanfrage – Microneedling Herbstaktion">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://www.beautylounge-behandlungen.at/">
+      <div class="fgr"><div class="fg"><label>Vorname</label><input type="text" name="Vorname" placeholder="Maria" required></div><div class="fg"><label>Nachname</label><input type="text" name="Nachname" placeholder="Muster" required></div></div>
+      <div class="fg"><label>Telefonnummer</label><input type="tel" name="Telefon" placeholder="+43 123 456 789" required></div>
+      <div class="fg"><label>Gewünschtes Angebot</label><select name="Angebot"><option value="">Bitte wählen …</option><option>Herbstaktion — Microneedling + Microdermabrasion (139€) ⭐</option><option>Erstmal Beratung</option></select></div>
+      <div class="fg"><label>Nachricht (optional)</label><textarea name="Nachricht" placeholder="Wunschtermin, Fragen …"></textarea></div>
+      <button type="submit" class="btn-mag" style="width:100%;justify-content:center;border:none">Termin anfragen — kostenlos &amp; unverbindlich</button>
+    </form>
+    <div class="orl">oder direkt</div>
+    <a href="https://wa.me/436764107211?text=Hallo%20Jasmina!%20Ich%20interessiere%20mich%20f%C3%BCr%20die%20Herbstaktion%20Microneedling%20%2B%20Microdermabrasion%20und%20m%C3%B6chte%20gerne%20einen%20Termin%20vereinbaren." class="wab" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp schreiben
+    </a>
+  </div>
+</section>
+
+<div class="gal-s">
+  <div class="gal-h"><div class="st">Impressionen</div><h2 style="font-size:clamp(24px,3vw,38px)">Einblicke in die <em>BeautyLounge</em></h2></div>
+  <div class="gal-g">
+    <a href="#"><img src="images/gallery/img1.jpg" alt=""></a>
+    <a href="#"><img src="images/gallery/img2.jpg" alt=""></a>
+    <a href="#"><img src="images/gallery/img3.jpg" alt=""></a>
+    <a href="#"><img src="images/gallery/img4.jpg" alt=""></a>
+    <a href="#"><img src="images/gallery/img5.jpg" alt=""></a>
+    <a href="#"><img src="images/gallery/img6.jpg" alt=""></a>
+  </div>
+</div>
+
+<footer>
+  <img src="images/logo.svg" alt="BeautyLounge" class="fl">
+  <nav class="fn">
+    <a href="#how">Behandlung</a><a href="#vergleich">Vergleich</a><a href="#packages">Preise</a><a href="#bewertungen">Bewertungen</a><a href="#about">Über mich</a><a href="#termin">Termin</a>
+    <a href="https://www.beautylounge-jenbach.at/datenschutz-und-impressum" target="_blank">Datenschutz &amp; Impressum</a>
+  </nav>
+  <div class="fc">©2025 BeautyLounge · Jasmina Medjic · Kienbergstraße 17 · 6200 Jenbach</div>
+</footer>
+
+<div class="sticky">
+  <a href="https://wa.me/436764107211?text=Hallo%20Jasmina!%20Ich%20m%C3%B6chte%20einen%20Termin%20vereinbaren." class="sw" target="_blank"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+  <a href="#termin" class="sb">Jetzt buchen</a>
+</div>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}})});
+function tick(){const n=new Date(),e=new Date(n.getFullYear(),9,31,23,59,59),d=e-n;const el=document.getElementById('ctd');if(!el)return;if(d<=0){el.textContent='beendet';return}el.textContent=`${Math.floor(d/864e5)}T ${Math.floor((d%864e5)/36e5)}h ${Math.floor((d%36e5)/6e4)}m`}tick();setInterval(tick,3e4);
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.stp,.ii,.pk,.tc,.fqi,.pi,.cmp-row,.ba-wrap').forEach((el,i)=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition=`opacity .55s ease ${(i%4)*.08}s,transform .55s ease ${(i%4)*.08}s`;obs.observe(el)});
+
+// Before/After Slider
+document.querySelectorAll('[data-ba]').forEach(wrap=>{
+  const before=wrap.querySelector('.ba-before');
+  const handle=wrap.querySelector('.ba-handle');
+  let active=false;
+  function move(x){
+    const rect=wrap.getBoundingClientRect();
+    let pct=((x-rect.left)/rect.width)*100;
+    pct=Math.max(2,Math.min(98,pct));
+    before.style.clipPath=`inset(0 ${100-pct}% 0 0)`;
+    handle.style.left=pct+'%';
+  }
+  wrap.addEventListener('mousedown',e=>{active=true;move(e.clientX)});
+  wrap.addEventListener('mousemove',e=>{if(active)move(e.clientX)});
+  document.addEventListener('mouseup',()=>{active=false});
+  wrap.addEventListener('touchstart',e=>{active=true;move(e.touches[0].clientX)},{passive:true});
+  wrap.addEventListener('touchmove',e=>{if(active)move(e.touches[0].clientX)},{passive:true});
+  wrap.addEventListener('touchend',()=>{active=false});
+});
+</script>
+</body>
+</html>
