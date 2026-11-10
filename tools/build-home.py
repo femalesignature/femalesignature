@@ -506,6 +506,17 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .pain .sol div{border-top:1px solid #e4ddd2;padding-top:16px}
 .pain .sol small{display:block;font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fr);margin-bottom:6px}
 .pain .sol p{margin:0;font-weight:500;font-size:.9375rem}
+/* Vom Problem zur Lösung: Karte kommt mit dem Problem, dann zieht sich eine Burgund-Linie durch, dann steigt die Lösung auf. Nur mit JS und ohne reduzierte Bewegung (Klasse .pfx). */
+.pfx .pain{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease) var(--pd,0s),transform .8s var(--ease) var(--pd,0s)}
+.pfx .pain .sol div{position:relative;border-top-color:transparent}
+.pfx .pain .sol div::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--fr);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.1s var(--ease) calc(var(--pd,0s) + .45s)}
+.pfx .pain .sol small,.pfx .pain .sol p{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease) calc(var(--pd,0s) + .85s),transform .7s var(--ease) calc(var(--pd,0s) + .85s)}
+.pfx .pain .sol p{transition-delay:calc(var(--pd,0s) + 1s)}
+.pfx .pain.on{opacity:1;transform:none}
+.pfx .pain.on .sol div::before{transform:scaleX(1)}
+.pfx .pain.on .sol small,.pfx .pain.on .sol p{opacity:1;transform:none}
+@media (min-width:700px){.pain:nth-child(2n){--pd:.15s}}
+@media (min-width:1000px){.pain:nth-child(2n){--pd:0s}.pain:nth-child(3n+2){--pd:.15s}.pain:nth-child(3n){--pd:.3s}}
 
 /* Systeme: wechselnde Bild-Text-Karten */
 .sysl{display:grid;gap:20px}
@@ -715,6 +726,7 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 JS = r"""
 (function(){
 var d=document,hd=d.querySelector('.hd'),mb=d.querySelector('.mbtn'),mn=d.getElementById('mnav');
+var pn=d.querySelectorAll('.pain');if(pn.length&&'IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.documentElement.classList.add('pfx');var pio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;if(matchMedia('(max-width:699px)').matches){pn.forEach(function(c){c.classList.add('on')});pio.disconnect()}else{e.target.classList.add('on');pio.unobserve(e.target)}})},{threshold:.35,rootMargin:'0px 0px -8% 0px'});pn.forEach(function(c){pio.observe(c)})}
 var sk=[].slice.call(d.querySelectorAll('.sysc')),smq=matchMedia('(min-width:900px) and (min-height:700px) and (prefers-reduced-motion:no-preference)'),stt=0;function stk(){stt=0;var on=smq.matches;sk.forEach(function(c,i){var n=sk[i+1];if(!on||!n){c.style.scale='';return}var r=c.getBoundingClientRect(),p=Math.min(1,Math.max(0,(r.bottom-n.getBoundingClientRect().top)/r.height));c.style.scale=(1-p*.07).toFixed(4)})}addEventListener('scroll',function(){if(!stt)stt=requestAnimationFrame(stk)},{passive:true});addEventListener('resize',stk);stk();
 function sc(){hd.classList.toggle('sc',scrollY>8)}addEventListener('scroll',sc,{passive:true});requestAnimationFrame(sc);
 function closeNav(){mn.hidden=true;mb.setAttribute('aria-expanded','false');mb.setAttribute('aria-label',mb.dataset.open)}
@@ -753,7 +765,7 @@ def page(T):
     lang_link = f'<a class="lang" href="{T["other_path"]}" hreflang="{"en" if L == "de" else "de"}" lang="{"en" if L == "de" else "de"}" aria-label="{T["other_label"]}, {esc(T["other_name"])}">{T["other_label"]}</a>'
 
     pains = "".join(
-        f'<article class="card pain rv"><h3>{esc(h)}</h3><p>{esc(p)}</p><div class="sol"><div><small>{esc(T["solution"])}</small><p>{esc(s)}</p></div></div></article>'
+        f'<article class="card pain"><h3>{esc(h)}</h3><p>{esc(p)}</p><div class="sol"><div><small>{esc(T["solution"])}</small><p>{esc(s)}</p></div></div></article>'
         for h, p, s in T["pains"])
 
     sys_imgs = ["s1-brand", "s2-content", "s3-partnership", "s4-performance"]
