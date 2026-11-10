@@ -7,6 +7,7 @@ Schreibt index.html (DE) und en/index.html (EN). Texte stehen in DE/EN unten,
 Layout und Stil in page(). Nie die erzeugten HTML-Dateien von Hand ändern,
 sonst überschreibt der nächste Lauf die Änderung.
 """
+import math
 import json
 import pathlib
 
@@ -561,13 +562,39 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .panel .pt strong{font-size:1.0625rem;font-weight:600}
 .panel .pt span{font-size:.8125rem;opacity:.85}
 .panel h3{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin:24px 0 8px;opacity:.85}
-.cycle li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(244,241,235,.14);font-size:.9375rem}
-.cycle li span:first-child{font-family:var(--serif);font-style:italic;font-size:1.0625rem}
-.cycle li span:last-child{opacity:.9;text-align:right}
+/* Lifecycle als Kreislauf: Punkt wandert von Phase zu Phase, Mitte zeigt Phase und Partnertyp */
+.vh{position:absolute!important;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ring{container-type:inline-size;max-width:480px;margin:20px auto 8px;overflow:clip}
+.rs{position:relative;aspect-ratio:3/2}
+.rs svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.rt{fill:none;stroke:rgba(244,241,235,.24);stroke-width:1.5;stroke-dasharray:879.7;stroke-dashoffset:0}
+.ring.pre .rt{stroke-dashoffset:879.7}
+.ring.drawn .rt{transition:stroke-dashoffset 1.8s var(--ease)}
+.rgo{transform-box:view-box;transform-origin:50% 50%;transition:transform 1.1s var(--ease)}
+.rco{fill:none;stroke:var(--ow);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:175.9 879.7}
+.ring ol{list-style:none;margin:0;padding:0}
+.rn{position:absolute;left:var(--x);top:var(--y);width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.rn .d{position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;border:1.5px solid rgba(244,241,235,.75);background:var(--fr);transition:transform .5s var(--ease),background-color .5s}
+.rn.on .d{background:var(--ow);border-color:var(--ow);transform:scale(1.35)}
+.rn .l{position:absolute;top:50%;white-space:nowrap;font-family:var(--serif);font-style:italic;font-size:clamp(.875rem,3.9cqw,1.125rem);line-height:1.2;opacity:.75;transition:opacity .4s}
+.rn.on .l,.rn:hover .l{opacity:1}
+.rn.r .l{left:calc(50% + 14px);transform:translateY(-50%)}
+.rn.lft .l{right:calc(50% + 14px);transform:translateY(-50%)}
+.rn.t .l{top:auto;bottom:calc(50% + 12px);left:50%;transform:translateX(-50%)}
+.rn:focus-visible{outline:2px solid var(--ow);outline-offset:2px;border-radius:50%}
+.rc{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40%;text-align:center;pointer-events:none}
+.rc small{display:block;font-size:.6875rem;font-weight:600;letter-spacing:.16em;opacity:.8}
+.rc b{display:block;margin:6px 0 4px;font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1rem,5.4cqw,1.75rem);line-height:1.1}
+.rc span{display:block;font-size:clamp(.75rem,3.2cqw,.875rem);line-height:1.35;opacity:.9}
+.rc.sw>*{animation:rcf .6s var(--ease) both}.rc.sw>b{animation-delay:.05s}.rc.sw>span{animation-delay:.1s}
+@keyframes rcf{from{opacity:0;transform:translateY(8px)}}
+@container (max-width:420px){.ring .rs{width:150%;margin-left:-25%}.rn .l{display:none}}
+@media (prefers-reduced-motion:reduce){.rgo,.ring.drawn .rt,.rn .d{transition:none}.rc.sw>*{animation:none}}
 .stats3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:24px}
 .stats3 div{background:rgba(244,241,235,.08);border-radius:14px;padding:16px 12px}
 .stats3 b{display:block;font-size:clamp(1.5rem,1.2rem + 1vw,2rem);font-weight:600;letter-spacing:-.02em}
 .stats3 span{font-size:.75rem;line-height:1.35;display:block;margin-top:4px;opacity:.9}
+@media (max-width:479px){.stats3{grid-template-columns:1fr;gap:8px}.stats3 div{display:flex;align-items:baseline;gap:14px;padding:12px 16px}.stats3 b{min-width:3.4ch}.stats3 span{margin:0}}
 .brands{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 44px;margin-top:clamp(36px,5vw,56px)}
 .brands li{font-family:var(--serif);font-size:clamp(1.125rem,1rem + .5vw,1.5rem);color:#6f6a64}
 @media (min-width:1000px){.pmc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
@@ -744,6 +771,10 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 JS = r"""
 (function(){
 var d=document,hd=d.querySelector('.hd'),mb=d.querySelector('.mbtn'),mn=d.getElementById('mnav');
+var rg=d.querySelector('.ring');if(rg){var rb=[].slice.call(rg.querySelectorAll('.rn')),rc=rg.querySelector('.rc'),ro=rg.querySelector('.rgo'),rN=rb.length,ri=0,rr=0,rh=0,rv=false,rm=matchMedia('(prefers-reduced-motion: reduce)'),rset=function(i){rr+=((i-ri)%rN+rN)%rN*(360/rN);ri=i;ro.style.transform='rotate('+rr+'deg)';rb.forEach(function(b,k){b.classList.toggle('on',k===i);b.setAttribute('aria-pressed',k===i?'true':'false')});var b=rb[i];rc.children[0].textContent=b.dataset.n;rc.children[1].textContent=b.dataset.p;rc.children[2].textContent=b.dataset.t;rc.classList.remove('sw');void rc.offsetWidth;rc.classList.add('sw')};
+rb.forEach(function(b,k){b.addEventListener('click',function(){rh=Date.now()+10000;rset(k)})});
+if('IntersectionObserver'in window){if(!rm.matches)rg.classList.add('pre');new IntersectionObserver(function(e){rv=e[0].isIntersecting;if(rv&&rg.classList.contains('pre')){rg.classList.add('drawn');requestAnimationFrame(function(){rg.classList.remove('pre')})}},{threshold:.4}).observe(rg)}
+setInterval(function(){if(!rv||rm.matches||d.hidden||Date.now()<rh)return;rset((ri+1)%rN)},3200)}
 var pis=[].slice.call(d.querySelectorAll('.pi')),pc=d.querySelector('.pctr'),pl=d.querySelector('.pil');if(pis.length>1&&pc&&pl){var pa=-1,wide=matchMedia('(min-width:1000px)'),pset=function(i){if(i===pa)return;pa=i;pis.forEach(function(x,k){x.classList.toggle('act',k===i)});pc.firstChild.textContent=(i<9?'0':'')+(i+1);pc.style.setProperty('--pp',((i+1)/pis.length).toFixed(4))};pset(0);
 if('IntersectionObserver'in window){var pio=new IntersectionObserver(function(es){if(!wide.matches)return;d.documentElement.classList.add('js');es.forEach(function(e){if(e.isIntersecting)pset(pis.indexOf(e.target))})},{rootMargin:'-45% 0px -45% 0px'});pis.forEach(function(x){pio.observe(x)})}
 pl.addEventListener('scroll',function(){if(wide.matches)return;var w=pis[1].offsetLeft-pis[0].offsetLeft;pset(pl.scrollLeft>=pl.scrollWidth-pl.clientWidth-4?pis.length-1:Math.round(pl.scrollLeft/w))},{passive:true})
@@ -804,7 +835,20 @@ def page(T):
         for i, (n, h, p, items) in enumerate(T["systems"]))
 
     pm_list = "".join(f"<li>{ICON_CHECK}<span>{esc(x)}</span></li>" for x in T["pm_list"])
-    cycle = "".join(f"<li><span>{esc(a)}</span><span>{esc(b)}</span></li>" for a, b in T["pm_cycle"])
+    nc = len(T["pm_cycle"])
+    def ring_node(i, ph, ty):
+        ang = math.radians(-90 + 360 / nc * i)
+        x, y = (300 + 140 * math.cos(ang)) / 6, (200 + 140 * math.sin(ang)) / 4
+        side = "t" if i == 0 else ("r" if math.cos(ang) > 0 else "lft")
+        return (f'<li><button type="button" class="rn {side}{" on" if i == 0 else ""}" style="--x:{x:.2f}%;--y:{y:.2f}%" aria-pressed="{"true" if i == 0 else "false"}" data-n="{i + 1:02d} / {nc:02d}" data-p="{esc(ph)}" data-t="{esc(ty)}">'
+                f'<span class="d"></span><span class="l">{esc(ph)}</span><span class="vh">: {esc(ty)}</span></button></li>')
+    ph0, ty0 = T["pm_cycle"][0]
+    cycle = ('<div class="ring"><div class="rs"><svg viewBox="0 0 600 400" aria-hidden="true" focusable="false">'
+             '<circle class="rt" cx="300" cy="200" r="140" transform="rotate(-90 300 200)"/>'
+             '<g class="rgo"><circle class="rco" cx="300" cy="200" r="140" transform="rotate(-162 300 200)"/>'
+             '<circle cx="300" cy="60" r="16" fill="rgba(244,241,235,.16)"/><circle cx="300" cy="60" r="6.5" fill="#F4F1EB"/></g></svg>'
+             f'<ol>{"".join(ring_node(i, a, b) for i, (a, b) in enumerate(T["pm_cycle"]))}</ol>'
+             f'<div class="rc" aria-hidden="true"><small>01 / {nc:02d}</small><b>{esc(ph0)}</b><span>{esc(ty0)}</span></div></div></div>')
     stats3 = "".join(f"<div><b>{esc(a)}</b><span>{esc(b)}</span></div>" for a, b in T["pm_stats"])
     brands = "".join(f"<li>{esc(b)}</li>" for b in T["brands"])
 
@@ -940,7 +984,7 @@ def page(T):
 <div class="wrap">
 <div class="card pmc">
 <div><p class="label">{esc(T["pm_label"])}</p>{h2(T["pm_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="pm-h">')}<p class="lead">{esc(T["pm_sd"])}</p><ul class="ticks">{pm_list}</ul></div>
-<div class="panel rv"><div class="pt"><strong>{esc(T["pm_panel"])}</strong><span>powered by <b>impact.com</b></span></div><h3>{esc(T["pm_cycle_t"])}</h3><ul class="cycle">{cycle}</ul><div class="stats3">{stats3}</div></div>
+<div class="panel rv"><div class="pt"><strong>{esc(T["pm_panel"])}</strong><span>powered by <b>impact.com</b></span></div><h3>{esc(T["pm_cycle_t"])}</h3>{cycle}<div class="stats3">{stats3}</div></div>
 </div>
 <ul class="brands">{brands}</ul>
 </div>
