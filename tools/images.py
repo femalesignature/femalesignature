@@ -29,9 +29,30 @@ SLOTS = {
 }
 
 
-def cover(im, ratio, w):
+# Ausschnitt-Mitte je Platz (x, y von 0 bis 1); Standard etwas über der Mitte
+CENTER = {"about": (0.5, 0.0)}
+# Plätze, bei denen oben Luft fehlt: so viel Hintergrund wird oben ergänzt (Anteil der Höhe)
+HEADROOM = {"about": 0.06}
+
+# Runde Porträts (Ausschnitt-Box im Original: links, oben, rechts, unten)
+FACES = {
+    "valeriya": ("valeriya.jpeg", (234, 170, 554, 490)),
+    "mediha-face": ("src/about.jpg", (245, 40, 515, 310)),
+}
+
+
+def add_headroom(im, share):
+    pad = round(im.height * share)
+    top = im.crop((0, 0, im.width, 4)).resize((im.width, pad), Image.BILINEAR).filter(ImageFilter.GaussianBlur(6))
+    out = Image.new("RGB", (im.width, im.height + pad))
+    out.paste(top, (0, 0))
+    out.paste(im, (0, pad))
+    return out
+
+
+def cover(im, ratio, w, center=(0.5, 0.35)):
     h = round(w / ratio)
-    return ImageOps.fit(im, (w, h), Image.LANCZOS, centering=(0.5, 0.35))
+    return ImageOps.fit(im, (w, h), Image.LANCZOS, centering=center)
 
 
 def placeholder(ratio, label):
@@ -63,14 +84,24 @@ def main():
     for name, (ratio, widths, label) in SLOTS.items():
         src = next((p for ext in ("jpg", "jpeg", "png", "webp") for p in [SRC / f"{name}.{ext}"] if p.exists()), None)
         im = ImageOps.exif_transpose(Image.open(src)).convert("RGB") if src else placeholder(ratio, label)
+        if src and name in HEADROOM:
+            im = add_headroom(im, HEADROOM[name])
         for w in widths:
             out = OUT / f"{name}-{w}.webp"
-            img = cover(im, ratio, min(w, im.width))
+            img = cover(im, ratio, min(w, im.width), CENTER.get(name, (0.5, 0.35)))
             for q in (72, 66, 60, 54, 48):  # Regel: jede Datei unter 100 KB
                 img.save(out, quality=q, method=6)
                 if out.stat().st_size < 100 * 1024:
                     break
         print(f"{name:15} {'ORIGINAL ' + src.name if src else 'Platzhalter'}  {max((OUT / f'{name}-{w}.webp').stat().st_size for w in widths) // 1024} KB max")
+    for name, (rel, box) in FACES.items():
+        f = ROOT / "images" / rel
+        if not f.exists():
+            continue
+        im = ImageOps.exif_transpose(Image.open(f)).convert("RGB").crop(box)
+        for w in (96, 192):
+            im.resize((w, w), Image.LANCZOS).save(OUT / f"{name}-{w}.webp", quality=80, method=6)
+        print(f"{name:15} Porträt 96/192")
 
 
 if __name__ == "__main__":

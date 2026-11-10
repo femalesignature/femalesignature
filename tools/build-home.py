@@ -390,7 +390,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr);le
 .hd:not(.sc){background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
 .hd .wrap{max-width:none;display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
 .logo{display:flex;align-items:center;min-height:44px}
-.logo img{width:clamp(168px,22vw,220px);height:auto}
+.logo img{width:clamp(200px,24vw,290px);height:auto}
 .nav{display:none;align-items:center;gap:6px}
 .nav a{display:inline-flex;align-items:center;min-height:44px;padding:10px 14px;border-radius:999px;text-decoration:none;font-size:.875rem;font-weight:500;color:var(--ink)}
 .nav a:hover{background:var(--ow)}
@@ -600,21 +600,20 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .brands li{font-family:var(--serif);font-size:clamp(1.125rem,1rem + .5vw,1.5rem);color:#6f6a64}
 @media (min-width:1000px){.pmc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 
-/* Manifest: dunkles Burgund-Band, Wörter hellen sich beim Lesen nacheinander auf */
-.mfw{padding:0 clamp(8px,1.4vw,20px) clamp(72px,10vw,136px)}
-.mf{position:relative;overflow:hidden;background:var(--fd);color:var(--ow);border-radius:clamp(20px,2.4vw,32px);padding:clamp(72px,10vw,140px) var(--pad)}
-.mf::before{content:"“";position:absolute;left:clamp(8px,4vw,64px);top:clamp(-40px,-2vw,-10px);font-family:var(--serif);font-size:clamp(12rem,30vw,26rem);line-height:1;color:rgba(244,241,235,.06);pointer-events:none}
-.mf .in{position:relative;max-width:980px;margin:0 auto}
-.mfq{font-size:clamp(1.625rem,1.1rem + 2.3vw,3.125rem);line-height:1.25;letter-spacing:-.03em;font-weight:400;text-wrap:pretty;margin:0}
+/* Manifest: helle Karte, ruhige Schrift, Wörter werden beim Lesen dunkel, Medihas Porträt als Absender */
+.mfw{padding:0 0 clamp(72px,10vw,136px)}
+.mf{position:relative;max-width:880px;margin:0 auto;background:var(--card);border-radius:24px;padding:clamp(40px,6vw,80px) clamp(24px,6vw,88px);text-align:center;border:1px solid var(--bd)}
+.mf::before{content:"“";display:block;font-family:var(--serif);font-size:4.5rem;line-height:.55;color:var(--fr);margin-bottom:14px}
+.mfq{margin:0 auto;max-width:34ch;font-size:clamp(1.5rem,1.25rem + .9vw,2rem);line-height:1.4;letter-spacing:-.02em;font-weight:400;color:var(--ink);text-wrap:pretty}
 .mfq strong{font-weight:600}
-.mfe{margin:clamp(28px,4vw,44px) 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(1.375rem,1rem + 1.4vw,2.25rem);line-height:1.25;color:#E3C4CA}
-.mf .by{display:flex;align-items:center;gap:14px;margin-top:clamp(36px,5vw,56px);font-size:.9375rem}
-.mf .by img{width:48px;height:48px;border-radius:50%;box-shadow:0 0 0 1px rgba(244,241,235,.35)}
-.mf .by span{display:block;font-size:.8125rem;color:#CDB3B7}
+.mfe{margin:24px auto 0;max-width:40ch;font-family:var(--serif);font-style:italic;font-size:clamp(1.125rem,1rem + .5vw,1.375rem);line-height:1.35;color:var(--fr)}
+.mf .by{display:inline-flex;align-items:center;gap:14px;margin-top:clamp(28px,4vw,40px);padding:8px 20px 8px 8px;border-radius:999px;background:var(--ow);text-align:left;font-size:.9375rem}
+.mf .by img{width:52px;height:52px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--card),0 0 0 3px var(--fr)}
+.mf .by span{display:block;font-size:.8125rem;color:var(--mu)}
 @media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){
 .mfq{view-timeline:--mfq block}
 .mfq .w{animation:wl linear both;animation-timeline:--mfq;animation-range:cover var(--s) cover var(--e)}
-@keyframes wl{from{color:#A07C82}to{color:#F4F1EB}}
+@keyframes wl{from{color:#857E77}to{color:#1C1C1C}}
 }}
 
 /* Ansatz: Kopf mit Bild, darunter Zeitleiste, deren Linie sich beim Scrollen zieht */
@@ -693,6 +692,7 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .abx .media{position:relative;max-width:min(520px,calc(100% - 28px));width:100%}
 .abx .media::before{content:"";position:absolute;inset:clamp(16px,2.4vw,28px) clamp(-28px,-2.4vw,-16px) clamp(-28px,-2.4vw,-16px) clamp(16px,2.4vw,28px);border:1.5px solid var(--fr);border-radius:18px}
 .abx .shot{aspect-ratio:4/5;box-shadow:none}
+.abx .shot img{transform-origin:50% 0;object-position:50% 0}
 .abx .txt{display:flex;flex-direction:column}
 .abx h2{font-size:clamp(2.75rem,1.6rem + 4.6vw,5.5rem);line-height:.95;font-weight:500;letter-spacing:-.05em}
 .abx blockquote{margin:28px 0 0;padding-left:22px;border-left:2px solid var(--fr);font-family:var(--serif);font-style:italic;color:var(--fr);font-size:clamp(1.25rem,1rem + 1vw,1.75rem);line-height:1.35}
@@ -774,17 +774,33 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .direct a::after{content:"→";margin-left:auto;transition:transform .4s var(--ease)}
 .direct a:hover::after{transform:translateX(5px)}
 .direct svg{width:20px;height:20px;color:#E3C4CA}
-.form{padding:clamp(18px,3vw,40px)}
-.f2{display:grid;gap:16px}
+.form{padding:clamp(20px,3vw,44px) clamp(18px,3vw,44px) clamp(24px,3vw,40px)}
+.form fieldset{border:0;margin:0 0 8px;padding:0;min-width:0}
+.form legend{padding:0;font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fr);margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chips span{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:999px;border:1px solid #d6cfc4;background:#fff;font-size:.875rem;font-weight:500;transition:background-color .3s var(--ease),color .3s,border-color .3s,transform .3s var(--ease)}
+.chips span::before{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor;transition:background-color .3s}
+.chips label:hover span{border-color:var(--ink)}
+.chips input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.chips input:checked+span::before{background:#fff;border-color:#fff}
+.chips input:focus-visible+span{outline:2px solid var(--fr);outline-offset:2px}
+.f2{display:grid;gap:0 28px}
 @media (min-width:600px){.f2{grid-template-columns:1fr 1fr}}
-.fld{display:grid;gap:6px;margin-bottom:16px}
-.f2 .fld{margin:0}
-.fld label{font-size:.8125rem;font-weight:600}
-.fld input,.fld textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:#fff;border:1px solid #ddd6cb;border-radius:12px;padding:14px 16px;min-height:52px;transition:border-color .2s,box-shadow .2s}
-.fld textarea{min-height:150px;resize:vertical;line-height:1.55}
-.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--fr);box-shadow:0 0 0 3px rgba(92,31,43,.12)}
+.fld{position:relative;margin-top:18px}
+.fld input,.fld textarea{display:block;width:100%;font:inherit;font-size:1.0625rem;color:var(--ink);background:transparent;border:0;border-bottom:1px solid #cfc8bd;border-radius:0;padding:26px 0 10px;min-height:60px;transition:border-color .3s}
+.fld textarea{min-height:120px;resize:vertical;line-height:1.55}
+.fld label{position:absolute;left:0;top:24px;font-size:1rem;color:var(--mu);pointer-events:none;transform-origin:0 0;transition:transform .35s var(--ease),color .3s}
+.fld::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--fr);transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--ease)}
+.fld:has(textarea)::after{bottom:6px}
+.fld:focus-within::after{transform:scaleX(1)}
+.fld input:focus,.fld textarea:focus{outline:none}
+.fld input:focus+label,.fld input:not(:placeholder-shown)+label,.fld textarea:focus+label,.fld textarea:not(:placeholder-shown)+label{transform:translateY(-20px) scale(.78);color:var(--fr);font-weight:600}
 .hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
-.form .btn{width:100%;margin-top:8px}
+.form .btn{width:100%;margin-top:32px;min-height:60px;font-size:1rem}
+.form .btn .ic{transition:transform .4s var(--ease)}
+.form .btn:hover .ic{transform:translateX(6px)}
 @media (min-width:1000px){.contact{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}}
 
 /* Scroll-Effekte nur per CSS: Fotos zoomen beim Hereinscrollen sanft auf */
@@ -798,7 +814,7 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 /* Footer */
 .ft{background:var(--ow);border-top:1px solid #e2dbd0;padding:clamp(64px,8vw,96px) 0 32px;font-size:.9375rem}
 .ftg{display:grid;gap:40px}
-.ft .brand img{width:150px;height:auto}
+.ft .brand img{width:clamp(200px,22vw,260px);height:auto}
 .ft .brand p{color:var(--mu);margin-top:20px;max-width:36ch}
 .soc{display:flex;gap:8px;margin-top:20px}
 .soc a{display:inline-flex;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;border:1px solid #d6d1c8}
@@ -979,6 +995,8 @@ def page(T):
                     + h2(T["faq_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="faq-h">') + f'<a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta"])} {ICON_ARROW}</a></div><div class="list rv">{items}</div></div></section>')
 
     ph = T["ph"]
+    topics = [x[0] for x in T["systems"]] + ["Etwas anderes" if L == "de" else "Something else"]
+    topic_chips = "".join(f'<label><input type="radio" name="thema" value="{esc(t)}"><span>{esc(t)}</span></label>' for t in topics)
     def p_(k):
         return f' placeholder="{esc(ph[k])}"' if k in ph else ""
 
@@ -1086,11 +1104,11 @@ def page(T):
 </div>
 </section>
 
-<div class="mfw"><section class="mf" aria-label="Manifest"><div class="in">
+<div class="wrap mfw"><section class="mf rv" aria-label="Manifest">
 <p class="mfq">{mf_words}</p>
-<p class="mfe rv">{esc(T["stmt_em"])}</p>
-<p class="by"><img src="/images/monogram-square-burgundy.svg" width="48" height="48" alt=""><span><strong>Female Signature</strong><span>Mag. (FH) Mediha Mujcin</span></span></p>
-</div></section></div>
+<p class="mfe">{esc(T["stmt_em"])}</p>
+<p class="by"><img src="/images/opt/mediha-face-96.webp" srcset="/images/opt/mediha-face-96.webp 96w, /images/opt/mediha-face-192.webp 192w" sizes="52px" width="52" height="52" alt="Mag. (FH) Mediha Mujcin" loading="lazy" decoding="async"><span><strong>Mag. (FH) Mediha Mujcin</strong><span>CEO &amp; Founder · Female Signature</span></span></p>
+</section></div>
 
 <section class="sec" id="approach" aria-labelledby="ap-h" style="padding-top:0">
 <div class="wrap">
@@ -1152,9 +1170,10 @@ def page(T):
 <form class="form" name="contact" method="POST" action="/success" data-netlify="true" netlify-honeypot="bot-field">
 <input type="hidden" name="form-name" value="contact">
 <p class="hp"><label>Bot <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-<div class="f2"><div class="fld"><label for="f-name">{esc(T["f_name"])}</label><input id="f-name" type="text" name="name" autocomplete="name" required{p_("name")}></div><div class="fld"><label for="f-mail">{esc(T["f_mail"])}</label><input id="f-mail" type="email" name="email" autocomplete="email" inputmode="email" required{p_("email")}></div></div>
-<div class="fld" style="margin-top:16px"><label for="f-co">{esc(T["f_company"])}</label><input id="f-co" type="text" name="company" autocomplete="organization"{p_("company")}></div>
-<div class="fld"><label for="f-msg">{esc(T["f_msg"])}</label><textarea id="f-msg" name="message" required{p_("message")}></textarea></div>
+<fieldset><legend>{"Worum geht es?" if L == "de" else "What is it about?"}</legend><div class="chips">{topic_chips}</div></fieldset>
+<div class="f2"><div class="fld"><input id="f-name" type="text" name="name" autocomplete="name" required placeholder=" "><label for="f-name">{esc(T["f_name"])}</label></div><div class="fld"><input id="f-mail" type="email" name="email" autocomplete="email" inputmode="email" required placeholder=" "><label for="f-mail">{esc(T["f_mail"])}</label></div></div>
+<div class="fld"><input id="f-co" type="text" name="company" autocomplete="organization" placeholder=" "><label for="f-co">{esc(T["f_company"])}</label></div>
+<div class="fld"><textarea id="f-msg" name="message" required placeholder=" "></textarea><label for="f-msg">{esc(T["f_msg"])}</label></div>
 <button class="btn" type="submit">{esc(T["f_send"])} {ICON_ARROW}</button>
 </form>
 </div>
@@ -1165,7 +1184,7 @@ def page(T):
 <footer class="ft">
 <div class="wrap">
 <div class="ftg">
-<div class="brand"><img src="/images/wordmark-stacked-anthracite.svg" width="150" height="80" alt="Female Signature" loading="lazy"><p>{esc(T["ft_text"])}</p><div class="soc"><a href="{IG}" target="_blank" rel="noopener" aria-label="Instagram">{ICON_IG}</a><a href="{LI}" target="_blank" rel="noopener" aria-label="LinkedIn">{ICON_LI}</a></div></div>
+<div class="brand"><img src="/images/wordmark-primary-anthracite.svg" width="1475" height="115" alt="Female Signature" loading="lazy"><p>{esc(T["ft_text"])}</p><div class="soc"><a href="{IG}" target="_blank" rel="noopener" aria-label="Instagram">{ICON_IG}</a><a href="{LI}" target="_blank" rel="noopener" aria-label="LinkedIn">{ICON_LI}</a></div></div>
 <nav aria-labelledby="ft-sys"><h2 id="ft-sys">{esc(T["ft_sys"])}</h2>{sys_links}</nav>
 <nav aria-labelledby="ft-co"><h2 id="ft-co">{esc(T["ft_company"])}</h2>{comp_links}</nav>
 <div><h2>{esc(T["ft_contact"])}</h2><address style="font-style:normal"><nav aria-label="{esc(T["ft_contact"])}"><a href="mailto:{MAIL}">{MAIL}</a><a href="tel:{TEL}">{TEL_TXT}</a></nav><p style="margin-top:8px;color:var(--mu)">Aste 10, 6071 Aldrans, {"Österreich" if L == "de" else "Austria"}</p></address></div>
