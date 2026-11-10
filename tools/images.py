@@ -30,7 +30,7 @@ SLOTS = {
 
 
 # Ausschnitt-Mitte je Platz (x, y von 0 bis 1); Standard etwas über der Mitte
-CENTER = {"about": (0.5, 0.0)}
+CENTER = {"about": (0.5, 0.0), "cta": (0.5, 0.6)}
 # Plätze, bei denen oben Luft fehlt: so viel Hintergrund wird oben ergänzt (Anteil der Höhe)
 HEADROOM = {"about": 0.06}
 
