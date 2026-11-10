@@ -508,6 +508,7 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .pctr i::after{content:"";position:absolute;inset:0;background:var(--fr);transform-origin:0 50%;transform:scaleX(var(--pp,.1667));transition:transform .6s var(--ease)}
 .pl .head .btn{margin-top:36px}
 .pi{display:flex;flex-direction:column;background:var(--card);border-radius:22px;padding:24px}
+.pi{cursor:pointer;-webkit-tap-highlight-color:transparent}.pi:focus-visible{outline:2px solid var(--fr);outline-offset:4px}
 .pi .n{font-size:.75rem;font-weight:600;letter-spacing:.14em;color:var(--fr)}
 .pi .n span{color:var(--mu)}
 .pi h3{margin-top:14px;font-size:clamp(1.25rem,1rem + 1.2vw,2.25rem);line-height:1.12;font-weight:500;letter-spacing:-.035em}
@@ -745,7 +746,12 @@ JS = r"""
 var d=document,hd=d.querySelector('.hd'),mb=d.querySelector('.mbtn'),mn=d.getElementById('mnav');
 var pis=[].slice.call(d.querySelectorAll('.pi')),pc=d.querySelector('.pctr'),pl=d.querySelector('.pil');if(pis.length>1&&pc&&pl){var pa=-1,wide=matchMedia('(min-width:1000px)'),pset=function(i){if(i===pa)return;pa=i;pis.forEach(function(x,k){x.classList.toggle('act',k===i)});pc.firstChild.textContent=(i<9?'0':'')+(i+1);pc.style.setProperty('--pp',((i+1)/pis.length).toFixed(4))};pset(0);
 if('IntersectionObserver'in window){var pio=new IntersectionObserver(function(es){if(!wide.matches)return;d.documentElement.classList.add('js');es.forEach(function(e){if(e.isIntersecting)pset(pis.indexOf(e.target))})},{rootMargin:'-45% 0px -45% 0px'});pis.forEach(function(x){pio.observe(x)})}
-pl.addEventListener('scroll',function(){if(wide.matches)return;var w=pis[1].offsetLeft-pis[0].offsetLeft;pset(pl.scrollLeft>=pl.scrollWidth-pl.clientWidth-4?pis.length-1:Math.round(pl.scrollLeft/w))},{passive:true})}
+pl.addEventListener('scroll',function(){if(wide.matches)return;var w=pis[1].offsetLeft-pis[0].offsetLeft;pset(pl.scrollLeft>=pl.scrollWidth-pl.clientWidth-4?pis.length-1:Math.round(pl.scrollLeft/w))},{passive:true})
+var prm=matchMedia('(prefers-reduced-motion: reduce)'),phold=0,pvis=false,pgo=function(i){i=(i+pis.length)%pis.length;pl.scrollTo({left:pis[i].offsetLeft-pis[0].offsetLeft,behavior:prm.matches?'auto':'smooth'})},pstop=function(){phold=Date.now()+12000};
+if('IntersectionObserver'in window)new IntersectionObserver(function(e){pvis=e[0].isIntersecting},{threshold:.5}).observe(pl);
+setInterval(function(){if(wide.matches||prm.matches||!pvis||d.hidden||Date.now()<phold)return;pgo(pa+1)},4500);
+['touchstart','pointerdown','wheel'].forEach(function(t){pl.addEventListener(t,pstop,{passive:true})});
+pis.forEach(function(x,k){var f=function(){pstop();if(wide.matches)x.scrollIntoView({block:'center',behavior:prm.matches?'auto':'smooth'});else pgo(k===pa?k+1:k)};x.addEventListener('click',f);x.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();f()}})})}
 var sk=[].slice.call(d.querySelectorAll('.sysc')),smq=matchMedia('(min-width:900px) and (min-height:700px) and (prefers-reduced-motion:no-preference)'),stt=0;function stk(){stt=0;var on=smq.matches;sk.forEach(function(c,i){var n=sk[i+1];if(!on||!n){c.style.scale='';return}var r=c.getBoundingClientRect(),p=Math.min(1,Math.max(0,(r.bottom-n.getBoundingClientRect().top)/r.height));c.style.scale=(1-p*.07).toFixed(4)})}addEventListener('scroll',function(){if(!stt)stt=requestAnimationFrame(stk)},{passive:true});addEventListener('resize',stk);stk();
 function sc(){hd.classList.toggle('sc',scrollY>8)}addEventListener('scroll',sc,{passive:true});requestAnimationFrame(sc);
 function closeNav(){mn.hidden=true;mb.setAttribute('aria-expanded','false');mb.setAttribute('aria-label',mb.dataset.open)}
@@ -785,7 +791,7 @@ def page(T):
 
     np = len(T["pains"])
     pains = "".join(
-        f'<article class="pi"><p class="n">{i + 1:02d} <span>/ {np:02d}</span></p><h3>{esc(h)}</h3><div class="pb"><p>{esc(p)}</p>'
+        f'<article class="pi" tabindex="0"><p class="n">{i + 1:02d} <span>/ {np:02d}</span></p><h3>{esc(h)}</h3><div class="pb"><p>{esc(p)}</p>'
         f'<div class="sol"><small>{esc(T["solution"])}</small><p>{esc(s)}</p></div></div></article>'
         for i, (h, p, s) in enumerate(T["pains"]))
 
