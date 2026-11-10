@@ -29,12 +29,14 @@
 <meta name="twitter:description" content="Strategic brand work, performance systems, and partner structures — for entrepreneurs with an established offer who lack the infrastructure to scale.">
 <meta name="twitter:image" content="https://female-signature.com/images/og-image-en.jpg">
 <link rel="icon" href="/images/monogram-square-burgundy.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/montserrat-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" imagesrcset="/images/opt/hero-mediha-480.webp 480w, /images/opt/hero-mediha-720.webp 720w, /images/opt/hero-mediha-960.webp 960w, /images/opt/hero-mediha-1024.webp 1024w" imagesizes="(min-width:1000px) 50vw, 100vw" fetchpriority="high">
-<style>@font-face{font-family:Montserrat;font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/montserrat-normal-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+<style>@font-face{font-family:Inter;font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/inter-400-700-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-mono-400-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-mono-500-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Playfair Display";font-style:italic;font-weight:400 600;font-display:swap;src:url(/fonts/playfair-display-italic-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Playfair Display";font-style:normal;font-weight:400 600;font-display:swap;src:url(/fonts/playfair-display-normal-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-:root{--bg:#fff;--ow:#F4F1EB;--ink:#1C1C1C;--fr:#5C1F2B;--fd:#4A1822;--bd:#E8E5DE;--mu:#5F5A55;--r:24px;--pad:clamp(20px,5vw,48px);--max:1200px;--sans:Montserrat,"Helvetica Neue",Arial,sans-serif;--serif:"Playfair Display",Georgia,"Times New Roman",serif;--ease:cubic-bezier(.16,1,.3,1)}
+:root{--bg:#fff;--ow:#F4F1EB;--ink:#1C1C1C;--fr:#5C1F2B;--fd:#4A1822;--bd:#E8E5DE;--mu:#5F5A55;--r:24px;--pad:clamp(20px,5vw,48px);--max:1200px;--sans:Inter,"Helvetica Neue",Arial,sans-serif;--mono:"DM Mono",ui-monospace,Menlo,monospace;--serif:"Playfair Display",Georgia,"Times New Roman",serif;--ease:cubic-bezier(.16,1,.3,1)}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -55,7 +57,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr);le
 .ic{width:1.1em;height:1.1em;flex:none}
 .label{display:inline-flex;align-items:center;gap:10px;font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fr);margin-bottom:20px}
 .label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--fr)}
-.h2{font-size:clamp(2rem,1.2rem + 3.4vw,3.5rem);line-height:1.08;font-weight:600;letter-spacing:-.025em;max-width:18ch;text-wrap:balance}
+.h2{font-size:clamp(2rem,1.2rem + 3.4vw,3.5rem);line-height:1.05;font-weight:500;letter-spacing:-.04em;max-width:18ch;text-wrap:balance}
 .lead{font-size:clamp(1.0625rem,1rem + .3vw,1.1875rem);color:var(--mu);max-width:60ch;margin-top:20px;text-wrap:pretty}
 .head{margin-bottom:clamp(40px,6vw,64px)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 26px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:.9375rem;text-decoration:none;border:1px solid var(--ink);transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease);cursor:pointer;font-family:inherit;text-align:center}
@@ -329,6 +331,13 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr);le
 .qi[hidden]{display:none}
 .qi input{flex:1;min-width:0;font:inherit;font-size:1rem;border:1px solid #d6d1c8;border-radius:999px;padding:0 16px;min-height:48px}
 .qi button{min-height:48px;padding:0 18px}
+
+/* Schrift-Test Inter + DM Mono (wie Noon) */
+body{font-feature-settings:"ss01","cv11";letter-spacing:-.011em}
+.label,.eyebrow,.loc,.num,.pain .sol small,.panel h3,.post .meta,.about .role,.ft h2{font-family:var(--mono);font-weight:400;letter-spacing:.02em;font-size:.75rem}
+.card h3,.step h3,.faq summary,.form h3{font-weight:500;letter-spacing:-.02em}
+.mega{font-weight:400;letter-spacing:-.055em}
+.kpis dt,.res b,.stats3 b{font-weight:400;letter-spacing:-.05em}
 
 /* Sanftes Einblenden, nur wo der Browser es nativ kann (kein JS, kein Layout-Shift) */
 @media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 45%}@keyframes rv{from{opacity:0;transform:translateY(28px)}}}}</style>
