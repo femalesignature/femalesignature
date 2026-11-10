@@ -1003,10 +1003,27 @@ def page(T):
 """
 
 
+def versioned(html):
+    """Hängt an jede lokale Bild- und Schriftadresse einen Inhalts-Fingerabdruck (?v=...).
+    Bilder werden 30 Tage im Browser gehalten; ohne Fingerabdruck sähe man nach einem
+    Bildtausch weiter das alte Bild."""
+    import hashlib
+    import re
+    cache = {}
+
+    def rep(m):
+        path = m.group(0)
+        if path not in cache:
+            f = ROOT / path.lstrip("/")
+            cache[path] = path + "?v=" + hashlib.sha1(f.read_bytes()).hexdigest()[:8] if f.exists() else path
+        return cache[path]
+    return re.sub(r"/(?:images|fonts)/[\w./-]+\.(?:webp|jpg|png|svg|woff2)(?![\w?])", rep, html)
+
+
 def main():
-    (ROOT / "index.html").write_text(page(DE), encoding="utf-8")
+    (ROOT / "index.html").write_text(versioned(page(DE)), encoding="utf-8")
     (ROOT / "en").mkdir(exist_ok=True)
-    (ROOT / "en" / "index.html").write_text(page(EN), encoding="utf-8")
+    (ROOT / "en" / "index.html").write_text(versioned(page(EN)), encoding="utf-8")
     for p in ("index.html", "en/index.html"):
         print(p, (ROOT / p).stat().st_size, "Bytes")
 
