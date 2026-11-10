@@ -65,7 +65,11 @@ def main():
         im = ImageOps.exif_transpose(Image.open(src)).convert("RGB") if src else placeholder(ratio, label)
         for w in widths:
             out = OUT / f"{name}-{w}.webp"
-            cover(im, ratio, min(w, im.width)).save(out, quality=72, method=6)
+            img = cover(im, ratio, min(w, im.width))
+            for q in (72, 66, 60, 54, 48):  # Regel: jede Datei unter 100 KB
+                img.save(out, quality=q, method=6)
+                if out.stat().st_size < 100 * 1024:
+                    break
         print(f"{name:15} {'ORIGINAL ' + src.name if src else 'Platzhalter'}  {max((OUT / f'{name}-{w}.webp').stat().st_size for w in widths) // 1024} KB max")
 
 
