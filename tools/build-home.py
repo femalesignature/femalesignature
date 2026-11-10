@@ -521,6 +521,8 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .ticks .ic{color:var(--fr);margin-top:.25em}
 .sysc .foot{margin-top:auto;padding-top:24px;display:flex;gap:8px;flex-wrap:wrap}
 @media (min-width:900px){.sysc{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}.sysc:nth-child(even) .shot{order:2}}
+/* Gestapelte Karten wie Vosello "Recent talks": jede Karte bleibt oben stehen, die nächste schiebt sich darüber, die untere wird kleiner */
+@media (min-width:900px) and (min-height:700px){.sysl{gap:40px;padding-bottom:8px}.sysc{position:sticky;top:calc(104px + var(--i) * 18px);transform-origin:50% 0;box-shadow:0 -24px 48px -36px rgba(40,22,22,.45),0 0 0 1px rgba(40,22,22,.04);will-change:scale}.sysc.rv{animation:none}}
 
 /* Partnership */
 .pmc{display:grid;gap:clamp(28px,4vw,56px);align-items:center}
@@ -713,6 +715,7 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 JS = r"""
 (function(){
 var d=document,hd=d.querySelector('.hd'),mb=d.querySelector('.mbtn'),mn=d.getElementById('mnav');
+var sk=[].slice.call(d.querySelectorAll('.sysc')),smq=matchMedia('(min-width:900px) and (min-height:700px) and (prefers-reduced-motion:no-preference)'),stt=0;function stk(){stt=0;var on=smq.matches;sk.forEach(function(c,i){var n=sk[i+1];if(!on||!n){c.style.scale='';return}var r=c.getBoundingClientRect(),p=Math.min(1,Math.max(0,(r.bottom-n.getBoundingClientRect().top)/r.height));c.style.scale=(1-p*.07).toFixed(4)})}addEventListener('scroll',function(){if(!stt)stt=requestAnimationFrame(stk)},{passive:true});addEventListener('resize',stk);stk();
 function sc(){hd.classList.toggle('sc',scrollY>8)}addEventListener('scroll',sc,{passive:true});requestAnimationFrame(sc);
 function closeNav(){mn.hidden=true;mb.setAttribute('aria-expanded','false');mb.setAttribute('aria-label',mb.dataset.open)}
 mb.addEventListener('click',function(){var o=mn.hidden;mn.hidden=!o;mb.setAttribute('aria-expanded',String(o));mb.setAttribute('aria-label',o?mb.dataset.close:mb.dataset.open)});
@@ -755,7 +758,7 @@ def page(T):
 
     sys_imgs = ["s1-brand", "s2-content", "s3-partnership", "s4-performance"]
     systems = "".join(
-        f'<article class="card sysc rv zoomhover"><div class="shot">{pic(sys_imgs[i], "s", "(min-width:900px) 560px, 92vw", 4 / 3)}</div>'
+        f'<article class="card sysc rv zoomhover" style="--i:{i}"><div class="shot">{pic(sys_imgs[i], "s", "(min-width:900px) 560px, 92vw", 4 / 3)}</div>'
         f'<div class="txt"><div class="top"><span class="num">0{i + 1}</span><span class="pill">{esc(n)}</span></div>'
         f'<h3>{esc(h)}</h3><p>{esc(p)}</p><ul class="ticks">'
         + "".join(f"<li>{ICON_CHECK}<span>{esc(x)}</span></li>" for x in items) + "</ul></div></article>"
