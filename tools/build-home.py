@@ -297,6 +297,17 @@ def pic(name, kind, sizes, ratio, alt=""):
             f'alt="{esc(alt)}" loading="lazy" decoding="async">')
 
 
+def words(t, start=22, span=36):
+    """Zitat Wort für Wort, damit es sich beim Lesen aufbaut (Schreibeffekt). **fett** bleibt fett."""
+    toks = [(w, k % 2 == 1) for k, seg in enumerate(t.split("**")) for w in seg.split()]
+    n = len(toks)
+    out = []
+    for i, (w, b) in enumerate(toks):
+        tag = "strong" if b else "span"
+        out.append(f'<{tag} class="w" style="--s:{start + i / n * span:.1f}%;--e:{start + 8 + i / n * span:.1f}%">{esc(w)}</{tag}>')
+    return " ".join(out)
+
+
 def bold(t):
     parts = esc(t).split("**")
     return "".join(f"<strong>{x}</strong>" if i % 2 else x for i, x in enumerate(parts))
@@ -553,7 +564,7 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .sysc .foot{margin-top:auto;padding-top:24px;display:flex;gap:8px;flex-wrap:wrap}
 @media (min-width:900px){.sysc{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}.sysc:nth-child(even) .shot{order:2}}
 /* Gestapelte Karten wie Vosello "Recent talks": jede Karte bleibt oben stehen, die nächste schiebt sich darüber, die untere wird kleiner */
-@media (min-width:900px) and (min-height:700px){.sysl{gap:40px;padding-bottom:8px}.sysc{position:sticky;top:calc(104px + var(--i) * 18px);transform-origin:50% 0;box-shadow:0 -24px 48px -36px rgba(40,22,22,.45),0 0 0 1px rgba(40,22,22,.04);will-change:scale}.sysc.rv{animation:none}}
+@media (min-width:900px) and (min-height:700px){.sysl{gap:40px;padding-bottom:8px}.sysc{position:sticky;top:calc(104px + var(--i) * 18px);transform-origin:50% 0;box-shadow:0 -24px 48px -36px rgba(40,22,22,.45),0 0 0 1px rgba(40,22,22,.04);will-change:scale}}
 
 /* Partnership */
 .pmc{display:grid;gap:clamp(28px,4vw,56px);align-items:center}
@@ -610,10 +621,13 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .mf .by{display:inline-flex;align-items:center;gap:14px;margin-top:clamp(28px,4vw,40px);padding:8px 20px 8px 8px;border-radius:999px;background:var(--ow);text-align:left;font-size:.9375rem}
 .mf .by img{width:52px;height:52px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--card),0 0 0 3px var(--fr)}
 .mf .by span{display:block;font-size:.8125rem;color:var(--mu)}
+/* Schreibeffekt für alle Zitate: Wörter gehen beim Lesen von Grau in die volle Farbe über */
+.wr{--wf:#857E77;--wt:#1C1C1C}
+.abx blockquote.wr{--wf:#6F6963;--wt:#5C1F2B}
 @media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){
-.mfq{view-timeline:--mfq block}
-.mfq .w{animation:wl linear both;animation-timeline:--mfq;animation-range:cover var(--s) cover var(--e)}
-@keyframes wl{from{color:#857E77}to{color:#1C1C1C}}
+.wr{view-timeline:--wr block}
+.wr .w{animation:wl linear both;animation-timeline:--wr;animation-range:cover var(--s) cover var(--e)}
+@keyframes wl{from{color:var(--wf)}to{color:var(--wt)}}
 }}
 
 /* Ansatz: Kopf mit Bild, darunter Zeitleiste, deren Linie sich beim Scrollen zieht */
@@ -860,12 +874,21 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .qi button{min-height:48px;padding:0 18px}
 
 /* Sanftes Einblenden, nur wo der Browser es nativ kann (kein JS, kein Layout-Shift) */
-@media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 45%}@keyframes rv{from{opacity:0;transform:translateY(28px)}}}}
+/* Einheitliches Erscheinen wie bei Noon: Label, Überschrift, Text, Knopf gleiten nacheinander hoch,
+   kleinere Elemente kommen leicht vergrößert. Nur mit JS (Klasse .ani), sonst ist alles sofort da. */
+.ani .ap{opacity:0;translate:0 30px}
+.ani .ap.sm{translate:0 18px;scale:.94}
+.ani .ap.in{opacity:1;translate:none;scale:none;transition:opacity .9s var(--ease) var(--d,0s),translate 1.1s var(--ease) var(--d,0s),scale 1.1s var(--ease) var(--d,0s)}
 """
 
 JS = r"""
 (function(){
 var d=document,hd=d.querySelector('.hd'),mb=d.querySelector('.mbtn'),mn=d.getElementById('mnav');
+/* Einheitliches Erscheinen: Elemente sammeln, je Gruppe gestaffelt, nach dem Auftritt Klassen wieder entfernen */
+if(d.documentElement.classList.contains('ani')){var AP='.sec .label,.sec .h2,.sec .lead,.sec .acts,.aph .btn,.pl .head .btn,.faq .btn,.ticks li,.feat blockquote,.feat figcaption,.abx .media,.abx h2,.abx blockquote,.abx .role,.abx .bio,.resh .lead,.tmq,.tpz,.blg>.post,.faq details,.brands li,.ctab>div>*,.ftg>*,.ftw,.fb',SM='.ri,.post,.panel,.mf,.cpan,.form,.aph .shot,.ri,.stats3>div',seen=[];
+d.querySelectorAll(AP+','+SM).forEach(function(e){if(e.closest('.hero,.sysc,.pi,.tl,.ring'))return;if(seen.indexOf(e)<0)seen.push(e)});
+var aio=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;var e=x.target;aio.unobserve(e);e.classList.add('in');setTimeout(function(){e.classList.remove('ap','sm','in');e.style.removeProperty('--d')},1300+parseFloat(e.style.getPropertyValue('--d')||0)*1000)})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+var grp=new Map();seen.forEach(function(e){var p=e.parentElement,k=grp.get(p)||0;grp.set(p,k+1);e.classList.add('ap');if(e.matches(SM))e.classList.add('sm');e.style.setProperty('--d',Math.min(k*.09,.45).toFixed(2)+'s');aio.observe(e)})}
 var rg=d.querySelector('.ring');if(rg){var rb=[].slice.call(rg.querySelectorAll('.rn')),rc=rg.querySelector('.rc'),ro=rg.querySelector('.rgo'),rN=rb.length,ri=0,rr=0,rh=0,rv=false,rm=matchMedia('(prefers-reduced-motion: reduce)'),rset=function(i){rr+=((i-ri)%rN+rN)%rN*(360/rN);ri=i;ro.style.transform='rotate('+rr+'deg)';rb.forEach(function(b,k){b.classList.toggle('on',k===i);b.setAttribute('aria-pressed',k===i?'true':'false')});var b=rb[i];rc.children[0].textContent=b.dataset.n;rc.children[1].textContent=b.dataset.p;rc.children[2].textContent=b.dataset.t;rc.classList.remove('sw');void rc.offsetWidth;rc.classList.add('sw')};
 rb.forEach(function(b,k){b.addEventListener('click',function(){rh=Date.now()+10000;rset(k)})});
 if('IntersectionObserver'in window){if(!rm.matches)rg.classList.add('pre');new IntersectionObserver(function(e){rv=e[0].isIntersecting;if(rv&&rg.classList.contains('pre')){rg.classList.add('drawn');requestAnimationFrame(function(){rg.classList.remove('pre')})}},{threshold:.4}).observe(rg)}
@@ -956,16 +979,7 @@ def page(T):
         pre, num, suf = m.groups()
         return (f'<i>{esc(pre)}</i>' if pre else "") + f'<span data-count>{esc(num)}</span>' + (f'<i>{esc(suf)}</i>' if suf else "")
 
-    # Manifest: jedes Wort einzeln, damit es beim Lesen aufhellen kann
-    mf_tokens = []
-    for k, seg in enumerate(T["stmt"].split("**")):
-        for w in seg.split():
-            mf_tokens.append((w, k % 2 == 1))
-    nw = len(mf_tokens)
-    mf_words = " ".join(
-        (f'<strong class="w" style="--s:{22 + i / nw * 36:.1f}%;--e:{30 + i / nw * 36:.1f}%">{esc(w)}</strong>' if b else
-         f'<span class="w" style="--s:{22 + i / nw * 36:.1f}%;--e:{30 + i / nw * 36:.1f}%">{esc(w)}</span>')
-        for i, (w, b) in enumerate(mf_tokens))
+    mf_words = words(T["stmt"])
 
     results = "".join(
         f'<div class="ri rv"><p class="big">{big_num(n)}</p><strong>{esc(u)}</strong><p>{esc(d)}</p></div>'
@@ -977,7 +991,7 @@ def page(T):
                 f'<span><strong>{esc(name)}</strong><span>{esc(role)}</span></span></figcaption></figure>')
     pairs = list(zip(PEOPLE, T["testis"]))
     (fimg, fname), (fq, frole, _) = pairs[5]
-    featured = (f'<figure class="feat rv"><blockquote>„{esc(fq)}“</blockquote><figcaption><img src="/images/opt/{fimg}-96.webp" srcset="/images/opt/{fimg}-96.webp 96w, /images/opt/{fimg}-192.webp 192w" sizes="52px" width="52" height="52" alt="{esc(fname)}" loading="lazy" decoding="async">'
+    featured = (f'<figure class="feat"><blockquote class="wr">{words("„" + fq + "“")}</blockquote><figcaption><img src="/images/opt/{fimg}-96.webp" srcset="/images/opt/{fimg}-96.webp 96w, /images/opt/{fimg}-192.webp 192w" sizes="52px" width="52" height="52" alt="{esc(fname)}" loading="lazy" decoding="async">'
                 f'<span><strong>{esc(fname)}</strong><span>{esc(frole)}</span></span></figcaption></figure>')
     testis = "".join(tcard(img, name, q, role, o) for (img, name), (q, role, o) in pairs[:5])
     testis_dup = testis.replace('<figure class="card">', '<figure class="card" aria-hidden="true">')
@@ -1011,6 +1025,7 @@ def page(T):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script>if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('ani')</script>
 <title>{esc(T["title"])}</title>
 <meta name="description" content="{esc(T["desc"])}">
 <link rel="canonical" href="{url}">
@@ -1105,7 +1120,7 @@ def page(T):
 </section>
 
 <div class="wrap mfw"><section class="mf rv" aria-label="Manifest">
-<p class="mfq">{mf_words}</p>
+<p class="mfq wr">{mf_words}</p>
 <p class="mfe">{esc(T["stmt_em"])}</p>
 <p class="by"><img src="/images/opt/mediha-face-96.webp" srcset="/images/opt/mediha-face-96.webp 96w, /images/opt/mediha-face-192.webp 192w" sizes="52px" width="52" height="52" alt="Mag. (FH) Mediha Mujcin" loading="lazy" decoding="async"><span><strong>Mag. (FH) Mediha Mujcin</strong><span>CEO &amp; Founder · Female Signature</span></span></p>
 </section></div>
@@ -1138,7 +1153,7 @@ def page(T):
 <div class="wrap">
 <div class="abx">
 <div class="media"><div class="shot">{pic("about", "p", "(min-width:900px) 520px, 92vw", 4 / 5, T["ceo_alt"])}</div></div>
-<div class="txt rv"><p class="label">{esc(T["about"])}</p><h2 id="about-h">Mediha Mujcin</h2><blockquote>{esc(T["ceo_quote"])}</blockquote><span class="role">Mag. (FH) · CEO &amp; Founder</span><p class="bio">{esc(T["ceo_bio"])}</p>
+<div class="txt rv"><p class="label">{esc(T["about"])}</p><h2 id="about-h">Mediha Mujcin</h2><blockquote class="wr">{words(T["ceo_quote"])}</blockquote><span class="role">Mag. (FH) · CEO &amp; Founder</span><p class="bio">{esc(T["ceo_bio"])}</p>
 <div class="acts"><a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta"])} {ICON_ARROW}</a><a class="btn soft" href="{LI}" target="_blank" rel="noopener">LinkedIn {ICON_ARROW}</a></div></div>
 </div>
 </div>
