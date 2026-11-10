@@ -50,6 +50,7 @@ DE = {
     "hero_btn2": "Unsere Systeme",
     "stories_link": "Growth Stories",
     "region": "Aldrans, Tirol · DACH",
+    "call_label": "Kostenfreier Strategie-Call",
     "pain_label": "Kommt Ihnen das bekannt vor?",
     "pain_h2": ("Die Realität vieler", "Female Businesses."),
     "solution": "Unsere Lösung",
@@ -171,6 +172,7 @@ EN = {
     "hero_btn2": "Explore our Systems",
     "stories_link": "Growth Stories",
     "region": "Aldrans, Tyrol · DACH",
+    "call_label": "Free Strategy Call",
     "pain_label": "Does this sound familiar?",
     "pain_h2": ("The reality of many", "female businesses."),
     "solution": "Our Solution",
@@ -363,7 +365,8 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr);le
 /* Header */
 .hd{position:fixed;inset:0 0 auto;z-index:50;background:rgba(255,255,255,.86);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
 .hd.sc{border-color:var(--bd)}
-.hd .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+.hd:not(.sc){background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.hd .wrap{max-width:none;display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
 .logo{display:flex;align-items:center;min-height:44px}
 .logo img{width:clamp(168px,22vw,220px);height:auto}
 .nav{display:none;align-items:center;gap:6px}
@@ -385,29 +388,57 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr);le
 .mnav .btn{margin-top:16px;border-bottom:0;color:#fff;font-size:1rem}
 @media (min-width:1000px){.nav{display:flex}.mbtn,.mnav{display:none!important}}
 
-/* Hero */
-.hero{padding:clamp(120px,16vw,176px) 0 clamp(56px,8vw,96px)}
-.hero .wrap,.pm,.ap,.about,.faq,.contact{grid-template-columns:minmax(0,1fr)}
-.hero .wrap{display:grid;gap:clamp(40px,6vw,72px);align-items:end}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--bd);background:#fff;font-size:.8125rem;font-weight:500;color:var(--ink)}
-.chip.dark{background:var(--ow);border-color:var(--ow)}
-.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--fr)}
-.h1{font-size:clamp(2.375rem,1.1rem + 4.6vw,4.75rem);line-height:1.02;font-weight:600;letter-spacing:-.035em;text-wrap:balance}
-.h1 em{display:block;margin-top:.08em;letter-spacing:-.01em}
-.hero .lead{margin-top:28px;max-width:56ch}
-.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.trust{display:flex;align-items:center;gap:14px;margin-top:40px;flex-wrap:wrap}
+/* Hero: Foto links randlos, Aussage rechts, Markenname groß über die ganze Breite */
+.hero{--mf:clamp(3.25rem,16vw,6.5rem);position:relative;background:var(--ow);overflow:hidden;padding:72px 0 56px}
+@media (max-width:999px){.hd:not(.sc){background:var(--ow)}}
+.hero-img{position:relative;margin:0;height:min(124vw,660px);border-radius:0 0 28px 28px;overflow:hidden;background:#e6e0d6;z-index:2}
+.hero-img .par{position:absolute;inset:-10% 0 0}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 16%}
+.hero-img::before{content:"";display:none;position:absolute;inset:0 0 auto;height:22%;background:linear-gradient(to bottom,rgba(244,241,235,.78),rgba(244,241,235,0));pointer-events:none;z-index:1}
+.hero-img::after{content:"";position:absolute;inset:auto 0 0;height:48%;background:linear-gradient(to top,rgba(28,28,28,.62),rgba(28,28,28,0));pointer-events:none;z-index:1}
+.mega{display:block;font-size:var(--mf);font-weight:600;letter-spacing:-.05em;line-height:.88;white-space:nowrap;color:var(--ink)}
+.mega em{letter-spacing:-.02em;padding-right:.04em}
+.hero>.mega{display:none}
+.mega.on{position:absolute;left:var(--pad);bottom:calc(var(--mf) * .18 + 8px);z-index:2;color:var(--ow)}
+.mega.on em{color:var(--ow);display:block}
+.loc{position:absolute;left:var(--pad);bottom:calc(var(--mf) * 1.94 + 32px);z-index:2;margin:0;font-size:.6875rem;font-weight:600;letter-spacing:.16em;line-height:1.6;text-transform:uppercase;color:var(--ow)}
+.hero-txt{padding:40px var(--pad) 0}
+.hero .h1{font-size:clamp(2rem,1.3rem + 2.6vw,3.375rem);line-height:1.06;letter-spacing:-.03em;max-width:17ch}
+.hero .h1 em{display:block;margin-top:.06em}
+.hero .lead{margin-top:20px;max-width:46ch}
+.meta{display:grid;gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid #dcd6cc}
+.meta .k{font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;line-height:1.6;margin-bottom:14px;max-width:26ch}
+.meta .trust{margin:0;gap:12px}
+.callcard{display:flex;align-items:center;gap:14px;min-height:72px;padding:10px 18px 10px 10px;border-radius:20px;background:var(--fr);color:var(--ow);text-decoration:none;font-weight:600;font-size:.9375rem;line-height:1.3;transition:background .3s var(--ease),transform .3s var(--ease)}
+.callcard:hover{background:var(--fd);transform:translateY(-2px)}
+.callcard img{width:52px;height:52px;border-radius:14px;object-fit:cover;flex:none}
+.callcard .ic{margin-left:auto;width:1.25em;height:1.25em}
 .faces{display:flex}
-.faces img{width:44px;height:44px;border-radius:50%;border:2px solid #fff;object-fit:cover;background:var(--ow)}
+.faces img{width:44px;height:44px;border-radius:50%;border:2px solid var(--ow);object-fit:cover;background:var(--ow)}
 .faces img+img{margin-left:-12px}
-.portrait{position:relative;margin:0;max-width:420px;width:100%;justify-self:start}
-.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 12%;border-radius:var(--r);background:var(--ow)}
-.portrait figcaption{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:16px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.8125rem;line-height:1.35}
-.portrait figcaption .link{width:44px;height:44px;justify-content:center;border-radius:50%;background:var(--ow)}
-.portrait figcaption strong{display:block;font-size:.9375rem}
-.portrait figcaption span{color:var(--mu)}
-@media (min-width:900px){.hero .wrap{grid-template-columns:minmax(0,1.7fr) minmax(0,.7fr)}.portrait{justify-self:end}}
+.trust{display:flex;align-items:center;flex-wrap:wrap}
+@media (min-width:600px){.meta{grid-template-columns:1fr 1fr;gap:32px}}
+@media (min-width:1000px){
+.hero{--mf:clamp(5rem,10.6vw,12.5rem);min-height:clamp(700px,100svh,1040px);padding:0}
+.hero-img::before{display:block}
+.hero-img{position:absolute;top:0;left:0;bottom:0;width:50%;height:auto;border-radius:0 0 56px 0}
+.hero>.mega,.mega.on{position:absolute;left:var(--pad);bottom:calc(var(--mf) * .2 + 12px)}
+.hero>.mega{display:block;z-index:1}
+.mega.on em{display:inline}
+.loc{bottom:calc(var(--mf) * 1.08 + 40px)}
+.hero-txt{margin-left:50%;min-height:inherit;display:flex;flex-direction:column;padding:clamp(112px,13vh,150px) var(--pad) calc(var(--mf) * 1.08 + 56px) clamp(32px,4.5vw,72px)}
+.meta{margin-top:auto}
+}
+@media (prefers-reduced-motion:no-preference){
+.hero-img img{animation:hz 1.8s var(--ease) both}
+.mega{animation:mu 1.1s var(--ease) .15s both}
+.hero-txt>*,.loc{animation:fu .9s var(--ease) both}
+.hero-txt>:nth-child(2){animation-delay:.1s}.hero-txt>:nth-child(3){animation-delay:.2s}.loc{animation-delay:.3s}
+@keyframes hz{from{transform:scale(1.08)}}
+@keyframes mu{from{opacity:0;transform:translateY(35%)}}
+@keyframes fu{from{opacity:0;transform:translateY(18px)}}
+@supports (animation-timeline:scroll()){.hero-img .par{animation:px linear both;animation-timeline:scroll(root);animation-range:0 100vh}@keyframes px{to{transform:translateY(9%)}}}
+}
 
 /* Marquee */
 .mq{border-block:1px solid var(--bd);background:var(--ow);overflow:hidden;padding:22px 0}
@@ -706,7 +737,7 @@ def page(T):
 <meta name="twitter:image" content="{SITE}{T["og_image"]}">
 <link rel="icon" href="/images/monogram-square-burgundy.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/montserrat-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/images/opt/mediha-600.webp" as="image" type="image/webp" imagesrcset="/images/opt/mediha-400.webp 400w, /images/opt/mediha-600.webp 600w, /images/opt/mediha-768.webp 768w" imagesizes="(min-width:900px) 360px, (min-width:460px) 420px, 92vw" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" imagesrcset="/images/opt/hero-mediha-480.webp 480w, /images/opt/hero-mediha-720.webp 720w, /images/opt/hero-mediha-960.webp 960w, /images/opt/hero-mediha-1024.webp 1024w" imagesizes="(min-width:1000px) 50vw, 100vw" fetchpriority="high">
 <style>{CSS.strip()}</style>
 <script type="application/ld+json">{schema(T)}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VXL6C4DDES"></script>
@@ -728,18 +759,19 @@ def page(T):
 
 <main id="main">
 <section class="hero" aria-labelledby="h1">
-<div class="wrap">
-<div>
-<div class="chips"><span class="chip"><span class="dot" aria-hidden="true"></span>{esc(T["hero_label"])}</span><span class="chip dark">{esc(T["region"])}</span></div>
+<span class="mega" aria-hidden="true">Female <em>Signature</em></span>
+<figure class="hero-img">
+<div class="par"><img src="/images/opt/hero-mediha-960.webp" srcset="/images/opt/hero-mediha-480.webp 480w, /images/opt/hero-mediha-720.webp 720w, /images/opt/hero-mediha-960.webp 960w, /images/opt/hero-mediha-1024.webp 1024w" sizes="(min-width:1000px) 50vw, 100vw" width="1024" height="1536" alt="{esc(T["ceo_alt"])}" fetchpriority="high" decoding="async"></div>
+<p class="loc">{esc(T["region"])}<br>Mag. (FH) Mediha Mujcin, CEO &amp; Founder</p>
+<span class="mega on" aria-hidden="true">Female <em>Signature</em></span>
+</figure>
+<div class="hero-txt">
 <h1 class="h1" id="h1">{esc(T["h1a"])} <em>{esc(T["h1b"])}</em></h1>
 <p class="lead">{esc(T["hero_sub"])}</p>
-<div class="acts"><a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta"])} {ICON_ARROW}</a><a class="btn ghost" href="#systems">{esc(T["hero_btn2"])}</a></div>
-<div class="trust"><div class="faces">{face_imgs}</div><a class="link" href="#stories">{esc(T["stories_link"])} {ICON_ARROW}</a></div>
+<div class="meta">
+<div><p class="k">{esc(T["hero_label"])}</p><div class="trust"><div class="faces">{face_imgs}</div><a class="link" href="#stories">{esc(T["stories_link"])} {ICON_ARROW}</a></div></div>
+<div><p class="k">{esc(T["call_label"])}</p><a class="callcard" href="{CAL}" target="_blank" rel="noopener"><img src="/images/opt/hero-face-56.webp" srcset="/images/opt/hero-face-56.webp 56w, /images/opt/hero-face-112.webp 112w" sizes="52px" width="52" height="52" alt="" decoding="async"><span>{esc(T["cta"])}</span>{ICON_ARROW}</a></div>
 </div>
-<figure class="portrait">
-<img src="/images/opt/mediha-600.webp" srcset="/images/opt/mediha-400.webp 400w, /images/opt/mediha-600.webp 600w, /images/opt/mediha-768.webp 768w" sizes="(min-width:900px) 360px, (min-width:460px) 420px, 92vw" width="600" height="750" alt="{esc(T["ceo_alt"])}" fetchpriority="high" decoding="async">
-<figcaption><span><strong>Mediha Mujcin</strong><span>CEO &amp; Founder</span></span><a class="link" href="#about" aria-label="{esc(T["about"])}: Mediha Mujcin">{ICON_ARROW}</a></figcaption>
-</figure>
 </div>
 </section>
 
