@@ -50,6 +50,7 @@ DE = {
     "hero_btn2": "Unsere Systeme",
     "stories_link": "Growth Stories",
     "region": "Aldrans, Tirol · DACH",
+    "trust_line": "Unsere Kundinnen wachsen messbar.",
     "call_label": "Kostenfreier Strategie-Call",
     "pain_label": "Kommt Ihnen das bekannt vor?",
     "pain_h2": ("Die Realität vieler", "Female Businesses."),
@@ -172,6 +173,7 @@ EN = {
     "hero_btn2": "Explore our Systems",
     "stories_link": "Growth Stories",
     "region": "Aldrans, Tyrol · DACH",
+    "trust_line": "Our clients grow measurably.",
     "call_label": "Free Strategy Call",
     "pain_label": "Does this sound familiar?",
     "pain_h2": ("The reality of many", "female businesses."),
@@ -359,6 +361,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr);le
 .btn.ghost:hover{border-color:var(--ink);background:transparent}
 .btn .ic{transition:transform .3s var(--ease)}
 .btn:hover .ic{transform:translateX(3px)}
+.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
 .link{display:inline-flex;align-items:center;gap:8px;font-weight:600;text-decoration:none;color:var(--fr);min-height:44px}
 .link:hover{text-decoration:underline;text-underline-offset:4px}
 
@@ -388,56 +391,61 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr);le
 .mnav .btn{margin-top:16px;border-bottom:0;color:#fff;font-size:1rem}
 @media (min-width:1000px){.nav{display:flex}.mbtn,.mnav{display:none!important}}
 
-/* Hero: Foto links randlos, Aussage rechts, Markenname groß über die ganze Breite */
-.hero{--mf:clamp(3.25rem,16vw,6.5rem);position:relative;background:var(--ow);overflow:hidden;padding:72px 0 56px}
+/* Hero: Foto links randlos mit Markenname, Aussage rechts */
+.hero{--mf:clamp(3.25rem,16vw,6.5rem);position:relative;background:var(--ow);overflow:hidden;padding:72px 0 64px}
 @media (max-width:999px){.hd:not(.sc){background:var(--ow)}}
-.hero-img{position:relative;margin:0;height:min(124vw,660px);border-radius:0 0 28px 28px;overflow:hidden;background:#e6e0d6;z-index:2}
-.hero-img .par{position:absolute;inset:-10% 0 0}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 16%}
-.hero-img::before{content:"";display:none;position:absolute;inset:0 0 auto;height:22%;background:linear-gradient(to bottom,rgba(244,241,235,.78),rgba(244,241,235,0));pointer-events:none;z-index:1}
-.hero-img::after{content:"";position:absolute;inset:auto 0 0;height:48%;background:linear-gradient(to top,rgba(28,28,28,.62),rgba(28,28,28,0));pointer-events:none;z-index:1}
-.mega{display:block;font-size:var(--mf);font-weight:600;letter-spacing:-.05em;line-height:.88;white-space:nowrap;color:var(--ink)}
-.mega em{letter-spacing:-.02em;padding-right:.04em}
-.hero>.mega{display:none}
-.mega.on{position:absolute;left:var(--pad);bottom:calc(var(--mf) * .18 + 8px);z-index:2;color:var(--ow)}
-.mega.on em{color:var(--ow);display:block}
-.loc{position:absolute;left:var(--pad);bottom:calc(var(--mf) * 1.94 + 32px);z-index:2;margin:0;font-size:.6875rem;font-weight:600;letter-spacing:.16em;line-height:1.6;text-transform:uppercase;color:var(--ow)}
-.hero-txt{padding:40px var(--pad) 0}
-.hero .h1{font-size:clamp(2rem,1.3rem + 2.6vw,3.375rem);line-height:1.06;letter-spacing:-.03em;max-width:17ch}
-.hero .h1 em{display:block;margin-top:.06em}
-.hero .lead{margin-top:20px;max-width:46ch}
-.meta{display:grid;gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid #dcd6cc}
-.meta .k{font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;line-height:1.6;margin-bottom:14px;max-width:26ch}
-.meta .trust{margin:0;gap:12px}
-.callcard{display:flex;align-items:center;gap:14px;min-height:72px;padding:10px 18px 10px 10px;border-radius:20px;background:var(--fr);color:var(--ow);text-decoration:none;font-weight:600;font-size:.9375rem;line-height:1.3;transition:background .3s var(--ease),transform .3s var(--ease)}
-.callcard:hover{background:var(--fd);transform:translateY(-2px)}
-.callcard img{width:52px;height:52px;border-radius:14px;object-fit:cover;flex:none}
-.callcard .ic{margin-left:auto;width:1.25em;height:1.25em}
+.hero-img{position:relative;margin:0;height:min(124vw,660px);border-radius:0 0 28px 28px;overflow:hidden;background:#e6e0d6}
+.hero-img .par{position:absolute;inset:0 0 -10%}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.hero-img::before{content:"";display:none;position:absolute;inset:0 0 auto;height:18%;background:linear-gradient(to bottom,rgba(244,241,235,.7),rgba(244,241,235,0));pointer-events:none;z-index:1}
+.hero-img::after{content:"";position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(to top,rgba(20,18,18,.7) 0%,rgba(20,18,18,.35) 45%,rgba(20,18,18,0));pointer-events:none;z-index:1}
+.mega{position:absolute;left:var(--pad);bottom:calc(var(--mf) * .16 + 16px);z-index:2;margin:0;font-size:var(--mf);font-weight:500;letter-spacing:-.045em;line-height:.92;color:var(--ow);white-space:nowrap}
+.mega em{display:block;color:var(--ow);letter-spacing:-.015em}
+.loc{position:absolute;left:var(--pad);bottom:calc(var(--mf) * 2 + 36px);z-index:2;margin:0;display:flex;align-items:center;gap:12px;font-size:.6875rem;font-weight:600;letter-spacing:.18em;line-height:1.6;text-transform:uppercase;color:var(--ow)}
+.loc::before{content:"";width:28px;height:1px;background:currentColor;opacity:.7}
+.hero-txt{padding:48px var(--pad) 0}
+.eyebrow{display:flex;align-items:center;gap:14px;margin:0 0 28px;font-size:.6875rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--fr)}
+.eyebrow::before{content:"";width:36px;height:1px;background:var(--fr)}
+.hero .h1{font-size:clamp(2.125rem,1.5rem + 1.9vw,3.375rem);font-weight:500;line-height:1.08;letter-spacing:-.035em;max-width:15ch;text-wrap:balance}
+.hero .h1 em{display:block;margin-top:.08em;font-size:1.04em;letter-spacing:-.02em}
+.hero .lead{margin-top:24px;max-width:44ch;font-size:clamp(1rem,.95rem + .2vw,1.125rem);line-height:1.75}
+.hero .acts{align-items:center;gap:8px 28px;margin-top:36px}
+.hero .acts .btn{min-height:56px;padding:16px 28px}
+@media (max-width:479px){.hero .acts{justify-content:center}}
+.textlink{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:600;font-size:.9375rem;text-decoration:none;color:var(--ink);border-bottom:1px solid transparent}
+.textlink:hover{border-color:var(--ink)}
+.trust{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-top:32px}
 .faces{display:flex}
-.faces img{width:44px;height:44px;border-radius:50%;border:2px solid var(--ow);object-fit:cover;background:var(--ow)}
-.faces img+img{margin-left:-12px}
-.trust{display:flex;align-items:center;flex-wrap:wrap}
-@media (min-width:600px){.meta{grid-template-columns:1fr 1fr;gap:32px}}
+.faces img{width:40px;height:40px;border-radius:50%;border:2px solid var(--ow);object-fit:cover;background:var(--ow)}
+.faces img+img{margin-left:-10px}
+.trust p{flex:1;min-width:170px;margin:0;font-size:.875rem;line-height:1.45;color:var(--mu)}
+.trust a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid #cfc8bd}
+.trust a:hover{border-color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:48px 0 0;border-top:1px solid #d9d2c7}
+.kpis div{padding:22px 16px 0 0}
+.kpis div+div{padding-left:clamp(14px,2vw,28px);border-left:1px solid #d9d2c7}
+.kpis dt{font-size:clamp(1.75rem,1.3rem + 1.4vw,2.625rem);font-weight:500;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.kpis dd{margin:10px 0 0;font-size:.75rem;line-height:1.45;color:var(--mu)}
 @media (min-width:1000px){
-.hero{--mf:clamp(5rem,10.6vw,12.5rem);min-height:clamp(700px,100svh,1040px);padding:0}
+.hero{--mf:clamp(4.5rem,8.2vw,10.5rem);min-height:clamp(700px,100svh,1040px);padding:0}
+.hero-img{position:absolute;top:0;left:0;bottom:0;width:50%;height:auto;border-radius:0 0 48px 0}
 .hero-img::before{display:block}
-.hero-img{position:absolute;top:0;left:0;bottom:0;width:50%;height:auto;border-radius:0 0 56px 0}
-.hero>.mega,.mega.on{position:absolute;left:var(--pad);bottom:calc(var(--mf) * .2 + 12px)}
-.hero>.mega{display:block;z-index:1}
-.mega.on em{display:inline}
-.loc{bottom:calc(var(--mf) * 1.08 + 40px)}
-.hero-txt{margin-left:50%;min-height:inherit;display:flex;flex-direction:column;padding:clamp(112px,13vh,150px) var(--pad) calc(var(--mf) * 1.08 + 56px) clamp(32px,4.5vw,72px)}
-.meta{margin-top:auto}
+.mega{bottom:calc(var(--mf) * .2 + 24px)}
+.loc{bottom:calc(var(--mf) * 2.04 + 48px)}
+.hero-txt{margin-left:50%;min-height:inherit;display:flex;flex-direction:column;justify-content:center;padding:clamp(96px,12vh,128px) clamp(40px,5vw,96px) clamp(32px,5vh,56px) clamp(40px,6vw,112px)}
+.hero .lead{margin-top:clamp(16px,2.4vh,24px)}
+.hero .acts{margin-top:clamp(24px,3.6vh,36px)}
+.kpis{margin-top:clamp(32px,5vh,72px)}
 }
 @media (prefers-reduced-motion:no-preference){
 .hero-img img{animation:hz 1.8s var(--ease) both}
-.mega{animation:mu 1.1s var(--ease) .15s both}
+.mega{animation:mu 1.1s var(--ease) .2s both}
 .hero-txt>*,.loc{animation:fu .9s var(--ease) both}
-.hero-txt>:nth-child(2){animation-delay:.1s}.hero-txt>:nth-child(3){animation-delay:.2s}.loc{animation-delay:.3s}
-@keyframes hz{from{transform:scale(1.08)}}
-@keyframes mu{from{opacity:0;transform:translateY(35%)}}
-@keyframes fu{from{opacity:0;transform:translateY(18px)}}
-@supports (animation-timeline:scroll()){.hero-img .par{animation:px linear both;animation-timeline:scroll(root);animation-range:0 100vh}@keyframes px{to{transform:translateY(9%)}}}
+.hero-txt>:nth-child(2){animation-delay:.08s}.hero-txt>:nth-child(3){animation-delay:.16s}.hero-txt>:nth-child(4){animation-delay:.24s}.hero-txt>:nth-child(5){animation-delay:.32s}.hero-txt>:nth-child(6){animation-delay:.4s}.loc{animation-delay:.35s}
+@keyframes hz{from{transform:scale(1.06)}}
+@keyframes mu{from{opacity:0;transform:translateY(24%)}}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}}
+@supports (animation-timeline:scroll()){.hero-img .par{animation:px linear both;animation-timeline:scroll(root);animation-range:0 100vh}@keyframes px{to{transform:translateY(-8%)}}}
 }
 
 /* Marquee */
@@ -652,6 +660,7 @@ def page(T):
     face_imgs = "".join(
         f'<img src="/images/opt/{img}-96.webp" width="44" height="44" alt="" loading="lazy" decoding="async">' for img, _ in PEOPLE[:5])
 
+    kpis = "".join(f"<div><dt>{esc(n)}</dt><dd>{esc(u)}</dd></div>" for n, u, _ in T["results"])
     nav = "".join(f'<a href="{h}">{esc(t)}</a>' for h, t in T["nav"])
     lang_link = f'<a class="lang" href="{T["other_path"]}" hreflang="{"en" if L == "de" else "de"}" lang="{"en" if L == "de" else "de"}" aria-label="{T["other_label"]}, {esc(T["other_name"])}">{T["other_label"]}</a>'
 
@@ -759,19 +768,18 @@ def page(T):
 
 <main id="main">
 <section class="hero" aria-labelledby="h1">
-<span class="mega" aria-hidden="true">Female <em>Signature</em></span>
 <figure class="hero-img">
 <div class="par"><img src="/images/opt/hero-mediha-960.webp" srcset="/images/opt/hero-mediha-480.webp 480w, /images/opt/hero-mediha-720.webp 720w, /images/opt/hero-mediha-960.webp 960w, /images/opt/hero-mediha-1024.webp 1024w" sizes="(min-width:1000px) 50vw, 100vw" width="1024" height="1536" alt="{esc(T["ceo_alt"])}" fetchpriority="high" decoding="async"></div>
-<p class="loc">{esc(T["region"])}<br>Mag. (FH) Mediha Mujcin, CEO &amp; Founder</p>
-<span class="mega on" aria-hidden="true">Female <em>Signature</em></span>
+<p class="loc">{esc(T["region"])}</p>
+<p class="mega" aria-hidden="true">Female <em>Signature</em></p>
 </figure>
 <div class="hero-txt">
+<p class="eyebrow">{esc(T["hero_label"])}</p>
 <h1 class="h1" id="h1">{esc(T["h1a"])} <em>{esc(T["h1b"])}</em></h1>
 <p class="lead">{esc(T["hero_sub"])}</p>
-<div class="meta">
-<div><p class="k">{esc(T["hero_label"])}</p><div class="trust"><div class="faces">{face_imgs}</div><a class="link" href="#stories">{esc(T["stories_link"])} {ICON_ARROW}</a></div></div>
-<div><p class="k">{esc(T["call_label"])}</p><a class="callcard" href="{CAL}" target="_blank" rel="noopener"><img src="/images/opt/hero-face-56.webp" srcset="/images/opt/hero-face-56.webp 56w, /images/opt/hero-face-112.webp 112w" sizes="52px" width="52" height="52" alt="" decoding="async"><span>{esc(T["cta"])}</span>{ICON_ARROW}</a></div>
-</div>
+<div class="acts"><a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta"])} {ICON_ARROW}</a><a class="textlink" href="#systems">{esc(T["hero_btn2"])}</a></div>
+<div class="trust"><div class="faces">{face_imgs}</div><p><a href="#stories">{esc(T["stories_link"])}</a><br>{esc(T["trust_line"])}</p></div>
+<dl class="kpis">{kpis}</dl>
 </div>
 </section>
 
