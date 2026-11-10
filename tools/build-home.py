@@ -499,24 +499,41 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .num{font-size:.75rem;font-weight:600;letter-spacing:.14em;color:var(--fr)}
 
 /* Herausforderungen */
-.pain h3{font-size:1.125rem;line-height:1.3;font-weight:600;letter-spacing:-.01em}
-.pain>p{color:var(--mu);margin-top:12px}
-.pain{display:flex;flex-direction:column}
-.pain .sol{margin-top:auto;padding-top:22px}
-.pain .sol div{border-top:1px solid #e4ddd2;padding-top:16px}
-.pain .sol small{display:block;font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fr);margin-bottom:6px}
-.pain .sol p{margin:0;font-weight:500;font-size:.9375rem}
-/* Vom Problem zur Lösung: Karte kommt mit dem Problem, dann zieht sich eine Burgund-Linie durch, dann steigt die Lösung auf. Nur mit JS und ohne reduzierte Bewegung (Klasse .pfx). */
-.pfx .pain{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease) var(--pd,0s),transform .8s var(--ease) var(--pd,0s)}
-.pfx .pain .sol div{position:relative;border-top-color:transparent}
-.pfx .pain .sol div::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--fr);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.1s var(--ease) calc(var(--pd,0s) + .45s)}
-.pfx .pain .sol small,.pfx .pain .sol p{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease) calc(var(--pd,0s) + .85s),transform .7s var(--ease) calc(var(--pd,0s) + .85s)}
-.pfx .pain .sol p{transition-delay:calc(var(--pd,0s) + 1s)}
-.pfx .pain.on{opacity:1;transform:none}
-.pfx .pain.on .sol div::before{transform:scaleX(1)}
-.pfx .pain.on .sol small,.pfx .pain.on .sol p{opacity:1;transform:none}
-@media (min-width:700px){.pain:nth-child(2n){--pd:.15s}}
-@media (min-width:1000px){.pain:nth-child(2n){--pd:0s}.pain:nth-child(3n+2){--pd:.15s}.pain:nth-child(3n){--pd:.3s}}
+/* Realität: links feste Spalte, rechts ziehen Problem und Lösung vorbei (nach Neiden "What we build"); Handy: Slider nach rechts */
+.pl{display:grid;gap:clamp(32px,5vw,64px)}
+.pl .head{margin:0}
+.pctr{display:flex;align-items:center;gap:16px;margin-top:28px;font-size:.8125rem;font-weight:600;letter-spacing:.14em;color:var(--mu)}
+.pctr b{font-weight:600;color:var(--fr);min-width:2ch}
+.pctr i{flex:0 0 120px;height:2px;background:var(--bd);position:relative;overflow:hidden}
+.pctr i::after{content:"";position:absolute;inset:0;background:var(--fr);transform-origin:0 50%;transform:scaleX(var(--pp,.1667));transition:transform .6s var(--ease)}
+.pl .head .btn{margin-top:36px}
+.pi{display:flex;flex-direction:column;background:var(--card);border-radius:22px;padding:24px}
+.pi .n{font-size:.75rem;font-weight:600;letter-spacing:.14em;color:var(--fr)}
+.pi .n span{color:var(--mu)}
+.pi h3{margin-top:14px;font-size:clamp(1.25rem,1rem + 1.2vw,2.25rem);line-height:1.12;font-weight:500;letter-spacing:-.035em}
+.pi .pb{display:grid;gap:20px;margin-top:18px;flex:1}
+.pi .pb>p{margin:0;color:var(--mu)}
+.pi .sol{align-self:end;border-top:2px solid var(--fr);padding-top:14px}
+.pi .sol small{display:block;font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fr);margin-bottom:6px}
+.pi .sol p{margin:0;font-weight:500;font-size:.9375rem;line-height:1.55}
+@media (max-width:999px){.pil{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 calc(var(--pad)*-1);padding:0 var(--pad) 12px;scrollbar-width:none;scroll-padding-inline:var(--pad)}.pil::-webkit-scrollbar{display:none}.pi{flex:0 0 min(86%,440px);scroll-snap-align:start}.pl .head .btn{display:none}}
+@media (min-width:1000px){
+.pl{grid-template-columns:minmax(0,.8fr) minmax(0,1.45fr);gap:0 clamp(48px,6vw,96px);align-items:start}
+.pl .head{position:sticky;top:120px}
+.pil{border-left:1px solid var(--bd)}
+.pi{background:none;border-radius:0;padding:clamp(40px,5vh,64px) 0 clamp(40px,5vh,64px) clamp(32px,4vw,56px);border-bottom:1px solid var(--bd);min-height:min(62vh,560px);justify-content:center}
+.pi:first-child{padding-top:0;min-height:0}
+.pi .pb{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3vw,48px);margin-top:28px;flex:0}
+.pi .sol{align-self:start;background:var(--card);border-top:0;border-left:2px solid var(--fr);border-radius:0 14px 14px 0;padding:18px 20px}
+.pi:last-child{border-bottom:0}
+}
+@media (min-width:1000px) and (prefers-reduced-motion:no-preference){
+.js .pi>*,.js .pi h3,.js .pi .n,.js .pi .sol,.js .pi .sol small{transition:color .6s var(--ease),border-color .6s var(--ease),background-color .6s var(--ease),transform .7s var(--ease)}
+.js .pi:not(.act)>*{transform:translateX(18px)}
+.js .pi:not(.act) h3{color:#857E77}
+.js .pi:not(.act) .n,.js .pi:not(.act) .pb>p,.js .pi:not(.act) .sol small,.js .pi:not(.act) .sol p{color:#6F6963}
+.js .pi:not(.act) .sol{transform:translateX(36px);border-left-color:#D9D2C7;background-color:transparent}
+}
 
 /* Systeme: wechselnde Bild-Text-Karten */
 .sysl{display:grid;gap:20px}
@@ -726,7 +743,9 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 JS = r"""
 (function(){
 var d=document,hd=d.querySelector('.hd'),mb=d.querySelector('.mbtn'),mn=d.getElementById('mnav');
-var pn=d.querySelectorAll('.pain');if(pn.length&&'IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.documentElement.classList.add('pfx');var pio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;if(matchMedia('(max-width:699px)').matches){pn.forEach(function(c){c.classList.add('on')});pio.disconnect()}else{e.target.classList.add('on');pio.unobserve(e.target)}})},{threshold:.35,rootMargin:'0px 0px -8% 0px'});pn.forEach(function(c){pio.observe(c)})}
+var pis=[].slice.call(d.querySelectorAll('.pi')),pc=d.querySelector('.pctr'),pl=d.querySelector('.pil');if(pis.length>1&&pc&&pl){var pa=-1,wide=matchMedia('(min-width:1000px)'),pset=function(i){if(i===pa)return;pa=i;pis.forEach(function(x,k){x.classList.toggle('act',k===i)});pc.firstChild.textContent=(i<9?'0':'')+(i+1);pc.style.setProperty('--pp',((i+1)/pis.length).toFixed(4))};pset(0);
+if('IntersectionObserver'in window){var pio=new IntersectionObserver(function(es){if(!wide.matches)return;d.documentElement.classList.add('js');es.forEach(function(e){if(e.isIntersecting)pset(pis.indexOf(e.target))})},{rootMargin:'-45% 0px -45% 0px'});pis.forEach(function(x){pio.observe(x)})}
+pl.addEventListener('scroll',function(){if(wide.matches)return;var w=pis[1].offsetLeft-pis[0].offsetLeft;pset(pl.scrollLeft>=pl.scrollWidth-pl.clientWidth-4?pis.length-1:Math.round(pl.scrollLeft/w))},{passive:true})}
 var sk=[].slice.call(d.querySelectorAll('.sysc')),smq=matchMedia('(min-width:900px) and (min-height:700px) and (prefers-reduced-motion:no-preference)'),stt=0;function stk(){stt=0;var on=smq.matches;sk.forEach(function(c,i){var n=sk[i+1];if(!on||!n){c.style.scale='';return}var r=c.getBoundingClientRect(),p=Math.min(1,Math.max(0,(r.bottom-n.getBoundingClientRect().top)/r.height));c.style.scale=(1-p*.07).toFixed(4)})}addEventListener('scroll',function(){if(!stt)stt=requestAnimationFrame(stk)},{passive:true});addEventListener('resize',stk);stk();
 function sc(){hd.classList.toggle('sc',scrollY>8)}addEventListener('scroll',sc,{passive:true});requestAnimationFrame(sc);
 function closeNav(){mn.hidden=true;mb.setAttribute('aria-expanded','false');mb.setAttribute('aria-label',mb.dataset.open)}
@@ -764,9 +783,11 @@ def page(T):
     nav = "".join(f'<a href="{h}">{esc(t)}</a>' for h, t in T["nav"])
     lang_link = f'<a class="lang" href="{T["other_path"]}" hreflang="{"en" if L == "de" else "de"}" lang="{"en" if L == "de" else "de"}" aria-label="{T["other_label"]}, {esc(T["other_name"])}">{T["other_label"]}</a>'
 
+    np = len(T["pains"])
     pains = "".join(
-        f'<article class="card pain"><h3>{esc(h)}</h3><p>{esc(p)}</p><div class="sol"><div><small>{esc(T["solution"])}</small><p>{esc(s)}</p></div></div></article>'
-        for h, p, s in T["pains"])
+        f'<article class="pi"><p class="n">{i + 1:02d} <span>/ {np:02d}</span></p><h3>{esc(h)}</h3><div class="pb"><p>{esc(p)}</p>'
+        f'<div class="sol"><small>{esc(T["solution"])}</small><p>{esc(s)}</p></div></div></article>'
+        for i, (h, p, s) in enumerate(T["pains"]))
 
     sys_imgs = ["s1-brand", "s2-content", "s3-partnership", "s4-performance"]
     systems = "".join(
@@ -894,8 +915,10 @@ def page(T):
 
 <section class="sec" aria-labelledby="pain-h">
 <div class="wrap">
-<div class="head"><p class="label">{esc(T["pain_label"])}</p>{h2(T["pain_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="pain-h">')}</div>
-<div class="grid g3 snap">{pains}</div>
+<div class="pl">
+<div class="head"><p class="label">{esc(T["pain_label"])}</p>{h2(T["pain_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="pain-h">')}<p class="pctr" aria-hidden="true"><b>01</b><i></i><span>{np:02d}</span></p><a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta"])} {ICON_ARROW}</a></div>
+<div class="pil">{pains}</div>
+</div>
 </div>
 </section>
 
