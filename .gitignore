@@ -1,2 +1,5 @@
 # Local Netlify folder
 .netlify
+
+# Bild-Originale, nur lokal (tools/images.py erzeugt images/opt/)
+images/src/

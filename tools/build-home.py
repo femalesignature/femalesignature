@@ -85,7 +85,7 @@ DE = {
     "pm_cycle": [("Awareness", "Influencer & Creator"), ("Consideration", "Content & Blogger"), ("Purchase", "Affiliates"), ("Retention", "Loyalty & CLO"), ("Advocacy", "Customer Referrals")],
     "pm_stats": [("+91%", "Mehr Conversions"), ("40h", "Zeitersparnis / Monat"), ("3,5×", "Partner-Wachstum")],
     "brands": ["Glossier", "Sephora", "Rituals", "Flaconi", "Charlotte Tilbury"],
-    "stmt": "Sie haben bereits etwas Großes geschaffen – Ihre Vision, Ihr Angebot, Ihr Unternehmen. Doch wahre Größe entsteht nicht allein. Eine Ansprechpartnerin auf höchstem Niveau — ein ganzes System dahinter.",
+    "stmt": "Sie haben bereits **etwas Großes geschaffen** – Ihre Vision, Ihr Angebot, Ihr Unternehmen. Doch wahre Größe entsteht nicht allein. Eine Ansprechpartnerin auf höchstem Niveau — **ein ganzes System dahinter.**",
     "stmt_em": "Genau hier kommen wir ins Spiel: Ihr Partner für den nächsten Schritt.",
     "ap_label": "Unser Ansatz",
     "ap_h2": ("Von der Analyse zur gemeinsamen", "Umsetzung."),
@@ -208,7 +208,7 @@ EN = {
     "pm_cycle": [("Awareness", "Influencer & Creator"), ("Consideration", "Content & Blogger"), ("Purchase", "Affiliates"), ("Retention", "Loyalty & CLO"), ("Advocacy", "Customer Referrals")],
     "pm_stats": [("+91%", "More Conversions"), ("40h", "Time Saved / Month"), ("3.5×", "Partnership Growth")],
     "brands": ["Glossier", "Sephora", "Rituals", "Flaconi", "Charlotte Tilbury"],
-    "stmt": "You've already built something great – your vision, your offer, your company. But true greatness doesn't happen alone. One point of contact at the highest level — an entire system behind it.",
+    "stmt": "You've already **built something great** – your vision, your offer, your company. But true greatness doesn't happen alone. One point of contact at the highest level — **an entire system behind it.**",
     "stmt_em": "That's where we come in: your partner for the next step.",
     "ap_label": "Our Approach",
     "ap_h2": ("From analysis to shared", "execution."),
@@ -283,6 +283,23 @@ ICON_WA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor"
 ICON_CHAT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
 
 
+IMG_W = {"s": (600, 900, 1200), "p": (480, 720, 960), "b": (480, 720, 960), "c": (800, 1400, 2000)}
+
+
+def pic(name, kind, sizes, ratio, alt=""):
+    ws = IMG_W[kind]
+    w = ws[1]
+    h = round(w / ratio)
+    srcset = ", ".join(f"/images/opt/{name}-{x}.webp {x}w" for x in ws)
+    return (f'<img src="/images/opt/{name}-{w}.webp" srcset="{srcset}" sizes="{sizes}" width="{w}" height="{h}" '
+            f'alt="{esc(alt)}" loading="lazy" decoding="async">')
+
+
+def bold(t):
+    parts = esc(t).split("**")
+    return "".join(f"<strong>{x}</strong>" if i % 2 else x for i, x in enumerate(parts))
+
+
 def h2(parts, cls="h2"):
     a, b = parts
     return f'<h2 class="{cls}">{esc(a)} <em>{esc(b)}</em></h2>'
@@ -329,7 +346,7 @@ CSS = r"""
 @font-face{font-family:Montserrat;font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/montserrat-normal-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Playfair Display";font-style:italic;font-weight:400 600;font-display:swap;src:url(/fonts/playfair-display-italic-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Playfair Display";font-style:normal;font-weight:400 600;font-display:swap;src:url(/fonts/playfair-display-normal-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-:root{--bg:#fff;--ow:#F4F1EB;--ink:#1C1C1C;--fr:#5C1F2B;--fd:#4A1822;--bd:#E8E5DE;--mu:#5F5A55;--r:24px;--pad:clamp(20px,5vw,48px);--max:1200px;--sans:Montserrat,"Helvetica Neue",Arial,sans-serif;--serif:"Playfair Display",Georgia,"Times New Roman",serif;--ease:cubic-bezier(.16,1,.3,1)}
+:root{--bg:#fff;--ow:#F4F1EB;--card:#FBFAF7;--ink:#1C1C1C;--fr:#5C1F2B;--fd:#4A1822;--bd:#E8E5DE;--mu:#5F5A55;--r:24px;--pad:clamp(20px,5vw,48px);--max:1200px;--sans:Montserrat,"Helvetica Neue",Arial,sans-serif;--serif:"Playfair Display",Georgia,"Times New Roman",serif;--ease:cubic-bezier(.16,1,.3,1)}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -457,33 +474,58 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr);le
 .mq:hover ul{animation-play-state:paused}
 @media (prefers-reduced-motion:reduce){.mq ul{flex-wrap:wrap;width:auto;justify-content:center;gap:16px 40px;padding:0 var(--pad)}.mq li[aria-hidden]{display:none}}
 
-/* Cards */
+/* Abschnitte im Vosello-Stil: warme Fläche, weiche Karten, Fotos mit tiefem Schatten */
+main{background:var(--ow)}
+.sec{padding:clamp(72px,10vw,136px) 0}
+.ow{background:var(--ow)}
+.card{background:var(--card);border-radius:22px;padding:clamp(22px,2.6vw,32px)}
+.h2{font-weight:500;letter-spacing:-.035em}
+.center{text-align:center}.center .h2,.center .lead{margin-left:auto;margin-right:auto}
+.shot{position:relative;min-width:0;overflow:hidden;border-radius:16px;background:#e6e0d6;box-shadow:0 34px 60px -28px rgba(40,22,22,.55),0 14px 26px -14px rgba(40,22,22,.35)}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
+.pill{display:inline-flex;align-items:center;min-height:28px;padding:4px 12px;border-radius:999px;background:var(--ow);font-size:.75rem;font-weight:500;color:var(--mu)}
+.btn.soft{background:#E7E1D7;border-color:#E7E1D7;color:var(--ink)}
+.btn.soft:hover{background:#dcd4c8;border-color:#dcd4c8}
+.btn.light{background:var(--ow);border-color:var(--ow);color:var(--ink)}
+.btn.light:hover{background:#fff;border-color:#fff}
+.btn{box-shadow:0 10px 22px -12px rgba(28,28,28,.55)}
+.btn.ghost,.btn.soft{box-shadow:none}
 .grid{display:grid;gap:16px}
-.card{background:#fff;border:1px solid var(--bd);border-radius:var(--r);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column}
-.ow .card{border-color:transparent}
-.card h3{font-size:1.1875rem;line-height:1.3;font-weight:600;letter-spacing:-.01em}
-.card p{color:var(--mu);margin-top:12px}
-.num{font-size:.8125rem;font-weight:600;letter-spacing:.12em;color:var(--fr)}
-.pain{background:var(--ow);border:0}
-.pain .sol{margin-top:auto;padding-top:20px}
-.pain .sol div{border-top:1px solid #dcd6cc;padding-top:16px}
-.pain .sol small{display:block;font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fr);margin-bottom:6px}
-.pain .sol p{margin:0;color:var(--ink);font-weight:500;font-size:.9375rem}
 @media (min-width:700px){.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1000px){.g3{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:699px){.snap{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 calc(var(--pad)*-1);padding:0 var(--pad) 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.snap::-webkit-scrollbar{display:none}.snap>*{flex:0 0 86%;scroll-snap-align:center}}
+@media (max-width:699px){.snap{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 calc(var(--pad)*-1);padding:0 var(--pad) 12px;scrollbar-width:none}.snap::-webkit-scrollbar{display:none}.snap>*{flex:0 0 86%;scroll-snap-align:center}}
+.ic{width:1.1em;height:1.1em;flex:none}
+.num{font-size:.75rem;font-weight:600;letter-spacing:.14em;color:var(--fr)}
 
-.sys .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}
-.sys .tag{font-size:.8125rem;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--ow)}
-.sys h3{font-size:clamp(1.25rem,1.1rem + .5vw,1.5rem)}
-.ticks{display:grid;gap:12px;margin-top:24px;padding-top:24px;border-top:1px solid var(--bd)}
+/* Herausforderungen */
+.pain h3{font-size:1.125rem;line-height:1.3;font-weight:600;letter-spacing:-.01em}
+.pain>p{color:var(--mu);margin-top:12px}
+.pain{display:flex;flex-direction:column}
+.pain .sol{margin-top:auto;padding-top:22px}
+.pain .sol div{border-top:1px solid #e4ddd2;padding-top:16px}
+.pain .sol small{display:block;font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fr);margin-bottom:6px}
+.pain .sol p{margin:0;font-weight:500;font-size:.9375rem}
+
+/* Systeme: wechselnde Bild-Text-Karten */
+.sysl{display:grid;gap:20px}
+.sysc{display:grid;gap:clamp(20px,3vw,40px);align-items:stretch}
+.sysc>*{min-width:0}
+.sysc .shot{aspect-ratio:4/3;align-self:center}
+.sysc .txt{display:flex;flex-direction:column;padding:clamp(4px,1vw,12px) clamp(0px,1vw,12px)}
+.sysc .top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.sysc h3{font-size:clamp(1.375rem,1.1rem + 1vw,2rem);line-height:1.15;font-weight:500;letter-spacing:-.03em}
+.sysc .txt>p{color:var(--mu);margin-top:14px}
+.ticks{display:grid;gap:10px;margin-top:24px}
 .ticks li{display:flex;gap:12px;align-items:flex-start;font-size:.9375rem;font-weight:500}
 .ticks .ic{color:var(--fr);margin-top:.25em}
+.sysc .foot{margin-top:auto;padding-top:24px;display:flex;gap:8px;flex-wrap:wrap}
+@media (min-width:900px){.sysc{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}.sysc:nth-child(even) .shot{order:2}}
 
 /* Partnership */
-.pm{display:grid;gap:clamp(40px,6vw,72px);align-items:center}
-.pm .ticks{border:0;padding:0;margin-top:32px}
-.panel{background:var(--fr);color:var(--ow);border-radius:calc(var(--r) + 4px);padding:clamp(24px,4vw,40px)}
+.pmc{display:grid;gap:clamp(28px,4vw,56px);align-items:center}
+.pmc .ticks{margin-top:28px}
+.panel{background:var(--fr);color:var(--ow);border-radius:20px;padding:clamp(24px,3.4vw,40px);box-shadow:0 34px 60px -28px rgba(60,16,26,.6)}
 .panel .pt{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid rgba(244,241,235,.2)}
 .panel .pt strong{font-size:1.0625rem;font-weight:600}
 .panel .pt span{font-size:.8125rem;opacity:.85}
@@ -491,98 +533,137 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr);le
 .cycle li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(244,241,235,.14);font-size:.9375rem}
 .cycle li span:first-child{font-family:var(--serif);font-style:italic;font-size:1.0625rem}
 .cycle li span:last-child{opacity:.9;text-align:right}
-.stats3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
-.stats3 div{background:rgba(244,241,235,.08);border-radius:16px;padding:16px 12px}
+.stats3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:24px}
+.stats3 div{background:rgba(244,241,235,.08);border-radius:14px;padding:16px 12px}
 .stats3 b{display:block;font-size:clamp(1.5rem,1.2rem + 1vw,2rem);font-weight:600;letter-spacing:-.02em}
 .stats3 span{font-size:.75rem;line-height:1.35;display:block;margin-top:4px;opacity:.9}
-.brands{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;margin-top:clamp(48px,6vw,72px);padding-top:32px;border-top:1px solid var(--bd)}
+.brands{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 44px;margin-top:clamp(36px,5vw,56px)}
 .brands li{font-family:var(--serif);font-size:clamp(1.125rem,1rem + .5vw,1.5rem);color:#6f6a64}
-@media (min-width:1000px){.pm{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (min-width:1000px){.pmc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 
-/* Statement */
-.stmt p{font-size:clamp(1.375rem,1rem + 1.8vw,2.375rem);line-height:1.35;letter-spacing:-.015em;font-weight:500;max-width:30ch;text-wrap:balance}
-.stmt em{display:block;margin-top:.6em}
+/* Manifest: großes zentriertes Zitat mit hervorgehobenen Wörtern */
+.quote{max-width:30ch;margin:0 auto;text-align:center;font-size:clamp(1.5rem,1.05rem + 1.9vw,2.5rem);line-height:1.3;letter-spacing:-.025em;font-weight:400;text-wrap:balance}
+.quote strong{font-weight:600}
+.quote em{display:block;margin-top:.5em}
+.by{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:32px;font-size:.875rem}
+.by img{width:44px;height:44px;border-radius:50%;box-shadow:0 8px 18px -8px rgba(40,22,22,.6)}
+.by span{display:block;color:var(--mu);font-size:.75rem}
 
-/* Approach */
-.ap{display:grid;gap:clamp(40px,6vw,80px)}
-.ap .btn{margin-top:32px}
-.steps{display:grid;gap:12px;counter-reset:s}
-.step{display:grid;grid-template-columns:auto 1fr;gap:16px 20px;padding:clamp(22px,3vw,28px);border-radius:var(--r);background:#fff;border:1px solid var(--bd)}
+/* Ansatz */
+.ap{display:grid;gap:clamp(36px,5vw,72px)}
+.ap .btn{margin-top:28px}
+.ap .shot{aspect-ratio:4/5;margin-top:40px;max-width:420px}
+.steps{display:grid;gap:12px;list-style:none;margin:0;padding:0}
+.step{display:grid;grid-template-columns:auto 1fr;gap:12px 20px}
 .step .n{font-family:var(--serif);font-style:italic;font-size:2rem;line-height:1;color:var(--fr);width:2.2ch}
 .step h3{font-size:1.1875rem;font-weight:600}
 .step p{color:var(--mu);margin-top:8px}
-@media (min-width:1000px){.ap{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}.ap .sticky{position:sticky;top:120px;align-self:start}}
+@media (min-width:1000px){.ap{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}.ap .sticky{position:sticky;top:110px;align-self:start}}
 
-/* Results */
-.res .card{background:var(--ow);border:0;justify-content:space-between;min-height:230px}
-.res b{font-size:clamp(3rem,2rem + 4vw,4.75rem);line-height:1;font-weight:600;letter-spacing:-.04em;color:var(--fr)}
-.res strong{display:block;margin-top:28px;font-weight:600}
-.res p{margin-top:6px}
+/* Ergebnisse */
+.res .card{text-align:center;padding:clamp(28px,3vw,44px) 20px}
+.res b{display:block;font-size:clamp(2.75rem,2rem + 3vw,4.25rem);line-height:1;font-weight:500;letter-spacing:-.045em;color:var(--fr);font-variant-numeric:tabular-nums}
+.res strong{display:block;margin-top:18px;font-weight:600}
+.res p{color:var(--mu);margin-top:6px;font-size:.9375rem;max-width:30ch;margin-left:auto;margin-right:auto}
 
-/* Testimonials */
-.tq{font-family:var(--serif);font-size:1.1875rem;line-height:1.5;color:var(--ink)}
-.tq::before{content:"“";display:block;font-size:3rem;line-height:.6;color:var(--fr);margin-bottom:12px}
-.who{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:28px}
-.who img{width:52px;height:52px;border-radius:50%;object-fit:cover;background:var(--ow)}
+/* Growth Stories */
+.feat{max-width:860px;margin:0 auto clamp(48px,6vw,72px);text-align:center}
+.feat blockquote{font-size:clamp(1.375rem,1rem + 1.6vw,2.25rem);line-height:1.32;letter-spacing:-.025em;text-wrap:balance}
+.feat figcaption{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px;text-align:left;font-size:.9375rem}
+.feat figcaption img{width:52px;height:52px;border-radius:50%;object-fit:cover;box-shadow:0 8px 18px -8px rgba(40,22,22,.6)}
+.feat figcaption span{display:block;font-size:.8125rem;color:var(--mu)}
+.tcards{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad) 24px;margin:0 calc(var(--pad)*-1);scrollbar-width:none}
+.tcards::-webkit-scrollbar{display:none}
+.tcards figure{flex:0 0 min(86%,380px);scroll-snap-align:start;margin:0;display:flex;flex-direction:column}
+.tq{font-size:1.0625rem;line-height:1.6}
+.tq::before{content:"“";display:block;font-family:var(--serif);font-size:3rem;line-height:.6;color:var(--fr);margin-bottom:12px}
+.out{margin-top:16px;align-self:flex-start;font-size:.8125rem;font-weight:500;color:var(--fr)}
+.who{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:24px}
+.who img{width:48px;height:48px;border-radius:50%;object-fit:cover}
 .who strong{display:block;font-size:.9375rem}
 .who span{font-size:.8125rem;color:var(--mu)}
-.out{margin-top:16px;align-self:flex-start;font-size:.8125rem;font-weight:500;color:var(--fr);background:var(--ow);border-radius:999px;padding:6px 12px}
-.ow .out{background:#F7F5F0}
+.tnav{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
+.tnav button{width:48px;height:48px;border-radius:50%;border:1px solid #d6cfc4;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--ink)}
+.tnav button:hover{background:var(--card)}
+.tnav button:first-child .ic{transform:rotate(180deg)}
+@media (min-width:1000px){.tcards{margin:0;padding:4px 0 24px}}
 
-/* About */
-.about{display:grid;gap:clamp(40px,6vw,80px);align-items:center}
-.about img{width:100%;max-width:460px;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;border-radius:var(--r);background:var(--ow)}
-.about blockquote{font-family:var(--serif);font-size:clamp(1.5rem,1.1rem + 1.6vw,2.375rem);line-height:1.3;letter-spacing:-.01em}
-.about .role{display:block;margin-top:32px;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--fr)}
-.about .name{display:block;font-size:1.25rem;font-weight:600;margin-top:6px}
-.about .bio{color:var(--mu);margin-top:16px;max-width:58ch}
-@media (min-width:900px){.about{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
+/* Über Mediha */
+.aboutc{display:grid;gap:clamp(28px,4vw,56px);padding:clamp(22px,3vw,40px)}
+.aboutc>*{min-width:0}
+.aboutc .shot{aspect-ratio:4/5;align-self:start}
+.aboutc .txt{display:flex;flex-direction:column}
+.aboutc h2{font-size:clamp(2.25rem,1.4rem + 3.4vw,4rem);line-height:1;font-weight:500;letter-spacing:-.045em}
+.aboutc blockquote{font-family:var(--serif);font-style:italic;color:var(--fr);font-size:clamp(1.25rem,1rem + 1vw,1.75rem);line-height:1.35;margin-top:24px}
+.aboutc .role{display:block;margin-top:24px;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--mu)}
+.aboutc .bio{color:var(--mu);margin-top:12px;max-width:52ch}
+.aboutc .acts{margin-top:28px}
+@media (min-width:900px){.aboutc{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}.aboutc .txt{padding:clamp(8px,2vw,24px)}}
 
 /* Blog */
-.post{position:relative;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-.post:hover{transform:translateY(-4px);box-shadow:0 24px 48px -28px rgba(28,28,28,.35)}
-.post .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin-bottom:16px}
-.post .new{background:var(--fr);color:#fff;border-radius:999px;padding:3px 9px;letter-spacing:.1em}
-.post h3 a{text-decoration:none}
-.post h3 a::after{content:"";position:absolute;inset:0;border-radius:var(--r)}
-.post .more{margin-top:auto;padding-top:24px;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.9375rem;color:var(--fr)}
 .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.post{display:block;text-decoration:none}
+.post .shot{aspect-ratio:4/3}
+.post h3{font-size:clamp(1.1875rem,1rem + .6vw,1.5rem);line-height:1.2;font-weight:500;letter-spacing:-.025em;margin-top:22px}
+.post p{color:var(--mu);margin-top:8px;font-size:.9375rem}
+.post .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.post .meta .new{background:var(--fr);color:#fff}
+.post:hover h3{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 
 /* FAQ */
-.faq{display:grid;gap:clamp(32px,5vw,72px)}
-.faq details{border-bottom:1px solid var(--bd)}
-.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;cursor:pointer;font-weight:600;font-size:clamp(1.0625rem,1rem + .3vw,1.25rem);min-height:44px}
+.faq{display:grid;gap:clamp(28px,4vw,64px)}
+.faq .list{display:grid;gap:10px}
+.faq details{background:var(--card);border-radius:14px;padding:0 20px}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:60px;padding:14px 0;cursor:pointer;font-weight:600;font-size:1.0625rem}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";flex:none;width:28px;height:28px;border-radius:50%;background:var(--ow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 5v10M5 10h10' stroke='%235C1F2B' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat;transition:transform .3s var(--ease)}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq details p{color:var(--mu);padding:0 0 24px;max-width:62ch}
-@media (min-width:1000px){.faq{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
+.faq summary::after{content:"";flex:none;width:12px;height:12px;border-right:1.6px solid var(--ink);border-bottom:1.6px solid var(--ink);transform:translateY(-3px) rotate(45deg);transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.faq details p{color:var(--mu);padding:0 0 20px;max-width:62ch}
+@media (min-width:1000px){.faq{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}}
+
+/* Abschluss: Vollbild-Foto mit Aufruf */
+.ctab{position:relative;overflow:hidden;border-radius:clamp(20px,2.4vw,32px);min-height:clamp(460px,62vw,640px);display:grid;place-items:center;text-align:center;color:var(--ow);padding:clamp(48px,7vw,96px) var(--pad);box-shadow:0 40px 80px -40px rgba(40,22,22,.7)}
+.ctab>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ctab::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(20,14,14,.62),rgba(20,14,14,.42) 60%,rgba(20,14,14,.55))}
+.ctab>div{position:relative;z-index:1;max-width:640px}
+.ctab .h2{color:var(--ow);margin:0 auto;font-size:clamp(2.25rem,1.4rem + 3.6vw,4.25rem)}
+.ctab .h2 em{color:var(--ow)}
+.ctab .lead{color:rgba(244,241,235,.86);margin:20px auto 0}
+.ctab .lead strong{color:var(--ow)}
+.ctab .acts{justify-content:center}
+.ctab .label{color:var(--ow)}.ctab .label::before{background:var(--ow)}
+.ctawrap{padding:0 clamp(8px,1.4vw,20px) clamp(72px,10vw,136px)}
 
 /* Kontakt */
-.contact{display:grid;gap:clamp(40px,6vw,72px)}
-.contact .lead strong{color:var(--ink);font-weight:600}
-.direct{display:grid;gap:4px;margin-top:32px}
+.contact{display:grid;gap:clamp(28px,4vw,56px)}
+.direct{display:grid;gap:4px;margin-top:28px}
 .direct a{display:inline-flex;align-items:center;gap:12px;min-height:44px;text-decoration:none;font-weight:500}
 .direct a:hover{color:var(--fr)}
 .direct svg{width:20px;height:20px;color:var(--fr)}
-.form{background:#fff;border-radius:var(--r);padding:clamp(24px,4vw,40px);border:1px solid var(--bd)}
-.form h3{font-size:1.375rem;font-weight:600;letter-spacing:-.01em}
-.form h3 em{font-size:1.1em}
 .form>p{color:var(--mu);margin:8px 0 24px}
+.form h3{font-size:1.375rem;font-weight:600;letter-spacing:-.01em}
 .f2{display:grid;gap:16px}
 @media (min-width:600px){.f2{grid-template-columns:1fr 1fr}}
 .fld{display:grid;gap:6px;margin-bottom:16px}
 .f2 .fld{margin:0}
 .fld label{font-size:.8125rem;font-weight:600}
-.fld input,.fld textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid #d6d1c8;border-radius:14px;padding:14px 16px;min-height:52px;transition:border-color .2s}
+.fld input,.fld textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:#fff;border:1px solid #ddd6cb;border-radius:12px;padding:14px 16px;min-height:52px;transition:border-color .2s}
 .fld textarea{min-height:140px;resize:vertical;line-height:1.55}
 .fld input:focus,.fld textarea:focus{outline:none;border-color:var(--fr);box-shadow:0 0 0 3px rgba(92,31,43,.12)}
 .hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form .btn{width:100%;margin-top:8px}
-@media (min-width:1000px){.contact{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}
+@media (min-width:1000px){.contact{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:start}}
+
+/* Scroll-Effekte nur per CSS: Fotos zoomen beim Hereinscrollen sanft auf */
+@media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){
+.shot img{animation:zin linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
+@keyframes zin{from{transform:scale(1.14)}}
+.ctab>img{animation:zin2 linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+@keyframes zin2{from{transform:scale(1.18)}to{transform:scale(1)}}
+}}
 
 /* Footer */
-.ft{background:var(--bg);border-top:1px solid var(--bd);padding:clamp(64px,8vw,96px) 0 32px;font-size:.9375rem}
+.ft{background:var(--ow);border-top:1px solid #e2dbd0;padding:clamp(64px,8vw,96px) 0 32px;font-size:.9375rem}
 .ftg{display:grid;gap:40px}
 .ft .brand img{width:150px;height:auto}
 .ft .brand p{color:var(--mu);margin-top:20px;max-width:36ch}
@@ -639,6 +720,10 @@ mn.addEventListener('click',function(e){if(e.target.closest('a'))closeNav()});
 d.addEventListener('keydown',function(e){if(e.key==='Escape'){if(!mn.hidden){closeNav();mb.focus()}if(!qz.hidden)toggleQuiz(false)}});
 /* Schwebende Knöpfe erst nach dem Startbereich, damit sie den Hauptknopf nicht verdecken */
 var fab=d.querySelector('.fab'),hero=d.querySelector('.hero');if('IntersectionObserver'in window){new IntersectionObserver(function(e){fab.classList.toggle('off',e[0].isIntersecting)},{rootMargin:'-35% 0px 0px 0px'}).observe(hero)}else fab.classList.remove('off');
+/* Kundenstimmen blättern */
+var tc=d.getElementById('tcards');d.querySelectorAll('.tnav button').forEach(function(b){b.addEventListener('click',function(){var c=tc.querySelector('figure');tc.scrollBy({left:(+b.dataset.dir)*(c.offsetWidth+16),behavior:'smooth'})})});
+/* Ergebnisse zählen beim Hereinscrollen hoch (Endwert steht im HTML) */
+if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);var el=e.target,t=el.textContent,m=t.match(/[\d.,]+/);if(!m)return;var end=parseFloat(m[0].replace(',','.')),dec=(m[0].split(/[.,]/)[1]||'').length,sep=m[0].indexOf(',')>-1?',':'.',t0=performance.now();(function f(n){var k=Math.min(1,(n-t0)/1400),v=(end*(1-Math.pow(1-k,3))).toFixed(dec).replace('.',sep);el.textContent=t.replace(m[0],v);if(k<1)requestAnimationFrame(f);else el.textContent=t})(t0)})},{threshold:.6});d.querySelectorAll('[data-count]').forEach(function(el){io.observe(el)})}
 /* Quiz */
 var Q=JSON.parse(d.getElementById('quiz-data').textContent),qz=d.getElementById('quiz'),qb=d.getElementById('qb'),qo=d.getElementById('qo'),qi=d.getElementById('qi'),inp=qi.querySelector('input'),opener=d.getElementById('qopen'),step=0,data={};
 function msg(t,x){var m=d.createElement('div');m.className='msg '+t;m.textContent=x;qb.appendChild(m);qb.scrollTop=qb.scrollHeight}
@@ -668,10 +753,12 @@ def page(T):
         f'<article class="card pain rv"><h3>{esc(h)}</h3><p>{esc(p)}</p><div class="sol"><div><small>{esc(T["solution"])}</small><p>{esc(s)}</p></div></div></article>'
         for h, p, s in T["pains"])
 
+    sys_imgs = ["s1-brand", "s2-content", "s3-partnership", "s4-performance"]
     systems = "".join(
-        f'<article class="card sys rv"><div class="top"><span class="num">0{i + 1}</span><span class="tag">{esc(n)}</span></div>'
+        f'<article class="card sysc rv zoomhover"><div class="shot">{pic(sys_imgs[i], "s", "(min-width:900px) 560px, 92vw", 4 / 3)}</div>'
+        f'<div class="txt"><div class="top"><span class="num">0{i + 1}</span><span class="pill">{esc(n)}</span></div>'
         f'<h3>{esc(h)}</h3><p>{esc(p)}</p><ul class="ticks">'
-        + "".join(f"<li>{ICON_CHECK}<span>{esc(x)}</span></li>" for x in items) + "</ul></article>"
+        + "".join(f"<li>{ICON_CHECK}<span>{esc(x)}</span></li>" for x in items) + "</ul></div></article>"
         for i, (n, h, p, items) in enumerate(T["systems"]))
 
     pm_list = "".join(f"<li>{ICON_CHECK}<span>{esc(x)}</span></li>" for x in T["pm_list"])
@@ -680,29 +767,34 @@ def page(T):
     brands = "".join(f"<li>{esc(b)}</li>" for b in T["brands"])
 
     steps = "".join(
-        f'<li class="step rv"><span class="n" aria-hidden="true">0{i + 1}</span><div><h3>{esc(h)}</h3><p>{esc(p)}</p></div></li>'
+        f'<li class="card step rv"><span class="n" aria-hidden="true">0{i + 1}</span><div><h3>{esc(h)}</h3><p>{esc(p)}</p></div></li>'
         for i, (h, p) in enumerate(T["steps"]))
 
     results = "".join(
-        f'<div class="card rv"><b>{esc(n)}</b><div><strong>{esc(u)}</strong><p>{esc(d)}</p></div></div>'
+        f'<div class="card rv"><b data-count>{esc(n)}</b><strong>{esc(u)}</strong><p>{esc(d)}</p></div>'
         for n, u, d in T["results"])
 
-    testis = "".join(
-        f'<figure class="card rv"><blockquote class="tq"><p>{esc(q)}</p></blockquote><span class="out">→ {esc(o)}</span>'
-        f'<figcaption class="who"><img src="/images/opt/{img}-96.webp" srcset="/images/opt/{img}-96.webp 96w, /images/opt/{img}-192.webp 192w" sizes="52px" width="52" height="52" alt="{esc(name)}" loading="lazy" decoding="async">'
-        f'<span><strong>{esc(name)}</strong><span>{esc(role)}</span></span></figcaption></figure>'
-        for (img, name), (q, role, o) in zip(PEOPLE, T["testis"]))
+    def tcard(img, name, q, role, o):
+        return (f'<figure class="card"><blockquote class="tq"><p>{esc(q)}</p></blockquote><span class="out">→ {esc(o)}</span>'
+                f'<figcaption class="who"><img src="/images/opt/{img}-96.webp" srcset="/images/opt/{img}-96.webp 96w, /images/opt/{img}-192.webp 192w" sizes="48px" width="48" height="48" alt="{esc(name)}" loading="lazy" decoding="async">'
+                f'<span><strong>{esc(name)}</strong><span>{esc(role)}</span></span></figcaption></figure>')
+    pairs = list(zip(PEOPLE, T["testis"]))
+    (fimg, fname), (fq, frole, _) = pairs[5]
+    featured = (f'<figure class="feat rv"><blockquote>„{esc(fq)}“</blockquote><figcaption><img src="/images/opt/{fimg}-96.webp" srcset="/images/opt/{fimg}-96.webp 96w, /images/opt/{fimg}-192.webp 192w" sizes="52px" width="52" height="52" alt="{esc(fname)}" loading="lazy" decoding="async">'
+                f'<span><strong>{esc(fname)}</strong><span>{esc(frole)}</span></span></figcaption></figure>')
+    testis = "".join(tcard(img, name, q, role, o) for (img, name), (q, role, o) in pairs[:5])
 
+    post_imgs = ["blog-1", "blog-2", "blog-3"]
     posts = "".join(
-        f'<article class="card post rv"><p class="meta"><span class="new">{T["new"]}</span><span>{esc(c)}</span></p>'
-        f'<h3><a href="{u}">{esc(t)}</a></h3><p>{esc(x)}</p><span class="more" aria-hidden="true">{esc(T["read"])} {ICON_ARROW}</span></article>'
-        for u, c, t, x in T["posts"])
+        f'<a class="post rv" href="{u}"><div class="shot">{pic(post_imgs[i], "b", "(min-width:1000px) 380px, (min-width:700px) 46vw, 86vw", 4 / 3)}</div>'
+        f'<h3>{esc(t)}</h3><p>{esc(x)}</p><div class="meta"><span class="pill new">{T["new"]}</span><span class="pill">{esc(c)}</span></div></a>'
+        for i, (u, c, t, x) in enumerate(T["posts"]))
 
     faq_html = ""
     if T["faq"]:
         items = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in T["faq"])
         faq_html = (f'<section class="sec" id="faq" aria-labelledby="faq-h"><div class="wrap faq"><div><p class="label">{T["faq_label"]}</p>'
-                    + h2(T["faq_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="faq-h">') + f'</div><div class="rv">{items}</div></div></section>')
+                    + h2(T["faq_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="faq-h">') + f'</div><div class="list rv">{items}</div></div></section>')
 
     ph = T["ph"]
     def p_(k):
@@ -792,16 +884,17 @@ def page(T):
 </div>
 </section>
 
-<section class="sec ow" id="systems" aria-labelledby="sys-h">
+<section class="sec" id="systems" aria-labelledby="sys-h" style="padding-top:0">
 <div class="wrap">
 <div class="head"><p class="label">{esc(T["sys_label"])}</p>{h2(T["sys_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="sys-h">')}<p class="lead">{esc(T["sys_sd"])}</p></div>
-<div class="grid g2">{systems}</div>
+<div class="sysl">{systems}</div>
+<div class="acts" style="justify-content:center;margin-top:40px"><a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta"])} {ICON_ARROW}</a></div>
 </div>
 </section>
 
-<section class="sec" aria-labelledby="pm-h">
+<section class="sec" aria-labelledby="pm-h" style="padding-top:0">
 <div class="wrap">
-<div class="pm">
+<div class="card pmc">
 <div><p class="label">{esc(T["pm_label"])}</p>{h2(T["pm_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="pm-h">')}<p class="lead">{esc(T["pm_sd"])}</p><ul class="ticks">{pm_list}</ul></div>
 <div class="panel rv"><div class="pt"><strong>{esc(T["pm_panel"])}</strong><span>powered by <b>impact.com</b></span></div><h3>{esc(T["pm_cycle_t"])}</h3><ul class="cycle">{cycle}</ul><div class="stats3">{stats3}</div></div>
 </div>
@@ -809,61 +902,77 @@ def page(T):
 </div>
 </section>
 
-<section class="sec {stmt_bg} stmt"><div class="wrap"><p class="rv">{esc(T["stmt"])} <em>{esc(T["stmt_em"])}</em></p></div></section>
+<section class="sec" style="padding-top:0"><div class="wrap">
+<p class="quote rv">{bold(T["stmt"])} <em>{esc(T["stmt_em"])}</em></p>
+<p class="by"><img src="/images/monogram-square-burgundy.svg" width="44" height="44" alt=""><span><strong>Female Signature</strong><span>Mag. (FH) Mediha Mujcin</span></span></p>
+</div></section>
 
-<section class="sec" id="approach" aria-labelledby="ap-h">
+<section class="sec" id="approach" aria-labelledby="ap-h" style="padding-top:0">
 <div class="wrap ap">
-<div class="sticky"><p class="label">{esc(T["ap_label"])}</p>{h2(T["ap_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="ap-h">')}<p class="lead">{esc(T["ap_sd"])}</p><a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta"])} {ICON_ARROW}</a></div>
-<ol class="steps" style="list-style:none;padding:0;margin:0">{steps}</ol>
+<div class="sticky"><p class="label">{esc(T["ap_label"])}</p>{h2(T["ap_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="ap-h">')}<p class="lead">{esc(T["ap_sd"])}</p><a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta"])} {ICON_ARROW}</a>
+<div class="shot">{pic("approach", "p", "(min-width:1000px) 420px, 92vw", 4 / 5)}</div></div>
+<ol class="steps">{steps}</ol>
 </div>
 </section>
 
 <section class="sec res" id="results" aria-labelledby="res-h" style="padding-top:0">
 <div class="wrap">
-<div class="head"><p class="label">{esc(T["res_label"])}</p>{h2(T["res_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="res-h">')}<p class="lead">{esc(T["res_sd"])}</p></div>
+<div class="head center"><p class="label">{esc(T["res_label"])}</p>{h2(T["res_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="res-h">')}<p class="lead">{esc(T["res_sd"])}</p></div>
 <div class="grid g3">{results}</div>
 </div>
 </section>
 
-<section class="sec ow" id="stories" aria-labelledby="t-h">
+<section class="sec" id="stories" aria-labelledby="t-h" style="padding-top:0">
 <div class="wrap">
-<div class="head"><p class="label">{esc(T["t_label"])}</p>{h2(T["t_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="t-h">')}</div>
-<div class="grid g3 snap">{testis}</div>
+<div class="head center"><p class="label">{esc(T["t_label"])}</p>{h2(T["t_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="t-h">')}</div>
+{featured}
+<div class="tcards" id="tcards" tabindex="0" aria-label="{esc(T["t_label"])}">{testis}</div>
+<div class="tnav"><button type="button" data-dir="-1" aria-label="{"Zurück" if L == "de" else "Previous"}">{ICON_ARROW}</button><button type="button" data-dir="1" aria-label="{"Weiter" if L == "de" else "Next"}">{ICON_ARROW}</button></div>
 </div>
 </section>
 
-<section class="sec" id="about" aria-label="Mediha Mujcin">
-<div class="wrap about">
-<img src="/images/opt/mediha-600.webp" srcset="/images/opt/mediha-400.webp 400w, /images/opt/mediha-600.webp 600w, /images/opt/mediha-768.webp 768w" sizes="(min-width:900px) 40vw, 92vw" width="600" height="750" alt="{esc(T["ceo_alt"])}" loading="lazy" decoding="async">
-<div class="rv"><blockquote>{esc(T["ceo_quote"])}</blockquote><span class="role">CEO &amp; Founder</span><span class="name">Mag. (FH) Mediha Mujcin</span><p class="bio">{esc(T["ceo_bio"])}</p><a class="link" href="{LI}" target="_blank" rel="noopener">LinkedIn {ICON_ARROW}</a></div>
+<section class="sec" id="about" aria-labelledby="about-h" style="padding-top:0">
+<div class="wrap">
+<div class="card aboutc">
+<div class="txt rv"><p class="label">{esc(T["about"])}</p><h2 id="about-h">Mediha Mujcin</h2><blockquote>{esc(T["ceo_quote"])}</blockquote><span class="role">Mag. (FH) · CEO &amp; Founder</span><p class="bio">{esc(T["ceo_bio"])}</p>
+<div class="acts"><a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta"])} {ICON_ARROW}</a><a class="btn soft" href="{LI}" target="_blank" rel="noopener">LinkedIn {ICON_ARROW}</a></div></div>
+<div class="shot">{pic("about", "p", "(min-width:900px) 480px, 92vw", 4 / 5, T["ceo_alt"])}</div>
+</div>
 </div>
 </section>
 
-<section class="sec ow" aria-labelledby="blog-h">
+<section class="sec" aria-labelledby="blog-h" style="padding-top:0">
 <div class="wrap">
-<div class="head row"><div><p class="label">{esc(T["blog_label"])}</p>{h2(T["blog_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="blog-h">')}</div><a class="btn ghost" href="{T["blog_index"]}">{esc(T["all_posts"])} {ICON_ARROW}</a></div>
+<div class="head row"><div><p class="label">{esc(T["blog_label"])}</p>{h2(T["blog_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="blog-h">')}</div><a class="textlink" href="{T["blog_index"]}">{esc(T["all_posts"])} {ICON_ARROW}</a></div>
 <div class="grid g3">{posts}</div>
 </div>
 </section>
 
 {faq_html}
 
-<section class="sec ow" id="kontakt" aria-labelledby="cta-h">
-<div class="wrap contact">
-<div><p class="label">{esc(T["cta_label"])}</p>{h2(T["cta_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="cta-h">')}<p class="lead">{esc(T["cta_sd"])} <strong>{esc(T["cta_strong"])}</strong></p>
-<div class="acts"><a class="btn" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta30"])} {ICON_ARROW}</a></div>
+<div class="ctawrap">
+<section class="ctab" aria-labelledby="cta-h">
+{pic("cta", "c", "100vw", 21 / 9)}
+<div class="rv"><p class="label">{esc(T["cta_label"])}</p>{h2(T["cta_h2"]).replace('<h2 class="h2">', '<h2 class="h2" id="cta-h">')}<p class="lead">{esc(T["cta_sd"])} <strong>{esc(T["cta_strong"])}</strong></p>
+<div class="acts"><a class="btn light" href="{CAL}" target="_blank" rel="noopener">{esc(T["cta30"])} {ICON_ARROW}</a></div></div>
+</section>
+</div>
+
+<section class="sec" id="kontakt" aria-labelledby="form-h" style="padding-top:0">
+<div class="wrap">
+<div class="card contact">
+<div><p class="label">{esc(T["form_label"])}</p><h2 class="h2" id="form-h">{esc(T["form_h"][0])} <em>{esc(T["form_h"][1])}</em></h2><p class="lead">{esc(T["form_sd"])}</p>
 <div class="direct"><a href="mailto:{MAIL}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>{MAIL}</a><a href="tel:{TEL}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.3a11 11 0 0 0 6.2 6.2l1.3-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>{TEL_TXT}</a><a href="{WA}" target="_blank" rel="noopener">{ICON_WA}WhatsApp</a></div>
 </div>
-<form class="form rv" name="contact" method="POST" action="/success" data-netlify="true" netlify-honeypot="bot-field">
+<form class="form" name="contact" method="POST" action="/success" data-netlify="true" netlify-honeypot="bot-field">
 <input type="hidden" name="form-name" value="contact">
 <p class="hp"><label>Bot <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-<h3>{esc(T["form_h"][0])} <em>{esc(T["form_h"][1])}</em></h3>
-<p>{esc(T["form_sd"])}</p>
 <div class="f2"><div class="fld"><label for="f-name">{esc(T["f_name"])}</label><input id="f-name" type="text" name="name" autocomplete="name" required{p_("name")}></div><div class="fld"><label for="f-mail">{esc(T["f_mail"])}</label><input id="f-mail" type="email" name="email" autocomplete="email" inputmode="email" required{p_("email")}></div></div>
 <div class="fld" style="margin-top:16px"><label for="f-co">{esc(T["f_company"])}</label><input id="f-co" type="text" name="company" autocomplete="organization"{p_("company")}></div>
 <div class="fld"><label for="f-msg">{esc(T["f_msg"])}</label><textarea id="f-msg" name="message" required{p_("message")}></textarea></div>
 <button class="btn" type="submit">{esc(T["f_send"])} {ICON_ARROW}</button>
 </form>
+</div>
 </div>
 </section>
 </main>
