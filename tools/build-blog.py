@@ -406,7 +406,10 @@ def shell(L, title, desc, canon, alts, og_img, schema, main, other_url, extra_he
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(desc)}">
 <meta name="twitter:image" content="{SITE}{og_img[0]}">
-{extra_head}<link rel="icon" href="/images/monogram-square-burgundy.svg" type="image/svg+xml">
+{extra_head}<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/fonts/montserrat-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>{CSS.strip()}</style>
 <script type="application/ld+json">{ld}</script>
@@ -444,7 +447,7 @@ def shell(L, title, desc, canon, alts, og_img, schema, main, other_url, extra_he
 
 def org():
     return {"@type": "Organization", "@id": SITE + "/#org", "name": "Female Signature", "url": SITE + "/",
-            "logo": {"@type": "ImageObject", "url": SITE + "/images/monogram-square-burgundy.svg"}}
+            "logo": {"@type": "ImageObject", "url": SITE + "/images/icon-512.png", "width": 512, "height": 512}}
 
 
 def person():

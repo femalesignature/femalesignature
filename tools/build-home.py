@@ -326,7 +326,7 @@ def schema(T):
         "@id": SITE + "/#org",
         "name": "Female Signature",
         "url": SITE + "/",
-        "logo": SITE + "/images/monogram-square-burgundy.svg",
+        "logo": SITE + "/images/icon-512.png",
         "image": SITE + "/images/og-image.jpg",
         "description": T["org_desc"],
         "email": MAIL,
@@ -1051,7 +1051,10 @@ def page(T):
 <meta name="twitter:title" content="{esc(T["og_title"])}">
 <meta name="twitter:description" content="{esc(T["desc"])}">
 <meta name="twitter:image" content="{SITE}{T["og_image"]}">
-<link rel="icon" href="/images/monogram-square-burgundy.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/fonts/montserrat-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" imagesrcset="/images/opt/hero-mediha-480.webp 480w, /images/opt/hero-mediha-720.webp 720w, /images/opt/hero-mediha-960.webp 960w, /images/opt/hero-mediha-1024.webp 1024w" imagesizes="(min-width:1000px) 50vw, 100vw" fetchpriority="high">
 <style>{CSS.strip()}</style>
