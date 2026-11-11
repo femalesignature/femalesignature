@@ -172,7 +172,7 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .ft h2{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--fr);margin-bottom:12px}
 .ft nav a{display:flex;align-items:center;min-height:44px;text-decoration:none}
 .ft nav a:hover{color:var(--fr)}
-.fb{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;margin-top:56px;padding-top:24px;border-top:1px solid #dcd6cc;font-size:.8125rem;color:var(--mu)}
+.fb{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;margin-top:56px;padding-top:24px;border-top:1px solid #dcd6cc;font-size:.8125rem;color:var(--mu)}
 .fb nav{display:flex;gap:20px}
 .fb a{min-height:44px;display:inline-flex;align-items:center;text-decoration:none}
 .fb a:hover{color:var(--ink)}
@@ -304,7 +304,7 @@ a:hover .go .ic{transform:translateX(5px)}
 .toc details{display:none}
 .toc .tw{display:block}
 .toc .tt{display:block;font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fr);margin-bottom:12px}
-.toc a{border-top:0;border-left:2px solid #e2dbd0;padding:8px 0 8px 16px;min-height:0}
+.toc a{border-top:0;border-left:2px solid #e2dbd0;padding:8px 0 8px 16px;min-height:44px;align-items:center}
 .toc a.on{border-color:var(--fr)}
 }
 .prose{max-width:68ch;font-size:1.0625rem;line-height:1.8;color:#3a3633}
@@ -314,6 +314,9 @@ a:hover .go .ic{transform:translateX(5px)}
 .prose h2{counter-increment:h;font-size:clamp(1.5rem,1.15rem + 1.3vw,2.25rem);line-height:1.15;font-weight:500;letter-spacing:-.035em;color:var(--ink);margin-top:2.2em;scroll-margin-top:104px;text-wrap:balance}
 .prose h2::before{content:counter(h,decimal-leading-zero);display:block;margin-bottom:14px;font-size:.75rem;font-weight:600;letter-spacing:.16em;color:var(--fr)}
 .prose{counter-reset:h}
+.legal .prose h2::before{display:none}
+.legal .prose>p:first-child{font-size:inherit;line-height:inherit;color:inherit;letter-spacing:0}
+.legal .prose h2{margin-top:1.8em}
 .prose h3{font-size:clamp(1.1875rem,1.05rem + .5vw,1.375rem);line-height:1.3;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-top:1.8em}
 .prose strong{color:var(--ink);font-weight:600}
 .prose a{color:var(--fr);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}

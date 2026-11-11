@@ -151,7 +151,7 @@ a:hover .go .ic{transform:translateX(5px)}
 .toc details{display:none}
 .toc .tw{display:block}
 .toc .tt{display:block;font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fr);margin-bottom:12px}
-.toc a{border-top:0;border-left:2px solid #e2dbd0;padding:8px 0 8px 16px;min-height:0}
+.toc a{border-top:0;border-left:2px solid #e2dbd0;padding:8px 0 8px 16px;min-height:44px;align-items:center}
 .toc a.on{border-color:var(--fr)}
 }
 .prose{max-width:68ch;font-size:1.0625rem;line-height:1.8;color:#3a3633}
@@ -161,6 +161,9 @@ a:hover .go .ic{transform:translateX(5px)}
 .prose h2{counter-increment:h;font-size:clamp(1.5rem,1.15rem + 1.3vw,2.25rem);line-height:1.15;font-weight:500;letter-spacing:-.035em;color:var(--ink);margin-top:2.2em;scroll-margin-top:104px;text-wrap:balance}
 .prose h2::before{content:counter(h,decimal-leading-zero);display:block;margin-bottom:14px;font-size:.75rem;font-weight:600;letter-spacing:.16em;color:var(--fr)}
 .prose{counter-reset:h}
+.legal .prose h2::before{display:none}
+.legal .prose>p:first-child{font-size:inherit;line-height:inherit;color:inherit;letter-spacing:0}
+.legal .prose h2{margin-top:1.8em}
 .prose h3{font-size:clamp(1.1875rem,1.05rem + .5vw,1.375rem);line-height:1.3;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-top:1.8em}
 .prose strong{color:var(--ink);font-weight:600}
 .prose a{color:var(--fr);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
@@ -364,11 +367,12 @@ def pic(name, sizes, ratio, ws, alt="", eager=False):
 CARD_W, COVER_W = (480, 720, 960), (800, 1200, 1600)
 
 
-def shell(L, title, desc, canon, alts, og_img, schema, main, other_url, extra_head="", og_type="website"):
+def shell(L, title, desc, canon, alts, og_img, schema, main, other_url, extra_head="", og_type="website", current="Blog",
+          robots="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"):
     U = UI[L]
     other = "en" if L == "de" else "de"
     cur = ' aria-current="page"'
-    nav = "".join(f'<a href="{h}"{cur if t == "Blog" else ""}>{esc(t)}</a>' for h, t in U["nav"])
+    nav = "".join(f'<a href="{h}"{cur if t == current else ""}>{esc(t)}</a>' for h, t in U["nav"])
     lang_link = f'<a class="lang" href="{other_url}" hreflang="{other}" lang="{other}" aria-label="{other.upper()}, {UI[other]["lang_name"]}">{other.upper()}</a>'
     alt_links = "".join(f'<link rel="alternate" hreflang="{k}" href="{SITE}{v}">\n' for k, v in alts)
     sys_names = [s[0] for s in (H.DE if L == "de" else H.EN)["systems"]]
@@ -386,7 +390,7 @@ def shell(L, title, desc, canon, alts, og_img, schema, main, other_url, extra_he
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE}{canon}">
-{alt_links}<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+{alt_links}<meta name="robots" content="{robots}">
 <meta name="theme-color" content="#F4F1EB">
 <meta name="author" content="{AUTHOR if og_type == "article" else "Female Signature"}">
 <meta property="og:type" content="{og_type}">
@@ -429,7 +433,7 @@ def shell(L, title, desc, canon, alts, og_img, schema, main, other_url, extra_he
 <div><h2>{esc(T["ft_contact"])}</h2><address style="font-style:normal"><nav aria-label="{esc(T["ft_contact"])}"><a href="mailto:{MAIL}">{MAIL}</a><a href="tel:{TEL}">{TEL_TXT}</a></nav><p style="margin-top:8px;color:var(--mu)">Aste 10, 6071 Aldrans, {"Österreich" if L == "de" else "Austria"}</p></address></div>
 </div>
 <p class="ftw" aria-hidden="true">Female <em>Signature</em></p>
-<div class="fb"><p>© 2026 Female Signature</p><nav aria-label="{"Rechtliches" if L == "de" else "Legal"}"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="{other_url}" hreflang="{other}" lang="{other}">{UI[other]["lang_name"]}</a></nav></div>
+<div class="fb"><p>© 2026 Female Signature</p><nav aria-label="{"Rechtliches" if L == "de" else "Legal"}"><a href="/impressum"{cur if current == "Impressum" else ""}>Impressum</a><a href="/datenschutz"{cur if current == "Datenschutz" else ""}>Datenschutz</a><a href="{other_url}" hreflang="{other}" lang="{other}">{UI[other]["lang_name"]}</a></nav></div>
 </div>
 </footer>
 <script>{JS.strip()}</script>
@@ -608,6 +612,56 @@ def article_page(p, posts):
     return shell(L, f'{p["title"]} | Female Signature', p["desc"], url(p), alts, (f"/images/opt/cover-{p['n']}-1200.webp", 1200, 675), schema, main, url(pair), pre, "article")
 
 
+def legal_page(name):
+    """Impressum und Datenschutz: nur Deutsch, Inhalt aus tools/legal/<name>.html."""
+    raw = (ROOT / "tools" / "legal" / f"{name}.html").read_text(encoding="utf-8")
+    m = re.match(r"<!--\s*(\{.*?\})\s*-->\s*(.*)$", raw, re.S)
+    meta, body = json.loads(m[1]), m[2].strip()
+    toc = []
+
+    def h2(mm):
+        t = re.sub(r"<[^>]+>", "", mm[1])
+        hid = slugify(re.sub(r"^\d+\.\s*", "", t))
+        toc.append((hid, re.sub(r"^\d+\.\s*", "", t)))
+        return f'<h2 id="{hid}">{mm[1]}</h2>'
+    body = re.sub(r"<h2>(.*?)</h2>", h2, body)
+    lis = "".join(f'<li><a href="#{h}">{esc(t)}</a></li>' for h, t in toc)
+    toc_html = (f'<aside class="toc" aria-label="Inhalt"><div><p class="tt">Inhalt</p><ol class="tw">{lis}</ol>'
+                f'<details><summary>Inhalt · {len(toc)} Abschnitte</summary><ol>{lis}</ol></details></div></aside>')
+    canon = f"/{name}"
+    main = f"""<div class="prog" aria-hidden="true"></div>
+<article class="legal">
+<header class="ah">
+<div class="wrap">
+<nav class="crumb" aria-label="Brotkrumen-Navigation"><a href="/">Female Signature</a><span aria-hidden="true">/</span><span>{esc(meta["title"])}</span></nav>
+<p class="label">Rechtliches</p>
+<h1>{esc(meta["title"])}</h1>
+<p class="lead">{esc(meta["sub"])}</p>
+</div>
+</header>
+<div class="body">
+<div class="wrap">
+{toc_html}
+<div class="prose">
+{body}
+</div>
+</div>
+</div>
+</article>
+<section class="sec" style="padding-top:0" aria-labelledby="cta-a">
+<div class="wrap">
+<div class="acta"><div><p class="label">Fragen?</p><h2 id="cta-a">Schreiben Sie uns direkt.</h2><p><a href="mailto:{MAIL}" style="color:inherit">{MAIL}</a> · <a href="tel:{TEL}" style="color:inherit">{TEL_TXT}</a></p></div><a class="btn" href="/#kontakt">Zum Kontaktformular {ICON_ARROW}</a></div>
+</div>
+</section>"""
+    schema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "WebPage", "name": meta["title"], "url": SITE + canon, "inLanguage": "de", "publisher": org()},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Female Signature", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": meta["title"], "item": SITE + canon}]}]}
+    return shell("de", f'{meta["title"]} | Female Signature', meta["desc"], canon, [], ("/images/og-image.jpg", 1200, 630),
+                 schema, main, "/en/", current=name.capitalize(), robots=meta["robots"])
+
+
 def sitemap(posts):
     f = ROOT / "sitemap.xml"
     s = f.read_text(encoding="utf-8")
@@ -636,6 +690,8 @@ def main():
     (out / "index-en.html").write_text(H.versioned(index_page("en", posts)), encoding="utf-8")
     for p in posts:
         (out / f"{p['slug']}.html").write_text(H.versioned(article_page(p, posts)), encoding="utf-8")
+    for name in ("impressum", "datenschutz"):
+        (ROOT / f"{name}.html").write_text(H.versioned(legal_page(name)), encoding="utf-8")
     sitemap(posts)
     print(len(posts), "Artikel,", sum((out / f"{p['slug']}.html").stat().st_size for p in posts) // len(posts), "Bytes im Schnitt")
 
