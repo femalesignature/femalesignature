@@ -25,8 +25,16 @@ SLOTS = {
     "blog-1":         (4 / 3, (480, 720, 960), "07 Blog Partnerprogramme"),
     "blog-2":         (4 / 3, (480, 720, 960), "08 Blog Social Media"),
     "blog-3":         (4 / 3, (480, 720, 960), "09 Blog Female Empowerment"),
+    "blog-4":         (4 / 3, (480, 720, 960), "11 Blog Partnership Marketing"),
+    "blog-5":         (4 / 3, (480, 720, 960), "12 Blog Affiliate Marketing"),
+    "blog-6":         (4 / 3, (480, 720, 960), "13 Blog Performance Marketing"),
+    "blog-7":         (4 / 3, (480, 720, 960), "14 Blog Personal Branding"),
     "cta":            (21 / 9, (800, 1400, 2000), "10 Abschluss"),
 }
+# Breite Titelbilder der Blogartikel: gleiches Original wie die Karte, nur anders zugeschnitten
+for _n in range(1, 8):
+    SLOTS[f"cover-{_n}"] = (16 / 9, (800, 1200, 1600), f"Blog {_n} Titelbild")
+SOURCE = {f"cover-{_n}": f"blog-{_n}" for _n in range(1, 8)}
 
 
 # Ausschnitt-Mitte je Platz (x, y von 0 bis 1); Standard etwas über der Mitte
@@ -56,7 +64,7 @@ def cover(im, ratio, w, center=(0.5, 0.35)):
 
 
 def placeholder(ratio, label):
-    w = 1600 if ratio > 1 else 1200
+    w = 1600 if ratio > 1 else 1200  # Platzhalter immer groß genug für die breiteste Datei
     h = round(w / ratio)
     im = Image.new("RGB", (w, h))
     top, bot = (233, 226, 215), (92, 31, 43)
@@ -82,7 +90,8 @@ def placeholder(ratio, label):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     for name, (ratio, widths, label) in SLOTS.items():
-        src = next((p for ext in ("jpg", "jpeg", "png", "webp") for p in [SRC / f"{name}.{ext}"] if p.exists()), None)
+        base = SOURCE.get(name, name)
+        src = next((p for ext in ("jpg", "jpeg", "png", "webp") for p in [SRC / f"{base}.{ext}"] if p.exists()), None)
         im = ImageOps.exif_transpose(Image.open(src)).convert("RGB") if src else placeholder(ratio, label)
         if src and name in HEADROOM:
             im = add_headroom(im, HEADROOM[name])
