@@ -181,6 +181,14 @@ a:hover .go .ic{transform:translateX(5px)}
 .prose p.src{font-size:.875rem;line-height:1.6;color:var(--mu);padding:16px 20px;background:var(--card);border-radius:12px;border:1px solid var(--bd)}
 .prose p.src em{font-family:inherit;font-style:normal;color:inherit}
 .keys{display:grid;gap:12px}
+.prose .ad{font-size:.8125rem;color:var(--mu)}
+.prose .fq{border-bottom:1px solid var(--bd)}
+.prose .fq details{border-top:1px solid var(--bd)}
+.prose .fq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:16px 0;cursor:pointer;font-weight:600;color:var(--ink)}
+.prose .fq summary::-webkit-details-marker{display:none}
+.prose .fq summary::after{content:"+";flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--bd);display:grid;place-items:center;font-weight:400;font-size:1.25rem;line-height:1;color:var(--fr);transition:transform .3s}
+.prose .fq details[open] summary::after{transform:rotate(45deg)}
+.prose .fq details p{margin:0 0 20px}
 @media (min-width:640px){.keys{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .prose .keys li{padding:22px;background:var(--card);border:1px solid var(--bd);border-radius:16px}
 .prose .keys li::before{display:none}
@@ -268,7 +276,7 @@ UI = {
         "lead": "Insights, Strategien und Inspiration für Unternehmerinnen.",
         "n_posts": "Artikel", "n_topics": "Themen", "all": "Alle", "filter": "Nach Thema filtern",
         "count_one": "# Artikel", "count_many": "# Artikel", "latest": "Neuester Artikel", "all_h": "Alle Artikel",
-        "read": "Weiterlesen", "min": "Min. Lesezeit", "by": "von", "toc": "Inhalt", "toc_n": "Abschnitte",
+        "read": "Weiterlesen", "min": "Min. Lesezeit", "faq_h": "Häufige Fragen", "upd": "aktualisiert am", "by": "von", "toc": "Inhalt", "toc_n": "Abschnitte",
         "share": "Teilen", "copy": "Link kopieren", "copied": "Link kopiert", "mail_sub": "Lesetipp von Female Signature",
         "author_k": "Über die Autorin", "role": "CEO & Founder · Female Signature", "about": "Mehr über Female Signature",
         "next_label": "Weiterlesen", "next_h": ("Mehr aus dem", "Blog."), "to_index": "Alle Artikel",
@@ -284,7 +292,7 @@ UI = {
         "lead": "Insights, strategies, and inspiration for entrepreneurs.",
         "n_posts": "Articles", "n_topics": "Topics", "all": "All", "filter": "Filter by topic",
         "count_one": "# article", "count_many": "# articles", "latest": "Latest article", "all_h": "All articles",
-        "read": "Read more", "min": "min read", "by": "by", "toc": "Contents", "toc_n": "sections",
+        "read": "Read more", "min": "min read", "faq_h": "Frequently asked questions", "upd": "updated", "by": "by", "toc": "Contents", "toc_n": "sections",
         "share": "Share", "copy": "Copy link", "copied": "Link copied", "mail_sub": "Reading tip from Female Signature",
         "author_k": "About the author", "role": "CEO & Founder · Female Signature", "about": "More about Female Signature",
         "next_label": "Keep reading", "next_h": ("More from the", "blog."), "to_index": "All articles",
@@ -327,7 +335,7 @@ def slugify(t):
     return re.sub(r"[^a-z0-9]+", "-", t).strip("-")[:60]
 
 
-def prose(body):
+def prose(body, L="de"):
     """Artikeltext aufbereiten: Anker an Zwischenüberschriften, Zitate mit Schreibeffekt,
     Aufzählungen der Form <p><strong>X</strong>: Text</p> als Kartenraster, Quellen klein."""
     toc = []
@@ -350,10 +358,12 @@ def prose(body):
         items = re.findall(r"<p><strong>(.*?)</strong>:\s*(.*?)</p>", m[0])
         return '<ul class="keys">' + "".join(f"<li><strong>{a}</strong><span>{b}</span></li>" for a, b in items) + "</ul>"
     body = re.sub(r"(?:<p><strong>[^<]*</strong>:[^\n]*?</p>\s*){2,}", lambda m: keys(m) + "\n\n", body)
-    body = re.sub(r"<p><em>((?:Quelle|Source):.*?)</em></p>", r'<p class="src"><em>\1</em></p>', body, flags=re.S)
+    body = re.sub(r"<p><em>((?:Quellen?|Sources?):.*?)</em></p>", r'<p class="src"><em>\1</em></p>', body, flags=re.S)
     # Partnerlink von impact.com ist ein Werbelink
     body = body.replace('href="https://goto.impact.com/', 'rel="sponsored noopener" data-x href="https://goto.impact.com/')
     body = re.sub(r'(rel="sponsored noopener" data-x href="[^"]*" target="_blank") rel="noopener"', r"\1", body).replace(" data-x", "")
+    ad = "Werbelink" if L == "de" else "affiliate link"
+    body = re.sub(r'(<a rel="sponsored[^>]*>.*?</a>)', r'\1 <span class="ad">(' + ad + ")</span>", body)
     return body, toc
 
 
@@ -532,7 +542,13 @@ def article_page(p, posts):
     L = p["lang"]
     U = UI[L]
     T = H.DE if L == "de" else H.EN
-    body, toc = prose(p["body"])
+    faq = p.get("faq", [])
+    src = p["body"]
+    if faq:
+        src += f'\n\n<h2>{U["faq_h"]}</h2>\n<div class="fq">' + "".join(
+            f"<details><summary>{esc(q)}</summary><p>{a}</p></details>" for q, a in faq) + "</div>"
+    body, toc = prose(src, L)
+    upd = p.get("updated", p["date"])
     others = [q for q in posts if q["lang"] == L and q["slug"] != p["slug"]]
     others.sort(key=lambda q: (q["cat"] != p["cat"], [-int(x) for x in q["date"].split("-")], q["n"]))
     nxt = others[:3]
@@ -567,7 +583,7 @@ def article_page(p, posts):
 <h1>{esc(p["title"])}</h1>
 <p class="lead">{esc(p["desc"])}</p>
 <div class="by"><div class="who">{face.format(s=48)}<div><strong>{AUTHOR}</strong><span>{U["role"]}</span></div></div>
-<p class="meta"><time datetime="{p["date"]}">{fdate(p["date"], L)}</time><span class="dot" aria-hidden="true"></span><span>{p["mins"]} {U["min"]}</span></p></div>
+<p class="meta"><time datetime="{p["date"]}">{fdate(p["date"], L)}</time>{"" if upd == p["date"] else f'<span class="dot" aria-hidden="true"></span><span>{U["upd"]} <time datetime="{upd}">{fdate(upd, L)}</time></span>'}<span class="dot" aria-hidden="true"></span><span>{p["mins"]} {U["min"]}</span></p></div>
 </div>
 </header>
 <div class="cover"><div class="shot">{pic("cover-" + str(p["n"]), "(min-width:1440px) 1400px, 100vw", 16 / 9, COVER_W, eager=True)}</div></div>
@@ -604,7 +620,7 @@ def article_page(p, posts):
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "BlogPosting", "@id": full + "#article", "headline": p["title"], "description": p.get("meta", p["desc"]), "inLanguage": L,
          "image": {"@type": "ImageObject", "url": img, "width": 1200, "height": 675},
-         "datePublished": p["date"], "dateModified": TODAY, "author": person(), "publisher": org(),
+         "datePublished": p["date"], "dateModified": upd, "author": person(), "publisher": org(),
          "mainEntityOfPage": full, "url": full, "articleSection": p["cat"], "keywords": ", ".join(p["tags"]),
          "wordCount": len(re.sub(r"<[^>]+>", " ", p["body"]).split()), "timeRequired": f"PT{p['mins']}M",
          "isPartOf": {"@id": SITE + U["index"] + "#blog"}},
@@ -612,10 +628,13 @@ def article_page(p, posts):
             {"@type": "ListItem", "position": 1, "name": "Female Signature", "item": SITE + U["home"]},
             {"@type": "ListItem", "position": 2, "name": "Blog", "item": SITE + U["index"]},
             {"@type": "ListItem", "position": 3, "name": p["title"], "item": full}]}]}
+    if faq:
+        schema["@graph"].append({"@type": "FAQPage", "@id": full + "#faq", "inLanguage": L, "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in faq]})
     pn = p["n"]
     pset = ", ".join(f"/images/opt/cover-{pn}-{w}.webp {w}w" for w in COVER_W)
     pre = (f'<link rel="preload" as="image" type="image/webp" imagesrcset="{pset}" imagesizes="(min-width:1440px) 1400px, 100vw" fetchpriority="high">\n'
-           f'<meta property="article:published_time" content="{p["date"]}">\n<meta property="article:modified_time" content="{TODAY}">\n'
+           f'<meta property="article:published_time" content="{p["date"]}">\n<meta property="article:modified_time" content="{upd}">\n'
            f'<meta property="article:section" content="{esc(p["cat"])}">\n' + "".join(f'<meta property="article:tag" content="{esc(t)}">\n' for t in p["tags"]))
     return shell(L, page_title(p.get("seo", p["title"])), p.get("meta", p["desc"]), url(p), alts, (f"/images/opt/cover-{p['n']}-1200.webp", 1200, 675, p["title"]), schema, main, url(pair), pre, "article")
 
@@ -706,7 +725,7 @@ def sitemap(posts):
     blog = [entry("/blog/", "/blog/", "/blog/index-en", TODAY, "weekly", "0.8"), entry("/blog/index-en", "/blog/", "/blog/index-en", TODAY, "weekly", "0.6")]
     for p in posts:
         de = p["slug"] if p["lang"] == "de" else p["pair"]
-        blog.append(entry(url(p), f"/blog/{de}", f"/blog/{de}-en", TODAY, "monthly", "0.7" if p["lang"] == "de" else "0.5"))
+        blog.append(entry(url(p), f"/blog/{de}", f"/blog/{de}-en", p.get("updated", p["date"]), "monthly", "0.7" if p["lang"] == "de" else "0.5"))
     # Impressum und Datenschutz sind noindex und gehören daher nicht in die Sitemap
     rest = [u for u in keep if "impressum" not in u and "datenschutz" not in u]
     head = s[:s.index("  <url>")]
