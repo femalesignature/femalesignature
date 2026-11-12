@@ -983,7 +983,7 @@ def consent_js(ga):
             "sv.addEventListener('click',function(){apply(st.checked)});"
             "more.addEventListener('click',function(){open(true);st.focus()});"
             "document.querySelectorAll('[data-ck-open]').forEach(function(a){a.addEventListener('click',function(){open(true);b.querySelector('h2').scrollIntoView({block:'nearest'});st.focus()})});"
-            "var c=get();if(c){if(c.stat)load()}else{try{localStorage.removeItem(K)}catch(e){}if(/^_ga/m.test(document.cookie.replace(/; /g,'\\n')))wipe();open(false)}})();")
+            "var c=get();if(c){if(c.stat)load()}else{try{localStorage.removeItem(K)}catch(e){}if(/^_ga/m.test(document.cookie.replace(/; /g,'\\n')))wipe();var f=document.fonts&&document.fonts.ready;(f||Promise.resolve()).then(function(){setTimeout(function(){open(false)},f?0:300)})}})();")
 
 
 
