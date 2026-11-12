@@ -31,6 +31,7 @@ PEOPLE = [  # Bild, Name
     ("sabina", "Sabina Velic"),
     ("valeriya", "Valeriya Vogl"),
 ]
+FEATURED = "agnese"  # großes Zitat unter „Growth Stories“, alle anderen laufen im Band
 
 DE = {
     "lang": "de", "locale": "de_AT", "path": "/", "other_path": "/en/", "other_label": "EN",
@@ -990,10 +991,10 @@ def page(T):
                 f'<figcaption class="who"><img src="/images/opt/{img}-96.webp" srcset="/images/opt/{img}-96.webp 96w, /images/opt/{img}-192.webp 192w" sizes="48px" width="48" height="48" alt="{esc(name)}" loading="lazy" decoding="async">'
                 f'<span><strong>{esc(name)}</strong><span>{esc(role)}</span></span></figcaption></figure>')
     pairs = list(zip(PEOPLE, T["testis"]))
-    (fimg, fname), (fq, frole, _) = pairs[5]
+    (fimg, fname), (fq, frole, _) = next(x for x in pairs if x[0][0] == FEATURED)
     featured = (f'<figure class="feat"><blockquote class="wr">{words("„" + fq + "“")}</blockquote><figcaption><img src="/images/opt/{fimg}-96.webp" srcset="/images/opt/{fimg}-96.webp 96w, /images/opt/{fimg}-192.webp 192w" sizes="52px" width="52" height="52" alt="{esc(fname)}" loading="lazy" decoding="async">'
                 f'<span><strong>{esc(fname)}</strong><span>{esc(frole)}</span></span></figcaption></figure>')
-    testis = "".join(tcard(img, name, q, role, o) for (img, name), (q, role, o) in pairs[:5])
+    testis = "".join(tcard(img, name, q, role, o) for (img, name), (q, role, o) in pairs if img != FEATURED)
     testis_dup = testis.replace('<figure class="card">', '<figure class="card" aria-hidden="true">')
 
     post_imgs = ["blog-1", "blog-2", "blog-3"]
