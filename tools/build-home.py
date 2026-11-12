@@ -890,38 +890,74 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .ani .ap.in{opacity:1;translate:none;scale:none;transition:opacity .9s var(--ease) var(--d,0s),translate 1.1s var(--ease) var(--d,0s),scale 1.1s var(--ease) var(--d,0s)}
 """
 
-# Cookie-Hinweis: Google Analytics lädt erst nach Zustimmung, Widerruf über „Cookies“ im Footer
+HL_DE = ' hreflang="de"'
+
+# Cookie-Einwilligung nach DSGVO und § 165 Abs. 3 TKG 2021:
+# nichts Zustimmungspflichtiges vor dem Klick, „Alle ablehnen“ gleichwertig zu „Alle akzeptieren“,
+# Kategorien einzeln wählbar, Widerruf jederzeit über „Cookies“ im Footer,
+# Einwilligung mit Zeitpunkt und Version gespeichert, nach 12 Monaten oder neuer Version wird neu gefragt.
 GA_ID = "G-VXL6C4DDES"
+CONSENT_VERSION = 2
 CONSENT = {
-    "de": {"t": "Cookies", "p": "Wir nutzen Google Analytics, um zu verstehen, wie unsere Website genutzt wird. Das passiert nur mit Ihrer Zustimmung. Ihre Wahl können Sie jederzeit unten auf der Seite unter „Cookies“ ändern.",
-           "more": "Mehr in der Datenschutzerklärung", "no": "Ablehnen", "yes": "Akzeptieren"},
-    "en": {"t": "Cookies", "p": "We use Google Analytics to understand how our website is used, but only with your consent. You can change your choice at any time under “Cookies” at the bottom of the page.",
-           "more": "Privacy policy (German)", "no": "Decline", "yes": "Accept"},
+    "de": {"t": "Datenschutz-Einstellungen",
+           "p": "Wir möchten Google Analytics nutzen, um zu verstehen, wie unsere Website genutzt wird, und sie zu verbessern. Dafür brauchen wir Ihre Einwilligung. Sie ist freiwillig, und Sie können sie jederzeit unten auf jeder Seite unter „Cookies“ ändern oder widerrufen.",
+           "dp": "Datenschutzerklärung", "imp": "Impressum",
+           "no": "Alle ablehnen", "yes": "Alle akzeptieren", "set": "Einstellungen", "save": "Auswahl speichern",
+           "nec": "Notwendig", "nec_d": "Speichert nur Ihre Auswahl in diesem Fenster im Browser (Eintrag „fs-consent“, 12 Monate). Ohne diesen Eintrag würden wir Sie bei jedem Besuch erneut fragen.",
+           "always": "Immer aktiv",
+           "stat": "Statistik", "stat_d": "Google Analytics 4 von Google Ireland Limited. Zeigt uns anonymisiert, welche Seiten besucht werden und wie lange. Cookies „_ga“ und „_ga_VXL6C4DDES“, Speicherdauer bis zu 2 Jahre. Eine Übermittlung an Google LLC in den USA ist möglich (EU-US Data Privacy Framework)."},
+    "en": {"t": "Privacy settings",
+           "p": "We would like to use Google Analytics to understand how our website is used and to improve it. For this we need your consent. It is voluntary, and you can change or withdraw it at any time under “Cookies” at the bottom of every page.",
+           "dp": "Privacy policy (German)", "imp": "Legal notice (German)",
+           "no": "Reject all", "yes": "Accept all", "set": "Settings", "save": "Save selection",
+           "nec": "Necessary", "nec_d": "Only stores your choice from this window in your browser (entry “fs-consent”, 12 months). Without it we would ask you again on every visit.",
+           "always": "Always active",
+           "stat": "Statistics", "stat_d": "Google Analytics 4 by Google Ireland Limited. Shows us anonymously which pages are visited and for how long. Cookies “_ga” and “_ga_VXL6C4DDES”, stored for up to 2 years. Data may be transferred to Google LLC in the USA (EU-US Data Privacy Framework)."},
 }
 CONSENT_CSS = r"""
-/* Cookie-Hinweis */
+/* Cookie-Einwilligung */
 .fb nav{flex-wrap:wrap;gap:0 20px}
 .fb button{min-height:44px;display:inline-flex;align-items:center;padding:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer}
 .fb button:hover{color:var(--ink)}
-.ck{position:fixed;z-index:60;left:12px;right:12px;bottom:12px;max-width:440px;margin-left:auto;padding:22px 22px 20px;background:var(--card);color:var(--ink);border:1px solid var(--bd);border-radius:20px;box-shadow:0 24px 60px -24px rgba(28,28,28,.45)}
-.ck[hidden]{display:none}
+.ck{position:fixed;z-index:60;left:12px;right:12px;bottom:12px;max-width:480px;max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);overflow:auto;overscroll-behavior:contain;margin-left:auto;padding:22px 22px 18px;background:var(--card);color:var(--ink);border:1px solid var(--bd);border-radius:20px;box-shadow:0 24px 60px -24px rgba(28,28,28,.45)}
+.ck[hidden],.ck [hidden]{display:none!important}
 .ck h2{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--fr);margin:0 0 8px}
 .ck p{font-size:.875rem;line-height:1.55;color:var(--mu);margin:0}
-.ck p a{color:var(--ink);text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px;margin:-6px 0 -14px}
-.ck .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.ck .btn{min-height:48px;padding:12px 16px;box-shadow:none;font-size:.875rem}
-@media (min-width:700px){.ck{right:24px;bottom:24px}}
+.ck .lk{display:flex;flex-wrap:wrap;gap:0 18px;margin-top:2px}
+.ck .lk a{color:var(--ink);font-size:.8125rem;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}
+.ck .cat{margin-top:6px;border-top:1px solid var(--bd)}
+.ck .row{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--bd)}
+.ck .row strong{font-size:.875rem;font-weight:600}
+.ck .row p{grid-column:1/-1;font-size:.8125rem}
+.ck .on{font-size:.75rem;color:var(--mu)}
+.ck .sw{position:relative;width:52px;height:44px;display:inline-flex;align-items:center;cursor:pointer}
+.ck .sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.ck .sw span{width:52px;height:30px;border-radius:999px;background:#cfc8bd;transition:background .2s}
+.ck .sw span::after{content:"";position:absolute;top:10px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.ck .sw input:checked+span{background:var(--fr)}
+.ck .sw input:checked+span::after{transform:translateX(20px)}
+.ck .sw input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+.ck .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.ck .btn{min-height:48px;padding:12px 14px;box-shadow:none;font-size:.875rem}
+.ck .acts .wide{grid-column:1/-1}
+.ck .more{grid-column:1/-1;min-height:44px;border:0;background:none;font:inherit;font-size:.8125rem;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+@media (min-width:700px){.ck{right:24px;bottom:24px;max-height:calc(100vh - 48px)}}
 """
-
-
-HL_DE = ' hreflang="de"'
 
 
 def consent_html(L):
     C = CONSENT[L]
-    return (f'<section class="ck" id="ck" role="dialog" aria-labelledby="ck-h" hidden><h2 id="ck-h">{C["t"]}</h2>'
-            f'<p>{esc(C["p"])} <a href="/datenschutz#cookies"{HL_DE if L == "en" else ""}>{esc(C["more"])}</a></p>'
-            f'<div class="acts"><button class="btn ghost" type="button" data-ck="no">{C["no"]}</button><button class="btn" type="button" data-ck="yes">{C["yes"]}</button></div></section>')
+    hl = HL_DE if L == "en" else ""
+    return (f'<section class="ck" id="ck" role="dialog" aria-modal="false" aria-labelledby="ck-h" aria-describedby="ck-p" hidden>'
+            f'<h2 id="ck-h">{esc(C["t"])}</h2><p id="ck-p">{esc(C["p"])}</p>'
+            f'<p class="lk"><a href="/datenschutz#cookies"{hl}>{esc(C["dp"])}</a><a href="/impressum"{hl}>{esc(C["imp"])}</a></p>'
+            f'<div class="cat" id="ck-cat" hidden>'
+            f'<div class="row"><strong>{esc(C["nec"])}</strong><span class="on">{esc(C["always"])}</span><p>{esc(C["nec_d"])}</p></div>'
+            f'<div class="row"><strong id="ck-st">{esc(C["stat"])}</strong><label class="sw"><input type="checkbox" role="switch" id="ck-stat" aria-labelledby="ck-st"><span></span></label><p>{esc(C["stat_d"])}</p></div>'
+            f'</div>'
+            f'<div class="acts"><button class="btn" type="button" data-ck="no">{esc(C["no"])}</button><button class="btn" type="button" data-ck="yes">{esc(C["yes"])}</button>'
+            f'<button class="btn ghost wide" type="button" data-ck="save" hidden>{esc(C["save"])}</button>'
+            f'<button class="more" type="button" data-ck="set" aria-controls="ck-cat" aria-expanded="false">{esc(C["set"])}</button></div></section>')
 
 
 def consent_link(L):
@@ -929,20 +965,26 @@ def consent_link(L):
 
 
 def consent_js(ga):
-    """ga=True: Seite mit Google Analytics, Hinweis erscheint beim ersten Besuch von selbst."""
-    return ("(function(){var K='fs-consent',b=document.getElementById('ck'),G=" + ("1" if ga else "0") + ";if(!b)return;"
-            "function get(){try{return localStorage.getItem(K)}catch(e){return null}}"
-            "function set(v){try{localStorage.setItem(K,v)}catch(e){}}"
-            "function load(){if(!G||window.__ga)return;window.__ga=1;var s=document.createElement('script');s.async=true;"
-            "s.src='https://www.googletagmanager.com/gtag/js?id=" + GA_ID + "';document.head.appendChild(s);"
-            "window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','" + GA_ID + "')}"
+    """ga=True: Seite mit Google Analytics. Der Hinweis erscheint auf jeder Seite, solange keine gültige Wahl vorliegt."""
+    return ("(function(){var K='fs-consent',V=" + str(CONSENT_VERSION) + ",MAX=365*864e5,b=document.getElementById('ck'),G=" + ("1" if ga else "0") + ";if(!b)return;"
+            "var cat=document.getElementById('ck-cat'),st=document.getElementById('ck-stat'),sv=b.querySelector('[data-ck=save]'),more=b.querySelector('[data-ck=set]');"
+            "function get(){try{var c=JSON.parse(localStorage.getItem(K));if(c&&c.v===V&&Date.now()-Date.parse(c.ts)<MAX)return c}catch(e){}return null}"
+            "function set(stat){try{localStorage.setItem(K,JSON.stringify({v:V,stat:!!stat,ts:new Date().toISOString()}))}catch(e){}}"
+            "function load(){if(!G||window.__ga)return;window.__ga=1;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};"
+            "gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});"
+            "var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=" + GA_ID + "';document.head.appendChild(s);"
+            "gtag('js',new Date());gtag('config','" + GA_ID + "')}"
             "function wipe(){var h=location.hostname.replace(/^www\\./,'');document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();"
             "if(/^_ga/.test(n))['',';domain='+h,';domain=.'+h].forEach(function(d){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+d})})}"
-            "function close(){b.hidden=true}"
-            "b.querySelector('[data-ck=yes]').addEventListener('click',function(){set('yes');close();load()});"
-            "b.querySelector('[data-ck=no]').addEventListener('click',function(){var was=window.__ga;set('no');wipe();close();if(was)location.reload()});"
-            "document.querySelectorAll('[data-ck-open]').forEach(function(a){a.addEventListener('click',function(){b.hidden=false;b.querySelector('[data-ck=yes]').focus()})});"
-            "var v=get();if(v==='yes')load();else if(v!=='no'&&G)b.hidden=false})();")
+            "function apply(stat){var was=window.__ga;set(stat);b.hidden=true;if(stat)load();else{wipe();if(was)location.reload()}}"
+            "function open(det){var c=get();st.checked=!!(c&&c.stat);cat.hidden=!det;sv.hidden=!det;more.hidden=!!det;more.setAttribute('aria-expanded',det?'true':'false');b.hidden=false}"
+            "b.querySelector('[data-ck=yes]').addEventListener('click',function(){apply(true)});"
+            "b.querySelector('[data-ck=no]').addEventListener('click',function(){apply(false)});"
+            "sv.addEventListener('click',function(){apply(st.checked)});"
+            "more.addEventListener('click',function(){open(true);st.focus()});"
+            "document.querySelectorAll('[data-ck-open]').forEach(function(a){a.addEventListener('click',function(){open(true);b.querySelector('h2').scrollIntoView({block:'nearest'});st.focus()})});"
+            "var c=get();if(c){if(c.stat)load()}else{try{localStorage.removeItem(K)}catch(e){}if(/^_ga/m.test(document.cookie.replace(/; /g,'\\n')))wipe();open(false)}})();")
+
 
 
 JS = r"""
