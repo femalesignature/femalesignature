@@ -117,6 +117,7 @@ a:hover .go .ic{transform:translateX(5px)}
 .ah .label{margin:18px 0 0}
 .ah h1{hyphens:auto;-webkit-hyphens:auto;hyphenate-limit-chars:12 5 5;font-size:clamp(2.125rem,1.2rem + 3.6vw,4.25rem);line-height:1.04;font-weight:500;letter-spacing:-.045em;max-width:20ch;text-wrap:balance}
 .ah .lead{max-width:56ch;margin-top:24px}
+.simple{min-height:72vh;min-height:72svh;display:flex;align-items:center}.simple h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--fr)}.simple .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
 .by{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:clamp(28px,4vw,40px);padding-top:24px;border-top:1px solid #d9d2c7}
 .by .who{display:flex;align-items:center;gap:12px;font-size:.9375rem}
 .by .who img{width:48px;height:48px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--ow),0 0 0 3px var(--fr)}
@@ -262,7 +263,7 @@ UI = {
         "locale": "de_AT", "index": "/blog/", "home": "/", "blog": "Blog", "skip": "Zum Inhalt springen",
         "nav": [("/#systems", "Systeme"), ("/#approach", "Ansatz"), ("/#results", "Ergebnisse"), ("/blog/", "Blog")],
         "menu": "Menü", "close": "Schließen", "cta_short": "Strategie-Call", "cta": "Kostenfreien Strategie-Call buchen",
-        "title": "Blog | Female Signature", "desc": "Insights, Strategien und Inspiration für Unternehmerinnen: Partnerprogramme, Social Media, Branding und Performance Marketing.",
+        "title": "Blog: Wissen, das Ihr Business weiterbringt | Female Signature", "desc": "Insights, Strategien und Inspiration für Unternehmerinnen: Partnerprogramme, Social Media, Branding und Performance Marketing.",
         "h1": ("Wissen, das Ihr Business", "weiterbringt."), "label": "Insights",
         "lead": "Insights, Strategien und Inspiration für Unternehmerinnen.",
         "n_posts": "Artikel", "n_topics": "Themen", "all": "Alle", "filter": "Nach Thema filtern",
@@ -278,7 +279,7 @@ UI = {
         "locale": "en_GB", "index": "/blog/index-en", "home": "/en/", "blog": "Blog", "skip": "Skip to content",
         "nav": [("/en/#systems", "Systems"), ("/en/#approach", "Approach"), ("/en/#results", "Results"), ("/blog/index-en", "Blog")],
         "menu": "Menu", "close": "Close", "cta_short": "Strategy Call", "cta": "Book a Free Strategy Call",
-        "title": "Blog | Female Signature", "desc": "Insights, strategies, and inspiration for female entrepreneurs: partner programs, social media, branding, and performance marketing.",
+        "title": "Blog: Knowledge that moves your business forward | Female Signature", "desc": "Insights, strategies, and inspiration for female entrepreneurs: partner programs, social media, branding, and performance marketing.",
         "h1": ("Knowledge that moves your business", "forward."), "label": "Insights",
         "lead": "Insights, strategies, and inspiration for entrepreneurs.",
         "n_posts": "Articles", "n_topics": "Topics", "all": "All", "filter": "Filter by topic",
@@ -402,10 +403,12 @@ def shell(L, title, desc, canon, alts, og_img, schema, main, other_url, extra_he
 <meta property="og:image" content="{SITE}{og_img[0]}">
 <meta property="og:image:width" content="{og_img[1]}">
 <meta property="og:image:height" content="{og_img[2]}">
+<meta property="og:image:alt" content="{esc(og_img[3] if len(og_img) > 3 else "Female Signature")}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(desc)}">
 <meta name="twitter:image" content="{SITE}{og_img[0]}">
+<meta name="twitter:image:alt" content="{esc(og_img[3] if len(og_img) > 3 else "Female Signature")}">
 {extra_head}<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
@@ -520,7 +523,7 @@ def index_page(L, posts):
     pset = ", ".join(f"/images/opt/blog-{tn}-{w}.webp {w}w" for w in CARD_W)
     pre = f'<link rel="preload" as="image" type="image/webp" imagesrcset="{pset}" imagesizes="(min-width:900px) 600px, 92vw" fetchpriority="high">\n'
     other = UI["en" if L == "de" else "de"]["index"]
-    return shell(L, U["title"], U["desc"], canon, alts, ("/images/og-image.jpg" if L == "de" else "/images/og-image-en.jpg", 1200, 630), schema, main, other, pre)
+    return shell(L, page_title(U["title"].replace(" | Female Signature", "")), U["desc"], canon, alts, ("/images/og-image.jpg" if L == "de" else "/images/og-image-en.jpg", 1200, 630), schema, main, other, pre)
 
 
 def article_page(p, posts):
@@ -612,7 +615,28 @@ def article_page(p, posts):
     pre = (f'<link rel="preload" as="image" type="image/webp" imagesrcset="{pset}" imagesizes="(min-width:1440px) 1400px, 100vw" fetchpriority="high">\n'
            f'<meta property="article:published_time" content="{p["date"]}">\n<meta property="article:modified_time" content="{TODAY}">\n'
            f'<meta property="article:section" content="{esc(p["cat"])}">\n' + "".join(f'<meta property="article:tag" content="{esc(t)}">\n' for t in p["tags"]))
-    return shell(L, f'{p["title"]} | Female Signature', p["desc"], url(p), alts, (f"/images/opt/cover-{p['n']}-1200.webp", 1200, 675), schema, main, url(pair), pre, "article")
+    return shell(L, page_title(p["title"]), p["desc"], url(p), alts, (f"/images/opt/cover-{p['n']}-1200.webp", 1200, 675, p["title"]), schema, main, url(pair), pre, "article")
+
+
+def page_title(t):
+    """Markenzusatz nur, solange der Titel in Google ungekürzt bleibt (bis 60 Zeichen)."""
+    full = f"{t} | Female Signature"
+    return full if len(full) <= 60 else t
+
+
+def simple_page(label, h1a, h1b, lead, buttons, title, desc, canon):
+    """Kleine Seite im neuen Design (Danke-Seite, 404), nur Deutsch, noindex."""
+    btns = "".join(f'<a class="btn{"" if i == 0 else " ghost"}" href="{h}">{esc(t)}</a>' for i, (h, t) in enumerate(buttons))
+    main = f"""<section class="ah simple">
+<div class="wrap">
+<p class="label">{esc(label)}</p>
+<h1>{esc(h1a)} <em>{esc(h1b)}</em></h1>
+<p class="lead">{esc(lead)}</p>
+<p class="acts">{btns}</p>
+</div>
+</section>"""
+    schema = {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": SITE + canon, "inLanguage": "de", "publisher": org()}
+    return shell("de", title, desc, canon, [], ("/images/og-image.jpg", 1200, 630), schema, main, "/en/", current="", robots="noindex,follow")
 
 
 def legal_page(name):
@@ -680,10 +704,10 @@ def sitemap(posts):
     for p in posts:
         de = p["slug"] if p["lang"] == "de" else p["pair"]
         blog.append(entry(url(p), f"/blog/{de}", f"/blog/{de}-en", TODAY, "monthly", "0.7" if p["lang"] == "de" else "0.5"))
-    legal = [u for u in keep if "impressum" in u or "datenschutz" in u]
-    rest = [u for u in keep if u not in legal]
+    # Impressum und Datenschutz sind noindex und gehören daher nicht in die Sitemap
+    rest = [u for u in keep if "impressum" not in u and "datenschutz" not in u]
     head = s[:s.index("  <url>")]
-    f.write_text(head + "".join(rest + blog + legal) + "</urlset>\n", encoding="utf-8")
+    f.write_text(head + "".join(rest + blog) + "</urlset>\n", encoding="utf-8")
 
 
 def main():
@@ -695,6 +719,14 @@ def main():
         (out / f"{p['slug']}.html").write_text(H.versioned(article_page(p, posts)), encoding="utf-8")
     for name in ("impressum", "datenschutz"):
         (ROOT / f"{name}.html").write_text(H.versioned(legal_page(name)), encoding="utf-8")
+    (ROOT / "success.html").write_text(H.versioned(simple_page(
+        "Nachricht gesendet", "Vielen", "Dank.", "Ihre Nachricht ist angekommen. Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+        [("/", "Zurück zur Startseite"), ("/blog/", "Zum Blog")],
+        "Nachricht gesendet | Female Signature", "Danke für Ihre Nachricht an Female Signature. Wir melden uns innerhalb von 24 Stunden bei Ihnen.", "/success")), encoding="utf-8")
+    (ROOT / "404.html").write_text(H.versioned(simple_page(
+        "Fehler 404", "Diese Seite gibt es", "nicht.", "Vielleicht hat sich die Adresse geändert. Auf der Startseite und im Blog finden Sie alle Inhalte.",
+        [("/", "Zur Startseite"), ("/blog/", "Zum Blog"), ("/en/", "English version")],
+        "Seite nicht gefunden | Female Signature", "Diese Seite gibt es nicht. Zur Startseite und zum Blog von Female Signature.", "/404")), encoding="utf-8")
     sitemap(posts)
     print(len(posts), "Artikel,", sum((out / f"{p['slug']}.html").stat().st_size for p in posts) // len(posts), "Bytes im Schnitt")
 
