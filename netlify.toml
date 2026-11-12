@@ -26,6 +26,12 @@
   to = "/en/"
   status = 301
 
+# Englische 404-Seite für alles unter /en/, das es nicht gibt (greift nur, wenn keine Datei passt)
+[[redirects]]
+  from = "/en/*"
+  to = "/en/404.html"
+  status = 404
+
 # Sicherheits-Header für alle Pfade (vorher nur *.html, die Startseite "/" fiel durch)
 [[headers]]
   for = "/*"

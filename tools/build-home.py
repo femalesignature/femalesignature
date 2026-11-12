@@ -127,6 +127,7 @@ DE = {
     ],
     "faq_label": "FAQ",
     "faq_h2": ("Häufige", "Fragen."),
+    "success_path": "/success",
     "faq": [
         ("Was ist Female Signature?", "Female Signature ist eine Growth-Agentur für Female Brands im DACH-Raum: Premium Branding, Creator Partnerships, Content-Strategie und Performance Marketing."),
         ("Was ist ein Signature Audit?", "Ein kostenloser Deep-Dive in Marke, Zielgruppe und Positionierung als Grundlage für einen individuellen Growth-Plan."),
@@ -248,7 +249,14 @@ EN = {
         ("/blog/social-media-female-businesses-en", "Content & Visibility", "Social Media for Female Businesses: Why Reach Alone Is Not Enough", "Reach without strategy is noise. How to build social media as a growth system."),
         ("/blog/female-empowerment-business-en", "Female Empowerment", "Female Empowerment Is Not a Trend. It's a Market.", "Why entrepreneurs who live this value have a strategic competitive advantage."),
     ],
-    "faq": [],  # Englische FAQ gibt es noch nicht; nicht übersetzen, erst von Marlene liefern lassen.
+    "faq_label": "FAQ",
+    "faq_h2": ("Frequently asked", "questions."),
+    "faq": [  # auf Wunsch von Marlene (12.11.2026) aus den englischen Seitentexten geschrieben
+        ("What is Female Signature?", "Female Signature is a growth agency for female brands in the DACH region, based in Aldrans, Tyrol. We combine strategic brand work, performance systems, and partner structures across four areas: Brand Experience, Content & Visibility, Partnership Marketing, and Performance Marketing."),
+        ("What is a Signature Audit?", "The free first step of our approach. We analyze your brand, audience, and competitors in detail and identify the biggest growth levers for your business. The audit is the basis for your custom growth plan."),
+        ("What results does Female Signature achieve?", "On average a 3.2× revenue increase within the first 12 months, a 94% retention rate, and ROI in under 90 days."),
+    ],
+    "success_path": "/en/success",
     "cta_label": "Ready for the next step?",
     "cta_h2": ("Growth begins with a", "conversation."),
     "cta_sd": "In a free 30-minute call, we assess together where your growth is stalling and which levers make the biggest difference.",
@@ -882,6 +890,61 @@ a:hover>.shot img,.zoomhover:hover .shot img{transform:scale(1.035)}
 .ani .ap.in{opacity:1;translate:none;scale:none;transition:opacity .9s var(--ease) var(--d,0s),translate 1.1s var(--ease) var(--d,0s),scale 1.1s var(--ease) var(--d,0s)}
 """
 
+# Cookie-Hinweis: Google Analytics lädt erst nach Zustimmung, Widerruf über „Cookies“ im Footer
+GA_ID = "G-VXL6C4DDES"
+CONSENT = {
+    "de": {"t": "Cookies", "p": "Wir nutzen Google Analytics, um zu verstehen, wie unsere Website genutzt wird. Das passiert nur mit Ihrer Zustimmung. Ihre Wahl können Sie jederzeit unten auf der Seite unter „Cookies“ ändern.",
+           "more": "Mehr in der Datenschutzerklärung", "no": "Ablehnen", "yes": "Akzeptieren"},
+    "en": {"t": "Cookies", "p": "We use Google Analytics to understand how our website is used, but only with your consent. You can change your choice at any time under “Cookies” at the bottom of the page.",
+           "more": "Privacy policy (German)", "no": "Decline", "yes": "Accept"},
+}
+CONSENT_CSS = r"""
+/* Cookie-Hinweis */
+.fb nav{flex-wrap:wrap;gap:0 20px}
+.fb button{min-height:44px;display:inline-flex;align-items:center;padding:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer}
+.fb button:hover{color:var(--ink)}
+.ck{position:fixed;z-index:60;left:12px;right:12px;bottom:12px;max-width:440px;margin-left:auto;padding:22px 22px 20px;background:var(--card);color:var(--ink);border:1px solid var(--bd);border-radius:20px;box-shadow:0 24px 60px -24px rgba(28,28,28,.45)}
+.ck[hidden]{display:none}
+.ck h2{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--fr);margin:0 0 8px}
+.ck p{font-size:.875rem;line-height:1.55;color:var(--mu);margin:0}
+.ck p a{color:var(--ink);text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px;margin:-6px 0 -14px}
+.ck .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.ck .btn{min-height:48px;padding:12px 16px;box-shadow:none;font-size:.875rem}
+@media (min-width:700px){.ck{right:24px;bottom:24px}}
+"""
+
+
+HL_DE = ' hreflang="de"'
+
+
+def consent_html(L):
+    C = CONSENT[L]
+    return (f'<section class="ck" id="ck" role="dialog" aria-labelledby="ck-h" hidden><h2 id="ck-h">{C["t"]}</h2>'
+            f'<p>{esc(C["p"])} <a href="/datenschutz#cookies"{HL_DE if L == "en" else ""}>{esc(C["more"])}</a></p>'
+            f'<div class="acts"><button class="btn ghost" type="button" data-ck="no">{C["no"]}</button><button class="btn" type="button" data-ck="yes">{C["yes"]}</button></div></section>')
+
+
+def consent_link(L):
+    return '<button type="button" data-ck-open>Cookies</button>'
+
+
+def consent_js(ga):
+    """ga=True: Seite mit Google Analytics, Hinweis erscheint beim ersten Besuch von selbst."""
+    return ("(function(){var K='fs-consent',b=document.getElementById('ck'),G=" + ("1" if ga else "0") + ";if(!b)return;"
+            "function get(){try{return localStorage.getItem(K)}catch(e){return null}}"
+            "function set(v){try{localStorage.setItem(K,v)}catch(e){}}"
+            "function load(){if(!G||window.__ga)return;window.__ga=1;var s=document.createElement('script');s.async=true;"
+            "s.src='https://www.googletagmanager.com/gtag/js?id=" + GA_ID + "';document.head.appendChild(s);"
+            "window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','" + GA_ID + "')}"
+            "function wipe(){var h=location.hostname.replace(/^www\\./,'');document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();"
+            "if(/^_ga/.test(n))['',';domain='+h,';domain=.'+h].forEach(function(d){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+d})})}"
+            "function close(){b.hidden=true}"
+            "b.querySelector('[data-ck=yes]').addEventListener('click',function(){set('yes');close();load()});"
+            "b.querySelector('[data-ck=no]').addEventListener('click',function(){var was=window.__ga;set('no');wipe();close();if(was)location.reload()});"
+            "document.querySelectorAll('[data-ck-open]').forEach(function(a){a.addEventListener('click',function(){b.hidden=false;b.querySelector('[data-ck=yes]').focus()})});"
+            "var v=get();if(v==='yes')load();else if(v!=='no'&&G)b.hidden=false})();")
+
+
 JS = r"""
 (function(){
 var d=document,hd=d.querySelector('.hd'),mb=d.querySelector('.mbtn'),mn=d.getElementById('mnav');
@@ -1058,10 +1121,8 @@ def page(T):
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/fonts/montserrat-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" imagesrcset="/images/opt/hero-mediha-480.webp 480w, /images/opt/hero-mediha-720.webp 720w, /images/opt/hero-mediha-960.webp 960w, /images/opt/hero-mediha-1024.webp 1024w" imagesizes="(min-width:1000px) 50vw, 100vw" fetchpriority="high">
-<style>{CSS.strip()}</style>
+<style>{(CSS + CONSENT_CSS).strip()}</style>
 <script type="application/ld+json">{schema(T)}</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VXL6C4DDES"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","G-VXL6C4DDES");</script>
 </head>
 <body>
 <a class="skip" href="#main">{esc(T["skip"])}</a>
@@ -1186,7 +1247,7 @@ def page(T):
 <div class="cpan"><p class="label">{esc(T["form_label"])}</p><h2 class="h2" id="form-h">{esc(T["form_h"][0])} <em>{esc(T["form_h"][1])}</em></h2><p class="lead">{esc(T["form_sd"])}</p>
 <div class="direct"><a href="mailto:{MAIL}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>{MAIL}</a><a href="tel:{TEL}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.3a11 11 0 0 0 6.2 6.2l1.3-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>{TEL_TXT}</a><a href="{WA}" target="_blank" rel="noopener">{ICON_WA}WhatsApp</a></div>
 </div>
-<form class="form" name="contact" method="POST" action="/success" data-netlify="true" netlify-honeypot="bot-field">
+<form class="form" name="contact" method="POST" action="{T["success_path"]}" data-netlify="true" netlify-honeypot="bot-field">
 <input type="hidden" name="form-name" value="contact">
 <p class="hp"><label>Bot <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 <fieldset><legend>{"Worum geht es?" if L == "de" else "What is it about?"}</legend><div class="chips">{topic_chips}</div></fieldset>
@@ -1209,7 +1270,7 @@ def page(T):
 <div><h2>{esc(T["ft_contact"])}</h2><address style="font-style:normal"><nav aria-label="{esc(T["ft_contact"])}"><a href="mailto:{MAIL}">{MAIL}</a><a href="tel:{TEL}">{TEL_TXT}</a></nav><p style="margin-top:8px;color:var(--mu)">Aste 10, 6071 Aldrans, {"Österreich" if L == "de" else "Austria"}</p></address></div>
 </div>
 <p class="ftw" aria-hidden="true">Female <em>Signature</em></p>
-<div class="fb"><p>© 2026 Female Signature</p><nav aria-label="Rechtliches"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="{T["other_path"]}" hreflang="{"en" if L == "de" else "de"}" lang="{"en" if L == "de" else "de"}">{esc(T["other_name"])}</a></nav></div>
+<div class="fb"><p>© 2026 Female Signature</p><nav aria-label="Rechtliches"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a>{consent_link(L)}<a href="{T["other_path"]}" hreflang="{"en" if L == "de" else "de"}" lang="{"en" if L == "de" else "de"}">{esc(T["other_name"])}</a></nav></div>
 </div>
 </footer>
 
@@ -1222,6 +1283,8 @@ def page(T):
 </section>
 <script type="application/json" id="quiz-data">{quiz_json}</script>
 <script>{JS.strip()}</script>
+{consent_html(L)}
+<script>{consent_js(True)}</script>
 </body>
 </html>
 """

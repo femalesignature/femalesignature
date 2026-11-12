@@ -35,7 +35,7 @@ BASE_CSS = (css_part("@font-face", "/* Hero:") + css_part("/* Abschnitte im Vose
             + css_part("/* Schreibeffekt", "/* Ansatz:") + css_part("/* Abschluss:", "/* Kontakt:")
             + css_part("/* Scroll-Effekte", "/* Schwebende") + css_part("/* Sanftes Einblenden"))
 
-CSS = BASE_CSS + r"""
+CSS = BASE_CSS + H.CONSENT_CSS + r"""
 /* Blog */
 .hd:not(.sc){background:var(--ow)}
 .nav a[aria-current]{background:var(--ow);font-weight:600}
@@ -439,10 +439,12 @@ def shell(L, title, desc, canon, alts, og_img, schema, main, other_url, extra_he
 <div><h2>{esc(T["ft_contact"])}</h2><address style="font-style:normal"><nav aria-label="{esc(T["ft_contact"])}"><a href="mailto:{MAIL}">{MAIL}</a><a href="tel:{TEL}">{TEL_TXT}</a></nav><p style="margin-top:8px;color:var(--mu)">Aste 10, 6071 Aldrans, {"Österreich" if L == "de" else "Austria"}</p></address></div>
 </div>
 <p class="ftw" aria-hidden="true">Female <em>Signature</em></p>
-<div class="fb"><p>© 2026 Female Signature</p><nav aria-label="{"Rechtliches" if L == "de" else "Legal"}"><a href="/impressum"{cur if current == "Impressum" else ""}>Impressum</a><a href="/datenschutz"{cur if current == "Datenschutz" else ""}>Datenschutz</a><a href="{other_url}" hreflang="{other}" lang="{other}">{UI[other]["lang_name"]}</a></nav></div>
+<div class="fb"><p>© 2026 Female Signature</p><nav aria-label="{"Rechtliches" if L == "de" else "Legal"}"><a href="/impressum"{cur if current == "Impressum" else ""}>Impressum</a><a href="/datenschutz"{cur if current == "Datenschutz" else ""}>Datenschutz</a>{H.consent_link(L)}<a href="{other_url}" hreflang="{other}" lang="{other}">{UI[other]["lang_name"]}</a></nav></div>
 </div>
 </footer>
 <script>{JS.strip()}</script>
+{H.consent_html(L)}
+<script>{H.consent_js(False)}</script>
 </body>
 </html>
 """
@@ -600,7 +602,7 @@ def article_page(p, posts):
     alts = [("de", url(de_p)), ("en", url(en_p)), ("x-default", url(de_p))]
     img = SITE + f"/images/opt/cover-{p['n']}-1200.webp"
     schema = {"@context": "https://schema.org", "@graph": [
-        {"@type": "BlogPosting", "@id": full + "#article", "headline": p["title"], "description": p["desc"], "inLanguage": L,
+        {"@type": "BlogPosting", "@id": full + "#article", "headline": p["title"], "description": p.get("meta", p["desc"]), "inLanguage": L,
          "image": {"@type": "ImageObject", "url": img, "width": 1200, "height": 675},
          "datePublished": p["date"], "dateModified": TODAY, "author": person(), "publisher": org(),
          "mainEntityOfPage": full, "url": full, "articleSection": p["cat"], "keywords": ", ".join(p["tags"]),
@@ -615,7 +617,7 @@ def article_page(p, posts):
     pre = (f'<link rel="preload" as="image" type="image/webp" imagesrcset="{pset}" imagesizes="(min-width:1440px) 1400px, 100vw" fetchpriority="high">\n'
            f'<meta property="article:published_time" content="{p["date"]}">\n<meta property="article:modified_time" content="{TODAY}">\n'
            f'<meta property="article:section" content="{esc(p["cat"])}">\n' + "".join(f'<meta property="article:tag" content="{esc(t)}">\n' for t in p["tags"]))
-    return shell(L, page_title(p["title"]), p["desc"], url(p), alts, (f"/images/opt/cover-{p['n']}-1200.webp", 1200, 675, p["title"]), schema, main, url(pair), pre, "article")
+    return shell(L, page_title(p.get("seo", p["title"])), p.get("meta", p["desc"]), url(p), alts, (f"/images/opt/cover-{p['n']}-1200.webp", 1200, 675, p["title"]), schema, main, url(pair), pre, "article")
 
 
 def page_title(t):
@@ -624,8 +626,8 @@ def page_title(t):
     return full if len(full) <= 60 else t
 
 
-def simple_page(label, h1a, h1b, lead, buttons, title, desc, canon):
-    """Kleine Seite im neuen Design (Danke-Seite, 404), nur Deutsch, noindex."""
+def simple_page(label, h1a, h1b, lead, buttons, title, desc, canon, L="de"):
+    """Kleine Seite im neuen Design (Danke-Seite, 404), noindex."""
     btns = "".join(f'<a class="btn{"" if i == 0 else " ghost"}" href="{h}">{esc(t)}</a>' for i, (h, t) in enumerate(buttons))
     main = f"""<section class="ah simple">
 <div class="wrap">
@@ -635,8 +637,9 @@ def simple_page(label, h1a, h1b, lead, buttons, title, desc, canon):
 <p class="acts">{btns}</p>
 </div>
 </section>"""
-    schema = {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": SITE + canon, "inLanguage": "de", "publisher": org()}
-    return shell("de", title, desc, canon, [], ("/images/og-image.jpg", 1200, 630), schema, main, "/en/", current="", robots="noindex,follow")
+    schema = {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": SITE + canon, "inLanguage": L, "publisher": org()}
+    og = "/images/og-image.jpg" if L == "de" else "/images/og-image-en.jpg"
+    return shell(L, title, desc, canon, [], (og, 1200, 630), schema, main, "/en/" if L == "de" else "/", current="", robots="noindex,follow")
 
 
 def legal_page(name):
@@ -727,6 +730,14 @@ def main():
         "Fehler 404", "Diese Seite gibt es", "nicht.", "Vielleicht hat sich die Adresse geändert. Auf der Startseite und im Blog finden Sie alle Inhalte.",
         [("/", "Zur Startseite"), ("/blog/", "Zum Blog"), ("/en/", "English version")],
         "Seite nicht gefunden | Female Signature", "Diese Seite gibt es nicht. Zur Startseite und zum Blog von Female Signature.", "/404")), encoding="utf-8")
+    (ROOT / "en" / "success.html").write_text(H.versioned(simple_page(
+        "Message sent", "Thank", "you.", "Your message has arrived. We will get back to you within 24 hours.",
+        [("/en/", "Back to the homepage"), ("/blog/index-en", "Read the blog")],
+        "Message sent | Female Signature", "Thank you for your message to Female Signature. We will get back to you within 24 hours.", "/en/success", "en")), encoding="utf-8")
+    (ROOT / "en" / "404.html").write_text(H.versioned(simple_page(
+        "Error 404", "This page does", "not exist.", "The address may have changed. You will find all our content on the homepage and in the blog.",
+        [("/en/", "Go to the homepage"), ("/blog/index-en", "Go to the blog"), ("/", "Deutsche Version")],
+        "Page not found | Female Signature", "This page does not exist. Go to the Female Signature homepage or blog.", "/en/404", "en")), encoding="utf-8")
     sitemap(posts)
     print(len(posts), "Artikel,", sum((out / f"{p['slug']}.html").stat().st_size for p in posts) // len(posts), "Bytes im Schnitt")
 
